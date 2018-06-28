@@ -24,6 +24,8 @@ public class ViewUIHelper {
 
         view.getLayoutParams().width = width;
         view.getLayoutParams().height = height;
+
+
     }
 
 
