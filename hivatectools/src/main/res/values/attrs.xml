@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="textSize" format="dimension" />
+
+
+    <declare-styleable name="HivaButton">
+
+        <attr name="text"></attr>
+        <attr name="textColor"></attr>
+        <attr name="textSize"></attr>
+
+        <attr name="radius" format="dimension"></attr>
+
+        <attr name="backgroundColor" format="color"></attr>
+        <attr name="backgroundDrawable" format="reference"></attr>
+        <attr name="touchEffect" format="enum">
+            <enum name="none" value="0"></enum>
+            <enum name="lighten" value="1"></enum>
+            <enum name="darken" value="2"></enum>
+        </attr>
+
+        <attr name="widthPadding" format="dimension"></attr>
+        <attr name="heightPadding" format="dimension"></attr>
+
+
+        <attr name="typeface" format="string" ></attr>
+        <attr name="icon" format="reference"></attr>
+        <attr name="iconWidth" format="dimension"></attr>
+        <attr name="space" format="dimension"></attr>
+        <attr name="iconPosition" format="enum">
+            <enum name="right" value="0"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="top" value="2"></enum>
+            <enum name="bottom" value="3"></enum>
+        </attr>
+
+
+    </declare-styleable>
+
+
+</resources>
