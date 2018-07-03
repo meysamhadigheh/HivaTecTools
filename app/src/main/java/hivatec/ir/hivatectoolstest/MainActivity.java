@@ -9,6 +9,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button hivaButtonTest;
+    Button hivaAdapterTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +25,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        hivaAdapterTest =findViewById(R.id.hivaAdapterButton);
+        hivaAdapterTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HivaAdapterActivity.class));
+            }
+        });
     }
 }

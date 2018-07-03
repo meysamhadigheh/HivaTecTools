@@ -12,6 +12,7 @@ import android.support.v4.widget.CircularProgressDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -178,51 +179,42 @@ public class HivaButton extends RelativeLayout {
 			linearLayout.addView(heightPaddingSapce);
 		}
 
+		linearLayout.setGravity(Gravity.CENTER);
+
 		switch (iconPosition) {
 			case 0 : //right
 			default:
 				linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-				linearLayout.setGravity(Gravity.CENTER);
 				spaceView.setLayoutParams(new LayoutParams(space,1));
-				linearLayout.addView(textView);
-				linearLayout.addView(spaceView);
-				linearLayout.addView(imageView);
+
 				break;
 			case 1 : //left
 				linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-				linearLayout.setGravity(Gravity.CENTER);
 				spaceView.setLayoutParams(new LayoutParams(space,1));
-				linearLayout.addView(imageView);
-				linearLayout.addView(spaceView);
-				linearLayout.addView(textView);
 				break;
 
 			case 2: //top
 				linearLayout.setOrientation(LinearLayout.VERTICAL);
-				linearLayout.setGravity(Gravity.CENTER);
 				spaceView.setLayoutParams(new LayoutParams(1,space));
-				linearLayout.addView(imageView);
-				linearLayout.addView(spaceView);
-				linearLayout.addView(textView);
 				break;
 			case 3 :
 				linearLayout.setOrientation(LinearLayout.VERTICAL);
-				linearLayout.setGravity(Gravity.CENTER);
 				spaceView.setLayoutParams(new LayoutParams(1,space));
-				linearLayout.addView(textView);
-				linearLayout.addView(spaceView);
-				linearLayout.addView(imageView);
 				break;
 		}
 
+		linearLayout.addView(textView);
+		linearLayout.addView(spaceView);
+		linearLayout.addView(imageView);
+
 		if(widthPadding > 0){
-			Space widthPaddingSapce = new Space(getContext());
+			View widthPaddingSapce = new View(getContext());
 			widthPaddingSapce.setLayoutParams(new LayoutParams(widthPadding,1));
 			linearLayout.addView(widthPaddingSapce);
 		}
 
 		if(heightPadding > 0){
-			Space heightPaddingSapce = new Space(getContext());
+			View heightPaddingSapce = new View(getContext());
 			heightPaddingSapce.setLayoutParams(new LayoutParams(1,heightPadding));
 			linearLayout.addView(heightPaddingSapce);
 		}

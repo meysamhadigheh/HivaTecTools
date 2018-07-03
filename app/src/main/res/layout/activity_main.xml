@@ -11,6 +11,10 @@
         android:layout_height="wrap_content"
         android:text="hivabutton test"/>
 
-
+    <Button
+        android:id="@+id/hivaAdapterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hiva adapter test"/>
 
 </LinearLayout>
