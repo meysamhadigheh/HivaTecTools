@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HivaTecToolsTest</string>
+    <string name="title_activity_hiva_adapter">HivaAdapterActivity</string>
 </resources>

@@ -26,10 +26,6 @@ public class G extends Application {
         FontsOverride.setDefaultFont(this, "MONOSPACE", "IRANSansMobile.ttf");
         FontsOverride.setDefaultFont(this, "SERIF", "IRANSansMobile.ttf");
         FontsOverride.setDefaultFont(this, "SANS_SERIF", "IRANSansMobile.ttf");
-
-
-
-
     }
 
 

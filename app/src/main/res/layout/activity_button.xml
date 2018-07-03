@@ -11,10 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:text="HivaButton"
+        app:text="iii"
+        app:space="0dp"
         app:textColor="#fff"
-        app:heightPadding="10dp"
-        app:widthPadding="25dp"
+        app:heightPadding="0px"
+        app:widthPadding="0px"
         app:radius="5dp">
 
     </hivatec.ir.hivatectools.view.HivaButton>
