@@ -100,6 +100,7 @@ public class HivaButton extends RelativeLayout {
 
         textView = new TextView(getContext());
         textView.setText(title);
+        //textView.setBackgroundColor(Color.GREEN);
         textView.setSingleLine();
         textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -109,33 +110,49 @@ public class HivaButton extends RelativeLayout {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
         if(typeface != null && !typeface.equals("")) {
-			Typeface t = Typeface.createFromAsset(getContext().getAssets(), String.format("fonts/%s", typeface));
-			textView.setTypeface(t);
+        	try {
+				Typeface t = Typeface.createFromAsset(getContext().getAssets(), String.format("fonts/%s", typeface));
+				textView.setTypeface(t);
+			}catch (Exception e){
+			}
 		}
 
 		//set indicator
 		indicatorView = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleSmall);
 		circularDrawable = new CircularProgressDrawable(getContext());
 
-		circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
 		circularDrawable.setStrokeCap(Paint.Cap.ROUND);
 		circularDrawable.setColorFilter(new
 				PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_ATOP));
 
-		indicatorView.setAlpha(0.8f);
+		indicatorView.setAlpha(0.9f);
 
 		indicatorView.setIndeterminateDrawable(circularDrawable);
-		LayoutParams indicatorViewParams =
-				new LayoutParams(
-						ViewUIHelper.dpToPx(30),
-						ViewUIHelper.dpToPx(30));
+		LayoutParams indicatorViewParams = null;
 
+		if(iconWidth == 0) {
+			indicatorViewParams = new LayoutParams(
+					textSize * 4 / 3 ,
+					textSize * 4 / 3 );
+
+			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(6));
+
+		}else{
+			indicatorViewParams = new LayoutParams(
+					iconWidth / 2,
+					iconWidth / 2);
+
+			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(iconWidth / 20));
+
+		}
 		indicatorViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
 		indicatorView.setVisibility(GONE);
+		indicatorView.setLayoutParams(indicatorViewParams);
 
 
 		linearLayout = new LinearLayout(getContext());
+		//linearLayout.setBackgroundColor(Color.RED);
 
 		LayoutParams linearLayoutLayoutParams =
 				new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -151,6 +168,7 @@ public class HivaButton extends RelativeLayout {
 
 
 		imageView = new ImageView(getContext());
+		//imageView.setBackgroundColor(Color.YELLOW);
 		Space spaceView = new Space(getContext());
 
 		if(icon != 0 && iconWidth == 0){
@@ -160,24 +178,14 @@ public class HivaButton extends RelativeLayout {
 			imageView.setLayoutParams(new LayoutParams(iconWidth,iconWidth));
 		}
 		imageView.setImageResource(icon);
+		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		imageView.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
 
 
 		if(icon != 0 && space == -999){
-			space = textSize / 2;
+			space = textSize / 3;
 		}
 
-		if(widthPadding > 0){
-			Space widthPaddingSapce = new Space(getContext());
-			widthPaddingSapce.setLayoutParams(new LayoutParams(widthPadding,1));
-			linearLayout.addView(widthPaddingSapce);
-		}
-
-		if(heightPadding > 0){
-			Space heightPaddingSapce = new Space(getContext());
-			heightPaddingSapce.setLayoutParams(new LayoutParams(1,heightPadding));
-			linearLayout.addView(heightPaddingSapce);
-		}
 
 		linearLayout.setGravity(Gravity.CENTER);
 
@@ -203,28 +211,66 @@ public class HivaButton extends RelativeLayout {
 				break;
 		}
 
-		linearLayout.addView(textView);
-		linearLayout.addView(spaceView);
-		linearLayout.addView(imageView);
+		if(widthPadding > 0  && linearLayout.getOrientation() == LinearLayout.HORIZONTAL){
+			Space widthPaddingSapce = new Space(getContext());
+			widthPaddingSapce.setLayoutParams(new LayoutParams(widthPadding,1));
+			linearLayout.addView(widthPaddingSapce);
+		}
 
-		if(widthPadding > 0){
+		if(heightPadding > 0  && linearLayout.getOrientation() == LinearLayout.VERTICAL){
+			Space heightPaddingSapce = new Space(getContext());
+			heightPaddingSapce.setLayoutParams(new LayoutParams(1,heightPadding));
+			linearLayout.addView(heightPaddingSapce);
+		}
+
+		switch (iconPosition) {
+			case 0 : //right
+			default:
+				linearLayout.addView(textView);
+				linearLayout.addView(spaceView);
+				linearLayout.addView(imageView);
+				break;
+			case 1 : //left
+				linearLayout.addView(imageView);
+				linearLayout.addView(spaceView);
+				linearLayout.addView(textView);
+				break;
+
+			case 2: //top
+				linearLayout.addView(imageView);
+				linearLayout.addView(spaceView);
+				linearLayout.addView(textView);
+				break;
+			case 3 :
+				linearLayout.addView(textView);
+				linearLayout.addView(spaceView);
+				linearLayout.addView(imageView);
+				break;
+		}
+
+		if(title.equals("")){
+			textView.setVisibility(GONE);
+		}
+
+
+		if(widthPadding > 0 && linearLayout.getOrientation() == LinearLayout.HORIZONTAL){
 			View widthPaddingSapce = new View(getContext());
 			widthPaddingSapce.setLayoutParams(new LayoutParams(widthPadding,1));
 			linearLayout.addView(widthPaddingSapce);
 		}
 
-		if(heightPadding > 0){
+		if(heightPadding > 0 && linearLayout.getOrientation() == LinearLayout.VERTICAL){
 			View heightPaddingSapce = new View(getContext());
-			heightPaddingSapce.setLayoutParams(new LayoutParams(1,heightPadding));
+			heightPaddingSapce.setLayoutParams(new LayoutParams(1, heightPadding));
 			linearLayout.addView(heightPaddingSapce);
 		}
 
 		if(linearLayout.getOrientation() == LinearLayout.HORIZONTAL) {
-			ViewUIHelper.setMarginPx(linearLayout, 0, heightPadding, 0, heightPadding);
+			ViewUIHelper.setPaddingPx(this, 0, heightPadding, 0, heightPadding);
 		}
 
 		if(linearLayout.getOrientation() == LinearLayout.VERTICAL) {
-			ViewUIHelper.setMarginPx(linearLayout, widthPadding, 0, widthPadding, 0);
+			ViewUIHelper.setPaddingPx(this, widthPadding, 0, widthPadding, 0);
 		}
 
 
@@ -258,9 +304,10 @@ public class HivaButton extends RelativeLayout {
     }
 
     public void setTitle(String setTitle){
-        textView.setVisibility(VISIBLE);
-        textView.setText(setTitle);
 
+		title = setTitle;
+		textView.setVisibility(VISIBLE);
+		textView.setText(setTitle);
     }
 
     public void stopLoadingState(){

@@ -91,7 +91,7 @@ public class ViewUIHelper {
      */
     public static void setPadding(View view, int padding) {
 
-        setPadding(view, padding, padding, padding, padding);
+        setPaddingDp(view, padding, padding, padding, padding);
     }
 
     /**
@@ -102,12 +102,25 @@ public class ViewUIHelper {
      * @param right
      * @param bottom
      */
-    public static void setPadding(View view, int left, int top, int right, int bottom){
+    public static void setPaddingDp(View view, int left, int top, int right, int bottom){
 
         left = dpToPx(left);
         top = dpToPx(top);
         right = dpToPx(right);
         bottom = dpToPx(bottom);
+
+        view.setPadding(left, top, right, bottom);
+    }
+
+    /**
+     * set padding with custom size for view
+     * @param view
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
+    public static void setPaddingPx(View view, int left, int top, int right, int bottom){
 
         view.setPadding(left, top, right, bottom);
     }
