@@ -152,6 +152,7 @@ public class HivaButton extends RelativeLayout {
 
 
 		linearLayout = new LinearLayout(getContext());
+
 		//linearLayout.setBackgroundColor(Color.RED);
 
 		LayoutParams linearLayoutLayoutParams =

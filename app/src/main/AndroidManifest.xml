@@ -12,16 +12,16 @@
         tools:replace="android:supportsRtl"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ButtonActivity" />
+        <activity android:name=".activities.ButtonActivity" />
         <activity
-            android:name=".HivaAdapterActivity"
+            android:name=".activities.HivaAdapterActivity"
             android:label="@string/title_activity_hiva_adapter"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectoolstest;
+package hivatec.ir.hivatectoolstest.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import hivatec.ir.hivatectools.hivaAdapter.HivaRecyclerAdapter;
 import hivatec.ir.hivatectools.hivaAdapter.ItemHolder;
 import hivatec.ir.hivatectools.hivaAdapter.ItemHolderIterator;
+import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
 
 public class HivaAdapterActivity extends AppCompatActivity {
