@@ -17,4 +17,12 @@
         android:layout_height="wrap_content"
         android:text="hiva adapter test"/>
 
+
+    <Button
+        android:id="@+id/hivaRadioView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hiva radio test"/>
+
+
 </LinearLayout>
