@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ButtonActivity" />
+        <activity android:name=".activities.ButtonActivity" />
         <activity
-            android:name=".HivaAdapterActivity"
+            android:name=".activities.HivaAdapterActivity"
             android:label="@string/title_activity_hiva_adapter"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".RadioActivity"
             android:label="@string/title_activity_radio"

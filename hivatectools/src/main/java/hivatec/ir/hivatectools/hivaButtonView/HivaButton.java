@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.view;
+package hivatec.ir.hivatectools.hivaButtonView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -152,6 +152,7 @@ public class HivaButton extends RelativeLayout {
 
 
 		linearLayout = new LinearLayout(getContext());
+
 		//linearLayout.setBackgroundColor(Color.RED);
 
 		LayoutParams linearLayoutLayoutParams =
