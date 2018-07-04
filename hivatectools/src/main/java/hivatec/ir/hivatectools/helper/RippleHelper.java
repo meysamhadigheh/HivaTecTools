@@ -16,6 +16,29 @@ import android.util.StateSet;
 
 public class RippleHelper {
 
+	public static Drawable getRippleDrawableForTransparentColor(int color, int radius)
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			ColorStateList pressedColor = ColorStateList.valueOf(color); //lightenOrDarken(color, 0.3D));
+			Drawable shape =  getRoundDrawable(Color.TRANSPARENT, radius);
+			Drawable rippleColor = getRoundDrawable(color, radius);
+
+
+			RippleDrawable ripple =  new RippleDrawable(
+					pressedColor,
+					shape,
+					rippleColor
+			);
+
+
+
+			return ripple;
+		}else{
+
+			return getDrawableFromColor(color, lightenOrDarken(color, 0.2D), radius);
+		}
+	}
+
 	public static Drawable getRippleDrawableByColor(int color, int radius)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

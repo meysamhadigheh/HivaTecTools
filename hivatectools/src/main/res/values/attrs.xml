@@ -2,6 +2,27 @@
 <resources>
 
     <attr name="textSize" format="dimension" />
+    <attr name="typeface" format="string" ></attr>
+    <attr name="textColor" format="color"></attr>
+    <attr name="iconSize" format="dimension"></attr>
+
+
+
+    <declare-styleable name="HivaRadioView">
+
+        <attr name="iconOn" format="reference"></attr>
+        <attr name="iconOff" format="reference"></attr>
+        <attr name="iconSize"/>
+        <attr name="tint"></attr>
+
+        <attr name="typeface" ></attr>
+        <attr name="textColor"></attr>
+        <attr name="textSize"></attr>
+
+        <attr name="dividerColor" format="color"></attr>
+        <attr name="rippleColor" format="color"></attr>
+
+    </declare-styleable>
 
 
     <declare-styleable name="HivaButton">
@@ -24,7 +45,7 @@
         <attr name="heightPadding" format="dimension"></attr>
 
 
-        <attr name="typeface" format="string" ></attr>
+        <attr name="typeface" ></attr>
         <attr name="icon" format="reference"></attr>
         <attr name="iconWidth" format="dimension"></attr>
         <attr name="space" format="dimension"></attr>
