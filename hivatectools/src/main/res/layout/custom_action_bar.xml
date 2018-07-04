@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<android.support.design.widget.AppBarLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:background="@color/red"
-    app:elevation="0dp">
+    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionBarExtended"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:elevation="0dp">
 
-        android:contentInsetLeft="0dp"
-        android:contentInsetStart="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        android:contentInsetRight="0dp"
-        android:contentInsetEnd="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp">
-
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/actionBar"
+            android:background="@color/actionBar"
+            android:contentInsetEnd="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetRight="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/actionBar"
-                android:layout_alignParentBottom="true"
-                >
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/actionbar_title_image"
-                    android:layout_width="match_parent"
+
+                <RelativeLayout
+                    android:layout_width="@dimen/actionBar"
                     android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="8dp">
 
+                    <RelativeLayout
+                        android:id="@+id/actionbar_left_layout"
+                        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+                        android:layout_width="@dimen/actionBar"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/ripple"
+                        android:clickable="true">
 
+                        <ImageView
+                            android:id="@+id/actionbar_left_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_arrow_back"
 
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:scaleType="fitCenter"
-                    android:layout_centerInParent="true"
-                    />
+                            android:tint="@color/white" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
 
 
                 <TextView
@@ -56,79 +68,47 @@
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/iransansmobilemedium"
                     android:gravity="center"
-                    android:text=""
+
+                    android:text="منو برگر"
                     android:textColor="#fff"
-                    android:textSize="18sp"
-                    android:paddingBottom="2dp"
-                    />
-
-                <RelativeLayout
-                    android:id="@+id/actionbar_left_layout"
-
-                    style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
-                    android:layout_width="@dimen/actionBar"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:padding="8dp">
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-
-                        android:background="@drawable/ripple" />
-
-                    <ImageView
-                        android:id="@+id/actionbar_left_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_arrow_back"
-                        android:tint="@color/white" />
-                </RelativeLayout>
+                    android:textSize="18sp" />
 
 
                 <RelativeLayout
-                    android:id="@+id/actionbar_right_layout"
-
-                    style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
                     android:layout_width="@dimen/actionBar"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:padding="8dp"
-                    >
+                    android:layout_alignParentEnd="true"
+                    android:padding="8dp">
 
-                    <View
-                        android:layout_width="match_parent"
+
+                    <RelativeLayout
+                        android:id="@+id/actionbar_right_layout"
+
+                        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+                        android:layout_width="@dimen/actionBar"
                         android:layout_height="match_parent"
+
                         android:background="@drawable/ripple"
+                        android:clickable="true">
 
-                        android:layout_centerInParent="true"
-                        />
-
-                    <ImageView
-                        android:id="@+id/actionbar_right_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_rubbish_bin"
-
-                        android:tint="@color/white"
-                        />
-
+                        <ImageView
+                            android:id="@+id/actionbar_right_img"
+                            android:layout_width="18dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_rubbish_bin" />
+                    </RelativeLayout>
                 </RelativeLayout>
 
 
-
-
-
             </RelativeLayout>
-        </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
-</android.support.design.widget.AppBarLayout>
 
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+</RelativeLayout>
