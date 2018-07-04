@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.ButtonActivity">
 
-    <hivatec.ir.hivatectools.view.HivaButton
+    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
 
         android:id="@+id/hiva_button"
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
         />
 
 
-    <hivatec.ir.hivatectools.view.HivaButton
+    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
 
         android:id="@+id/hiva_button2"
         android:layout_width="wrap_content"
