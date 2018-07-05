@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="BlueView">
+
+        <attr name="title" format="string" />
+        <attr name="title2" format="string" />
+        <attr name="icon" format="reference" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="textColor" format="color" />
+
+    </declare-styleable>
+
+</resources>

@@ -34,6 +34,20 @@
             >
 
 
+            <hivatec.ir.hivatectoolstest.view.BlueView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:title = "hello"
+                app:title2 = "bye"
+                app:icon = "@drawable/ic_check"
+                app:backgroundColor = "#c21a1a"
+                app:textColor = "#ffffff"
+                >
+
+            </hivatec.ir.hivatectoolstest.view.BlueView>
+
+
         </LinearLayout>
     </LinearLayout>
 

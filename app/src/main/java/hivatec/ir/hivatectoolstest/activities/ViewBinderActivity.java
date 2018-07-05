@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.view.BlueView;
 
 public class ViewBinderActivity extends AppCompatActivity {
 

@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     Button hivaButtonTest;
     Button hivaAdapterTest;
     Button hivaRadio;
+    Button hivaViewBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RadioActivity.class));
+            }
+        });
+
+        hivaViewBinder =findViewById(R.id.hivaViewBinder);
+        hivaViewBinder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ViewBinderActivity.class));
             }
         });
     }
