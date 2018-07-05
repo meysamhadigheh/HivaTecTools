@@ -11,7 +11,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +22,21 @@
         <activity
             android:name=".activities.HivaAdapterActivity"
             android:label="@string/title_activity_hiva_adapter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- meysam activities -->
+
+
+        <!-- Ashkan activities -->
+
         <activity
-            android:name=".RadioActivity"
+            android:name=".activities.RadioActivity"
             android:label="@string/title_activity_radio"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ViewBinderActivity"
+            android:label="@string/title_activity_view_binder"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

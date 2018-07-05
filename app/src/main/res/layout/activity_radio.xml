@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hivatec.ir.hivatectoolstest.RadioActivity">
+    tools:context="hivatec.ir.hivatectoolstest.activities.ButtonActivity$RadioActivity">
 
 
     <android.support.constraint.ConstraintLayout
@@ -67,6 +67,20 @@
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hivaRadio" />
+
+
+        <View
+            android:id="@+id/testRipple"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:clickable="true"
+
+            android:layout_marginTop="50dp"
+            android:background="#aaaaaa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
     </android.support.constraint.ConstraintLayout>

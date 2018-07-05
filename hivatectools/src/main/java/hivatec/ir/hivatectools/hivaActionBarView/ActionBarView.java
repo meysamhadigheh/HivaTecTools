@@ -35,8 +35,6 @@ public class ActionBarView extends RelativeLayout {
     private void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-
-
         inflater.inflate(R.layout.custom_action_bar, this);
         this.actionBarTitle=findViewById(R.id.actionbar_title);
         this.actionBarRightImg=findViewById(R.id.actionbar_right_img);

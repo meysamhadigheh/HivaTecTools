@@ -181,8 +181,8 @@ public class HivaRadioView extends RecyclerView {
 
 		radioItems.get(index).isSelected = true;
 
-		adapter.notifyItemChanged(lastIndex);
-		adapter.notifyItemChanged(selectedItem);
+		adapter.notifyItemChanged(lastIndex, new Integer(500));
+		adapter.notifyItemChanged(selectedItem, new Integer(5000));
 	}
 
 	public int getSelectedItem(){

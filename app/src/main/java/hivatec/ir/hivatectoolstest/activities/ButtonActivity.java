@@ -2,9 +2,13 @@ package hivatec.ir.hivatectoolstest.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import hivatec.ir.hivatectools.hivaButtonView.HivaButton;
+import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
 import hivatec.ir.hivatectoolstest.R;
 
 public class ButtonActivity extends AppCompatActivity {
@@ -57,4 +61,6 @@ public class ButtonActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
