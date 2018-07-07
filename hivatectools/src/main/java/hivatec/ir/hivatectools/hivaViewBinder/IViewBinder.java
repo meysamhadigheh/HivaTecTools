@@ -1,5 +1,6 @@
 package hivatec.ir.hivatectools.hivaViewBinder;
 
+import android.content.res.TypedArray;
 import android.view.View;
 
 /**
@@ -8,9 +9,8 @@ import android.view.View;
 
 public interface IViewBinder {
 
-	void getAttrSet(ViewBinderHelper binder);
+	void getAttrSet(TypedArray a);
 	void init();
 	int getLayoutId();
-	String getClassName();
 	<T extends View> T find(int viewId);
 }

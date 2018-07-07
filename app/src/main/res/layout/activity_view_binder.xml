@@ -39,13 +39,39 @@
                 android:layout_height="wrap_content"
 
                 app:title = "hello"
-                app:title2 = "bye"
                 app:icon = "@drawable/ic_check"
-                app:backgroundColor = "#c21a1a"
+                app:backgroundColor = "#ac5151"
                 app:textColor = "#ffffff"
+                app:textSize = "14sp"
                 >
 
             </hivatec.ir.hivatectoolstest.view.BlueView>
+
+
+            <hivatec.ir.hivatectoolstest.view.ConView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:image="@drawable/ic_check"
+                app:title="بهترین پیشنهاد"
+                app:desc="رضا نوری روزنامه نگار، درباره بحث تغییر نام ایران و کتاب بحث برانگیز هانری لوی، نویسنده مشهور فرانسوی در یادداشتی که برای صفحه ناظران  بی بی سی فارسی نوشته  به این موضوعات پرداخته است."
+                >
+
+
+            </hivatec.ir.hivatectoolstest.view.ConView>
+
+
+
+            <hivatec.ir.hivatectoolstest.view.GalleryView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:title="hello"
+                app:desc="this is desc"
+                app:image="@drawable/ic_check"
+                app:title_textColor="@color/red"
+
+                ></hivatec.ir.hivatectoolstest.view.GalleryView>
 
 
         </LinearLayout>

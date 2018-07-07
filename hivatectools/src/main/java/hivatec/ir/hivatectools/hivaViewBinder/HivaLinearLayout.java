@@ -1,6 +1,7 @@
 package hivatec.ir.hivatectools.hivaViewBinder;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +11,20 @@ import android.widget.LinearLayout;
  * Created by ashkan on 7/5/18.
  */
 
-public abstract class LinearLayoutBinder extends LinearLayout implements IViewBinder {
+public abstract class HivaLinearLayout extends LinearLayout implements IViewBinder {
 
 	public ViewBinderHelper binder;
 
-	public LinearLayoutBinder(Context context) {
+	public HivaLinearLayout(Context context) {
 		super(context);
 
 		initView(null);
 	}
 
-	public LinearLayoutBinder(Context context, AttributeSet attrs) {
+	public HivaLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 		initView(attrs);
-
 	}
 
 
@@ -33,7 +33,9 @@ public abstract class LinearLayoutBinder extends LinearLayout implements IViewBi
 
 		if(attrs != null){
 			binder.setAttributeSet(attrs);
-			getAttrSet(binder);
+			TypedArray a = binder.getTypedArray();
+			getAttrSet(a);
+			a.recycle();
 		}
 
 		init();

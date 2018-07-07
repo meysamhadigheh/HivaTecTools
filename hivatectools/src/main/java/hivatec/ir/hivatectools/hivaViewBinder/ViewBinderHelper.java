@@ -45,6 +45,11 @@ public class ViewBinderHelper {
 		this.attrs = attrs;
 	}
 
+	public AttributeSet getAttributeSet(){
+
+		return  this.attrs;
+	}
+
 	public <T extends View> T find(int viewId){
 
 		T _view;
@@ -89,8 +94,23 @@ public class ViewBinderHelper {
 		return selectedFields;
 	}
 
+	public TypedArray getTypedArray() {
+
+		String className = view.getClass().getSimpleName();
+		ArrayList<Field> fields = getResourceDeclareStyleableIntArray(view.getContext(), className);
+
+		try {
+			TypedArray a = view.getContext().getTheme().obtainStyledAttributes(attrs, ((int[]) fields.get(0).get(null)), 0, 0);
+			return a;
+
+		}catch (Exception e){
+			return null;
+		}
+
+	}
 
 
+/*
 	public String getStringResource(String name){
 
 		String val = "";
@@ -227,4 +247,49 @@ public class ViewBinderHelper {
 
 	}
 
+	public int getInt(String name, int defVal){
+
+		int val = defVal;
+
+		if(attrs != null) {
+
+			ArrayList<Field> fields = getResourceDeclareStyleableIntArray(view.getContext(), ((IViewBinder) view).getClassName());
+
+			if (fields.size() == 0) {
+
+				Log.e("HivaViewBinder", "R.styleable." + ((IViewBinder) view).getClassName() + " not found in attrs.xml!");
+				Log.e("HivaViewBinder", "Copy and paste <declare-styleable name=\"" + ((IViewBinder) view).getClassName() + "\"></declare-styleable> in attrs.xml");
+
+			} else {
+
+				for (Field f : fields) {
+
+					String fieldName = f.getName();
+					String requestedName = ((IViewBinder) view).getClassName() + "_" + name;
+					if (fieldName.equals(requestedName)) {
+
+						try {
+							int res = (int) f.get(null);
+							TypedArray a = view.getContext().getTheme().obtainStyledAttributes(attrs, ((int[]) fields.get(0).get(null)), 0, 0);
+							val = a.getInt(res, val);
+							a.recycle();
+							return val;
+
+						}catch (Exception e){
+
+							e.printStackTrace();
+						}
+					}
+				}
+
+				Log.e("HivaViewBinder", "R.styleable." + ((IViewBinder) view).getClassName() + "_" + name + " not found in attrs.xml!");
+				Log.e("HivaViewBinder", "Copy and paste <attr name=\"" + name + "\" format=\"string\" />");
+
+			}
+		}
+
+		return val;
+
+	}
+*/
 }
