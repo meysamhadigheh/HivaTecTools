@@ -29,7 +29,9 @@ public class ViewBinderHelper {
 
 		this.view = view;
 
-		LayoutInflater.from(view.getContext()).inflate(getBinder().getLayoutId(), view, true);
+		if(getBinder().getLayoutId() > 0) {
+			LayoutInflater.from(view.getContext()).inflate(getBinder().getLayoutId(), view, true);
+		}
 	}
 
 	HashMap<Integer, View> viewMap = new HashMap<>();

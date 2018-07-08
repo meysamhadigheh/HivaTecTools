@@ -5,13 +5,17 @@
     <attr name="typeface" format="string" ></attr>
     <attr name="textColor" format="color"></attr>
     <attr name="iconSize" format="dimension"></attr>
+    <attr name="iconOn" format="reference"></attr>
+    <attr name="iconOff" format="reference"></attr>
+    <attr name="dividerColor" format="color"></attr>
+    <attr name="rippleColor" format="color"></attr>
 
 
 
     <declare-styleable name="HivaRadioView">
 
-        <attr name="iconOn" format="reference"></attr>
-        <attr name="iconOff" format="reference"></attr>
+        <attr name="iconOn"></attr>
+        <attr name="iconOff"></attr>
         <attr name="iconSize"/>
         <attr name="tint"></attr>
 
@@ -19,8 +23,8 @@
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
 
-        <attr name="dividerColor" format="color"></attr>
-        <attr name="rippleColor" format="color"></attr>
+        <attr name="dividerColor"></attr>
+        <attr name="rippleColor"></attr>
 
     </declare-styleable>
 

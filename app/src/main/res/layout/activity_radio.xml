@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hivatec.ir.hivatectoolstest.activities.ButtonActivity$RadioActivity">
+    tools:context="hivatec.ir.hivatectoolstest.activities.RadioActivity">
 
 
     <android.support.constraint.ConstraintLayout
@@ -29,21 +29,18 @@
 
         <hivatec.ir.hivatectools.hivaRadioView.HivaRadioView
             android:id="@+id/hivaRadio"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
 
-            app:iconSize="24dp"
-            app:textSize="16sp"
-            app:textColor="#444444"
-            app:tint="@android:color/holo_green_dark"
-            app:typeface="IRANSansMobile.ttf"
-            app:dividerColor="#efefef"
-            app:rippleColor="#bbbbbb"
+            app:textColor="@color/red"
+            app:textSize="14sp"
+            app:iconOn="@drawable/ic_check"
             >
+
 
         </hivatec.ir.hivatectools.hivaRadioView.HivaRadioView>
 
@@ -51,36 +48,12 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="8dp"
             android:text="رادیو لیست"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hivaRadio" />
-
-
-        <View
-            android:id="@+id/testRipple"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-
-            android:clickable="true"
-
-            android:layout_marginTop="50dp"
-            android:background="#aaaaaa"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
     </android.support.constraint.ConstraintLayout>

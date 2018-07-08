@@ -31,10 +31,10 @@ public class RadioActivity extends AppCompatActivity {
 			items.add("آیتم ۴");
 
 			radioView = findViewById(R.id.hivaRadio);
-			radioView.setItems(items);
+			radioView.setItems(items.toArray());
 
 
-			findViewById(R.id.testRipple).setBackground(RippleHelper.getRippleDrawableForTransparentColor(Color.parseColor("#aaaaaa"), 0));
+			//findViewById(R.id.testRipple).setBackground(RippleHelper.getRippleDrawableForTransparentColor(Color.parseColor("#aaaaaa"), 0));
 
 		}
 

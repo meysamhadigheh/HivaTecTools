@@ -1,50 +1,41 @@
 package hivatec.ir.hivatectools.hivaRadioView;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import hivatec.ir.hivatectools.R;
 import hivatec.ir.hivatectools.helper.RippleHelper;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;
 import hivatec.ir.hivatectools.hivaAdapter.HivaRecyclerAdapter;
-import hivatec.ir.hivatectools.hivaAdapter.ItemBinder;
-import hivatec.ir.hivatectools.hivaAdapter.ItemHolder;
-import hivatec.ir.hivatectools.hivaAdapter.OnItemClickListener;
+import hivatec.ir.hivatectools.hivaViewBinder.HivaLinearLayout;
 
 /**
- * Created by ashkan on 3/14/18.
+ * Created by ashkan on 7/7/18.
  */
 
-public class HivaRadioView extends RecyclerView {
+public class HivaRadioView extends LinearLayout {
+
 
 	public int radioOffDrawable = R.drawable.ic_radio_off;
 	public int radioOnDrawable = R.drawable.ic_radio_on;
 
-	ArrayList<String> items = new ArrayList<>();
-	ArrayList<Integer> ids = new ArrayList<>();
-	ArrayList<RadioItem> radioItems = new ArrayList<>();
-	private HivaRecyclerAdapter adapter;
-	boolean needsItemsChange = true;
+	ArrayList<RadioItem> items = new ArrayList<>();
 
-	int selectedItem = -1;
+	RadioItem selectedItem = null;
+
 	private OnRadioItemSelectedListener listener;
-
 
 	int iconOn = 0;
 	int iconOff = 0;
@@ -57,40 +48,40 @@ public class HivaRadioView extends RecyclerView {
 	int dividerColor = Color.parseColor("#eeeeee");
 	int rippleColor = Color.parseColor("#eeeeee");
 
+
 	public HivaRadioView(Context context) {
 		super(context);
 
 		init();
 	}
 
-	public HivaRadioView(Context context, @Nullable AttributeSet attrs) {
+	public HivaRadioView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
+		TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.HivaRadioView, 0, 0);
 
-		if (attrs != null) {
-			TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HivaRadioView, 0, 0);
+		iconOn = a.getResourceId(R.styleable.HivaRadioView_iconOn, iconOn);
+		iconOff = a.getResourceId(R.styleable.HivaRadioView_iconOff, iconOff);
+		iconSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_iconSize, iconSize);
+		tint = a.getColor(R.styleable.HivaRadioView_tint, tint);
 
-			iconOn = a.getResourceId(R.styleable.HivaRadioView_iconOn, iconOn);
-			iconOff = a.getResourceId(R.styleable.HivaRadioView_iconOff, iconOff);
-			iconSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_iconSize, iconSize);
-			tint = a.getColor(R.styleable.HivaRadioView_tint, tint);
+		textColor = a.getColor(R.styleable.HivaRadioView_textColor, textColor);
+		textSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_textSize, textSize);
+		typeface = a.getString(R.styleable.HivaRadioView_typeface);
 
-			textColor = a.getColor(R.styleable.HivaRadioView_textColor, textColor);
-			textSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_textSize, textSize);
-			typeface = a.getString(R.styleable.HivaRadioView_typeface);
+		dividerColor = a.getColor(R.styleable.HivaRadioView_dividerColor, dividerColor);
+		rippleColor = a.getColor(R.styleable.HivaRadioView_rippleColor, rippleColor);
 
-			dividerColor = a.getColor(R.styleable.HivaRadioView_dividerColor, dividerColor);
-			rippleColor = a.getColor(R.styleable.HivaRadioView_rippleColor, rippleColor);
-
-			a.recycle();
-		}
-
+		a.recycle();
 
 		init();
 	}
 
-	private void init(){
+	public void init() {
 
+
+		this.setClickable(true);
+		this.setOrientation(VERTICAL);
 
 		if(iconOn != 0){
 			radioOnDrawable = iconOn;
@@ -100,139 +91,36 @@ public class HivaRadioView extends RecyclerView {
 			radioOffDrawable = iconOff;
 		}
 
-		this.setNestedScrollingEnabled(false);
-
-		LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
-
-			@Override
-			public boolean canScrollVertically() {
-				return false;
-			}
-		};
-		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-		this.setLayoutManager(layoutManager);
-
-		adapter = new HivaRecyclerAdapter(items);
-		adapter.setOnItemClickListener(RadioItem.class, new OnItemClickListener<RadioItem>() {
-			@Override
-			public void onItemClicked(RadioItem radioItem, ItemHolder itemHolder) {
-
-				setSelectedItem(radioItem.index);
-
-				if(listener != null){
-					listener.onRadioSelected(radioItem.index, radioItem.text);
-				}
-			}
-		});
-
-		this.setAdapter(adapter);
 	}
 
-	public <T> void forEachItem(ArrayList<T> items, HivaRadioItemIterator<T> iterator){
+	private void _reloadItems(){
 
-		ArrayList<String> _items = new ArrayList<>();
+		this.removeAllViews();
 
-		for(T item : items){
+		for (RadioItem item : items){
 
-			ids.add(iterator.getId(item));
-			_items.add(iterator.getTitle(item));
-		}
+			RadioView radioView = new RadioView(getContext());
+			this.addView(radioView);
 
-		setItems(_items);
-	}
+			TextView textView = radioView.getTextView();
+			ImageView imageView = radioView.getIconView();
+			View container = radioView.getContainerView();
 
-	public int getIdForIndex(int index){
+			textView.setText(item.getTitle());
+			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+			textView.setTextColor(textColor);
 
-		return ids.get(index);
-	}
-
-	public int getIdForSelectedIndex(){
-
-		return ids.get(selectedItem);
-	}
-
-	public void setItems(ArrayList<String> items){
-
-
-		needsItemsChange = true;
-		this.items = items;
-
-		adapter.clearItems();
-		radioItems = new ArrayList<>();
-
-		int index = 0;
-		for (String item : items) {
-
-			radioItems.add(new RadioItem(index++, item));
-		}
-
-		adapter.setItems(radioItems);
-		adapter.notifyDataSetChanged();
-	}
-
-	public void setSelectedItem(int index){
-
-		int lastIndex = selectedItem;
-		this.selectedItem = index;
-
-		for (RadioItem item : radioItems){
-			item.isSelected = false;
-		}
-
-		radioItems.get(index).isSelected = true;
-
-		adapter.notifyItemChanged(lastIndex, new Integer(500));
-		adapter.notifyItemChanged(selectedItem, new Integer(5000));
-	}
-
-	public int getSelectedItem(){
-		return selectedItem;
-	}
-
-	public void setOnSelectListener(OnRadioItemSelectedListener listener){
-
-		this.listener = listener;
-	}
-
-	private class RadioItem implements ItemBinder {
-
-
-		public int index = 0;
-		public String text = "";
-		public Boolean isSelected = false;
-
-		public RadioItem(int index, String text) {
-
-			this.index = index;
-			this.text = text;
-		}
-
-		@Override
-		public int getResourceId() {
-			return R.layout.item_radio;
-		}
-
-		@Override
-		public void bindToHolder(ItemHolder itemHolder, Object o) {
-
-			TextView textView = itemHolder.<TextView>find(R.id.text);
-			textView.setText(text);
+			imageView.setImageResource(radioOffDrawable);
 
 			if(tint != 0){
-				itemHolder.<ImageView>find(R.id.icon).setColorFilter(tint, PorterDuff.Mode.SRC_IN);
+				imageView.setColorFilter(tint, PorterDuff.Mode.SRC_IN);
 			}
 
 			if(iconSize > 0){
 
-				LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) itemHolder.find(R.id.icon).getLayoutParams();
+				LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) imageView.getLayoutParams();
 				params.width = iconSize;
 				params.height = iconSize;
-			}
-
-			if(isSelected) {
-				itemHolder.<ImageView>find(R.id.icon).setImageResource(radioOnDrawable);
-			}else{
-				itemHolder.<ImageView>find(R.id.icon).setImageResource(radioOffDrawable);
 			}
 
 			if(typeface != null && !typeface.equals("")) {
@@ -243,26 +131,113 @@ public class HivaRadioView extends RecyclerView {
 				}
 			}
 
-			if(itemHolder.find(R.id.container).getBackground() == null) {
-				itemHolder.find(R.id.container).setBackground(RippleHelper.getRippleDrawableForTransparentColor(rippleColor, 0));
-			}
+			container.setBackground(RippleHelper.getRippleDrawableForTransparentColor(rippleColor, 0));
+			radioView.getDividerView().setBackgroundColor(dividerColor);
 
-			itemHolder.find(R.id.divider).setBackgroundColor(dividerColor);
+			radioView.setOnClickListener(onRadioItemClickListener);
+			radioView.setTag(item);
 
-			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-			textView.setTextColor(textColor);
 		}
 	}
 
-	public interface OnRadioItemSelectedListener {
 
-		void onRadioSelected(int index, String title);
+	private OnClickListener onRadioItemClickListener = v -> {
+
+		if(!(v.getTag() instanceof RadioItem)){
+			return;
+		}
+
+		RadioItem radioItem = (RadioItem) v.getTag();
+		_setSelectedItem(radioItem);
+	};
+
+
+	public void setItems(ArrayList<RadioItem> items){
+
+		this.items = items;
+		_reloadItems();
 	}
 
-	public interface HivaRadioItemIterator<T>{
+	public void setItems(Object[] titles){
 
-		int getId(T item);
-		String getTitle(T item);
+
+		for(Object str : titles){
+			this.items.add(new RadioItem() {
+
+				@Override
+				public int getId() {
+					return items.size();
+				}
+
+				@Override
+				public String getTitle() {
+					return str.toString();
+				}
+			});
+		}
+
+		_reloadItems();
+	}
+
+	public RadioItem getSelectedItem(){
+		return selectedItem;
+	}
+
+	public void setSelectedItem(RadioItem item){
+		_setSelectedItem(item);
+	}
+
+	public void setSelectedIndex(int index){
+		_setSelectedItem(items.get(index));
+	}
+
+	public void setSelectedId(int id){
+
+		RadioItem found = null;
+
+		for (RadioItem item : items){
+			if(item.getId() == id){
+				found = item;
+				break;
+			}
+		}
+
+		_setSelectedItem(found);
+	}
+
+	private void _setSelectedItem(RadioItem item){
+
+		if(selectedItem == null){
+
+		}
+
+		RadioView lastSelectedView = _getRadioView(selectedItem);
+		RadioView currentlySelectedView = _getRadioView(item);
+
+		this.selectedItem = item;
+
+		if(lastSelectedView == null || currentlySelectedView == null){
+			return;
+		}
+
+		lastSelectedView.getIconView().setImageResource(radioOffDrawable);
+		currentlySelectedView.getIconView().setImageResource(radioOnDrawable);
+	}
+
+	private RadioView _getRadioView(RadioItem byItem){
+
+		for(int i = 0; i < this.getChildCount(); i++){
+			View v = this.getChildAt(i);
+
+			if(v.getTag() instanceof RadioItem){
+
+				if(((RadioItem) v.getTag()).getId() == byItem.getId()){
+					return (RadioView) v;
+				}
+			}
+		}
+
+		return null;
 	}
 
 }
