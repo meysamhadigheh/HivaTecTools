@@ -11,31 +11,38 @@
         android:layout_height="wrap_content">
 
     </hivatec.ir.hivatectools.hivaActionBarView.ActionBarView>
+
     <Button
         android:id="@+id/hiva_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hivabutton test"/>
+        android:text="hivabutton test" />
 
     <Button
         android:id="@+id/hivaAdapterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva adapter test"/>
+        android:text="hiva adapter test" />
 
 
     <Button
         android:id="@+id/hivaRadioView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva radio test"/>
+        android:text="hiva radio test" />
 
 
     <Button
         android:id="@+id/hivaViewBinder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva view binder"/>
+        android:text="hiva view binder" />
+
+    <Button
+        android:id="@+id/hivaDataPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hiva data picker" />
 
 
 </LinearLayout>

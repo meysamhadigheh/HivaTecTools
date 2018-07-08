@@ -69,7 +69,7 @@
                 app:title="hello"
                 app:desc="this is desc"
                 app:image="@drawable/ic_check"
-                app:title_textColor="@color/red"
+                app:title_textColor="@color/Red"
 
                 ></hivatec.ir.hivatectoolstest.view.GalleryView>
 
