@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button hivaAdapterTest;
     Button hivaRadio;
     Button hivaViewBinder;
+    Button hivaDataPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ViewBinderActivity.class));
+            }
+        });
+
+        hivaDataPicker=findViewById(R.id.hivaDataPicker);
+        hivaDataPicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DataPickerActivity.class));
+
+
             }
         });
     }
