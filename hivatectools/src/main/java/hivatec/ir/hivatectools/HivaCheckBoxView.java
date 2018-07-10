@@ -1,10 +1,11 @@
-package hivatec.ir.hivatectools.hivaRadioView;
+package hivatec.ir.hivatectools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,25 +19,27 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import hivatec.ir.hivatectools.R;
 import hivatec.ir.hivatectools.helper.RippleHelper;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;
+import hivatec.ir.hivatectools.hivaRadioView.CheckedItem;
+import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
+import hivatec.ir.hivatectools.hivaRadioView.OnRadioItemSelectedListener;
+import hivatec.ir.hivatectools.hivaRadioView.RadioView;
 
 /**
- * Created by ashkan on 7/7/18.
+ * Created by ashkan on 7/8/18.
  */
 
-public class HivaRadioView extends LinearLayout {
+public class HivaCheckBoxView extends LinearLayout {
 
+	public int radioOffDrawable = R.drawable.ic_check_box_outline_blank;
+	public int radioOnDrawable = R.drawable.ic_check_box;
 
-	public int radioOffDrawable = R.drawable.ic_radio_off;
-	public int radioOnDrawable = R.drawable.ic_radio_on;
-
-	ArrayList<RadioItem> items = new ArrayList<>();
+	ArrayList<CheckedItem> items = new ArrayList<>();
 	ArrayList<RadioView> views = new ArrayList<>();
 	ArrayList<LinearLayout> columns = new ArrayList<>();
 
-	RadioItem selectedItem = null;
+	ArrayList<CheckedItem> selectedItems = new ArrayList<>();
 
 	private OnRadioItemSelectedListener listener;
 
@@ -55,33 +58,33 @@ public class HivaRadioView extends LinearLayout {
 	int hideAnimation = R.anim.fade_out;
 	int showAnimation = R.anim.fade_in;
 
-	public HivaRadioView(Context context) {
+	public HivaCheckBoxView(Context context) {
 		super(context);
 
 		init();
 	}
 
-	public HivaRadioView(Context context, AttributeSet attrs) {
+	public HivaCheckBoxView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.HivaRadioView, 0, 0);
+		TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.HivaCheckBoxView, 0, 0);
 
-		iconOn = a.getResourceId(R.styleable.HivaRadioView_iconOn, iconOn);
-		iconOff = a.getResourceId(R.styleable.HivaRadioView_iconOff, iconOff);
-		iconSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_iconSize, iconSize);
-		tint = a.getColor(R.styleable.HivaRadioView_tint, tint);
+		iconOn = a.getResourceId(R.styleable.HivaCheckBoxView_iconOn, iconOn);
+		iconOff = a.getResourceId(R.styleable.HivaCheckBoxView_iconOff, iconOff);
+		iconSize = a.getDimensionPixelSize(R.styleable.HivaCheckBoxView_iconSize, iconSize);
+		tint = a.getColor(R.styleable.HivaCheckBoxView_tint, tint);
 
-		textColor = a.getColor(R.styleable.HivaRadioView_textColor, textColor);
-		textSize = a.getDimensionPixelSize(R.styleable.HivaRadioView_textSize, textSize);
-		typeface = a.getString(R.styleable.HivaRadioView_typeface);
+		textColor = a.getColor(R.styleable.HivaCheckBoxView_textColor, textColor);
+		textSize = a.getDimensionPixelSize(R.styleable.HivaCheckBoxView_textSize, textSize);
+		typeface = a.getString(R.styleable.HivaCheckBoxView_typeface);
 
-		dividerColor = a.getColor(R.styleable.HivaRadioView_dividerColor, dividerColor);
-		rippleColor = a.getColor(R.styleable.HivaRadioView_rippleColor, rippleColor);
+		dividerColor = a.getColor(R.styleable.HivaCheckBoxView_dividerColor, dividerColor);
+		rippleColor = a.getColor(R.styleable.HivaCheckBoxView_rippleColor, rippleColor);
 
-		colNum = a.getInt(R.styleable.HivaRadioView_colNum, colNum);
+		colNum = a.getInt(R.styleable.HivaCheckBoxView_colNum, colNum);
 
-		hideAnimation = a.getResourceId(R.styleable.HivaRadioView_hideAnimation, hideAnimation);
-		showAnimation = a.getResourceId(R.styleable.HivaRadioView_showAnimation, showAnimation);
+		hideAnimation = a.getResourceId(R.styleable.HivaCheckBoxView_hideAnimation, hideAnimation);
+		showAnimation = a.getResourceId(R.styleable.HivaCheckBoxView_showAnimation, showAnimation);
 
 		a.recycle();
 
@@ -128,7 +131,7 @@ public class HivaRadioView extends LinearLayout {
 
 		int lastColumn = 0;
 
-		for (RadioItem item : items){
+		for (CheckedItem item : items){
 
 			RadioView radioView = new RadioView(getContext());
 
@@ -187,16 +190,16 @@ public class HivaRadioView extends LinearLayout {
 
 	private OnClickListener onRadioItemClickListener = v -> {
 
-		if(!(v.getTag() instanceof RadioItem)){
+		if(!(v.getTag() instanceof CheckedItem)){
 			return;
 		}
 
-		RadioItem radioItem = (RadioItem) v.getTag();
+		CheckedItem radioItem = (CheckedItem) v.getTag();
 		_setSelectedItem(radioItem);
 	};
 
 
-	public void setItems(ArrayList<RadioItem> items){
+	public void setItems(ArrayList<CheckedItem> items){
 
 		this.items = items;
 		_reloadItems();
@@ -208,26 +211,27 @@ public class HivaRadioView extends LinearLayout {
 
 		for(Object str : titles){
 
-			items.add(new _RadioItem(i++, str.toString()));
+			items.add(new HivaCheckBoxView._CheckBoxItem(i++, str.toString()));
 		}
 
 		_reloadItems();
 	}
 
-	public RadioItem getSelectedItem(){
-		return selectedItem;
+	public ArrayList<CheckedItem> getSelectedItem(){
+		return selectedItems;
 	}
 
-	public int getSelectedId(){
+	public ArrayList<Integer> getSelectedIds(){
+		ArrayList<Integer> ids = new ArrayList<>();
 
-		if(selectedItem == null){
-			return -1;
+		for(CheckedItem item : selectedItems){
+			ids.add(item.getId());
 		}
 
-		return selectedItem.getId();
+		return ids;
 	}
 
-	public void setSelectedItem(RadioItem item){
+	public void setSelectedItem(CheckedItem item){
 		_setSelectedItem(item);
 	}
 
@@ -237,9 +241,9 @@ public class HivaRadioView extends LinearLayout {
 
 	public void setSelectedId(int id){
 
-		RadioItem found = null;
+		CheckedItem found = null;
 
-		for (RadioItem item : items){
+		for (CheckedItem item : items){
 			if(item.getId() == id){
 				found = item;
 				break;
@@ -249,50 +253,41 @@ public class HivaRadioView extends LinearLayout {
 		_setSelectedItem(found);
 	}
 
-	private void _setSelectedItem(RadioItem item){
+	private void _setSelectedItem(CheckedItem item){
 
-		if(selectedItem != null && selectedItem.getId() == item.getId()){
-			return;
-		}
 
-		if(selectedItem == null){
-
-			this.selectedItem = item;
-			RadioView selectedView = _getRadioView(selectedItem);
-
-			hideIcon(selectedView.getIconOffView());
-			showIcon(selectedView.getIconOnView());
-
-			return;
-		}
-
-		RadioView lastSelectedView = _getRadioView(selectedItem);
 		RadioView currentlySelectedView = _getRadioView(item);
 
-		this.selectedItem = item;
+		if(item.isChecked()){
+			item.setChecked(false);
 
-		if(lastSelectedView == null || currentlySelectedView == null){
-			return;
+			hideIcon(currentlySelectedView.getIconOnView());
+			showIcon(currentlySelectedView.getIconOffView());
+
+			selectedItems.remove(item);
+
+		}else{
+
+			item.setChecked(true);
+
+			showIcon(currentlySelectedView.getIconOnView());
+			hideIcon(currentlySelectedView.getIconOffView());
+
+			selectedItems.add(item);
 		}
 
-		//hideIcon(lastSelectedView.getIconOnView());
-		//showIcon(lastSelectedView.getIconOffView());
 
-		showIcon(currentlySelectedView.getIconOnView());
-		hideIcon(currentlySelectedView.getIconOffView());
 
-		lastSelectedView.getIconOnView().setAlpha(0f);
-		lastSelectedView.getIconOffView().setAlpha(1f);
 
 	}
 
-	private RadioView _getRadioView(RadioItem byItem){
+	private RadioView _getRadioView(CheckedItem byItem){
 
 		for(RadioView v : views){
 
-			if(v.getTag() instanceof RadioItem){
+			if(v.getTag() instanceof CheckedItem){
 
-				int vid = ((RadioItem) v.getTag()).getId();
+				int vid = ((CheckedItem) v.getTag()).getId();
 				int itemId = byItem.getId();
 
 				if( vid == itemId ){
@@ -349,13 +344,14 @@ public class HivaRadioView extends LinearLayout {
 		});
 	}
 
-	class _RadioItem implements RadioItem {
+	class _CheckBoxItem implements CheckedItem {
 
 
 		private int id;
 		private String title;
+		private Boolean isChecked = false;
 
-		public _RadioItem(int id, String title) {
+		public _CheckBoxItem(int id, String title) {
 			this.id = id;
 			this.title = title;
 		}
@@ -369,5 +365,17 @@ public class HivaRadioView extends LinearLayout {
 		public String getTitle() {
 			return title;
 		}
+
+		@Override
+		public boolean isChecked() {
+			return isChecked;
+		}
+
+		@Override
+		public void setChecked(Boolean checked) {
+			isChecked = checked;
+		}
+
 	}
+
 }

@@ -23,19 +23,17 @@ public class RippleHelper {
 			Drawable shape =  getRoundDrawable(Color.TRANSPARENT, radius);
 			Drawable rippleColor = getRoundDrawable(color, radius);
 
-
 			RippleDrawable ripple =  new RippleDrawable(
 					pressedColor,
 					shape,
 					rippleColor
 			);
 
-
-
 			return ripple;
+
 		}else{
 
-			return getDrawableFromColor(color, lightenOrDarken(color, 0.2D), radius);
+			return getDrawableFromColor( Color.TRANSPARENT, color, radius);
 		}
 	}
 

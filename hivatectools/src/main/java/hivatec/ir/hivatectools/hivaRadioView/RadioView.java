@@ -22,7 +22,8 @@ import hivatec.ir.hivatectools.hivaViewBinder.HivaRelativeLayout;
 
 public class RadioView extends RelativeLayout {
 
-	ImageView icon;
+	ImageView iconOn;
+	ImageView iconOff;
 	TextView textView;
 	View dividerView;
 	RelativeLayout container;
@@ -44,14 +45,19 @@ public class RadioView extends RelativeLayout {
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		inflater.inflate(R.layout.item_radio, this);
 
-		this.icon = findViewById(R.id.icon);
+		this.iconOn = findViewById(R.id.iconOn);
+		this.iconOff = findViewById(R.id.iconOff);
 		this.textView = findViewById(R.id.text);
 		this.dividerView = findViewById(R.id.divider);
 		this.container = findViewById(R.id.container);
 	}
 
-	public ImageView getIconView(){
-		return icon;
+	public ImageView getIconOnView(){
+		return iconOn;
+	}
+
+	public ImageView getIconOffView(){
+		return iconOff;
 	}
 
 	public TextView getTextView(){
