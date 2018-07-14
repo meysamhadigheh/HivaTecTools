@@ -10,7 +10,9 @@
     <attr name="dividerColor" format="color"></attr>
     <attr name="rippleColor" format="color"></attr>
 
-
+    <attr name="colNum" format="integer"></attr>
+    <attr name="hideAnimation" format="reference"></attr>
+    <attr name="showAnimation" format="reference"></attr>
 
     <declare-styleable name="HivaRadioView">
 
@@ -25,6 +27,30 @@
 
         <attr name="dividerColor"></attr>
         <attr name="rippleColor"></attr>
+
+        <attr name="colNum"></attr>
+        <attr name="hideAnimation"></attr>
+        <attr name="showAnimation"></attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="HivaCheckBoxView">
+
+        <attr name="iconOn"></attr>
+        <attr name="iconOff"></attr>
+        <attr name="iconSize"/>
+        <attr name="tint"></attr>
+
+        <attr name="typeface" ></attr>
+        <attr name="textColor"></attr>
+        <attr name="textSize"></attr>
+
+        <attr name="dividerColor"></attr>
+        <attr name="rippleColor"></attr>
+
+        <attr name="colNum"></attr>
+        <attr name="hideAnimation"></attr>
+        <attr name="showAnimation"></attr>
 
     </declare-styleable>
 
