@@ -22,7 +22,7 @@
         <activity
             android:name=".activities.HivaAdapterActivity"
             android:label="@string/title_activity_hiva_adapter"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/HivaAppTheme.NoActionBar" />
 
         <!-- meysam activities -->
 
@@ -32,7 +32,7 @@
         <activity
             android:name=".activities.RadioActivity"
             android:label="@string/title_activity_radio"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/HivaAppTheme.NoActionBar" />
         <activity
             android:name=".activities.ViewBinderActivity"
             android:label="@string/title_activity_view_binder"

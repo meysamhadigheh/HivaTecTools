@@ -1,6 +1,5 @@
 package hivatec.ir.hivatectoolstest.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,10 +8,10 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import hivatec.ir.hivatectools.HivaCheckBoxView;
-import hivatec.ir.hivatectools.helper.RippleHelper;
+import hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView;
 import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.SortType;
 
 public class RadioActivity extends AppCompatActivity {
 
@@ -27,15 +26,24 @@ public class RadioActivity extends AppCompatActivity {
 			setSupportActionBar(toolbar);
 
 
+			ArrayList<SortType> sorts = new ArrayList<>();
+			sorts.add(new SortType(0, "price"));
+			sorts.add(new SortType(10, "duration"));
+			sorts.add(new SortType(22, "alphabet"));
+			sorts.add(new SortType(30, "date"));
+
+			radioView = findViewById(R.id.hivaRadio);
+			radioView.setItems(sorts);
+
+			radioView.setSelectedIndex(1);
+
+
 			ArrayList<String> items = new ArrayList<>();
 
 			items.add("آیتم ۱");
 			items.add("آیتم ۲");
 			items.add("آیتم ۳");
 			items.add("آیتم ۴");
-
-			radioView = findViewById(R.id.hivaRadio);
-			radioView.setItems(items.toArray());
 
 			checkBoxView = findViewById(R.id.hivaCheck);
 			checkBoxView.setItems(items.toArray());
