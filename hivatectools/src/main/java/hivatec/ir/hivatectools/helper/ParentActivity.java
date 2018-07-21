@@ -73,7 +73,7 @@ public abstract class ParentActivity extends AppCompatActivity {
         toolbar.getToolbar().setContentInsetsAbsolute(0, 0);
 
 
-        toolbar.actionBarLeftLayout.setOnClickListener(new View.OnClickListener() {
+        toolbar.leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
