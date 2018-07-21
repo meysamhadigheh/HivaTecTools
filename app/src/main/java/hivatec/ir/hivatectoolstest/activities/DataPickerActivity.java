@@ -104,12 +104,7 @@ public class DataPickerActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(int var1) {
 
-
-
                 selectedItem=items.get(var1);
-
-
-
             }
         });
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,11 +17,12 @@ public class ActionBarView extends RelativeLayout {
 
 
 
-    public TextView actionBarTitle;
-    public ImageView actionBarRightImg;
-    public ImageView actionBarLeftImg;
-    public RelativeLayout actionBarRightLayout;
-    public RelativeLayout actionBarLeftLayout;
+    public ToolBarContentView contentView;
+
+    public TextView titleTextView;
+    public ImageButton leftButton;
+    public ImageButton rightButton1;
+    public ImageButton rightButton2;
 
     public ActionBarView(Context context) {
         super(context);
@@ -34,13 +36,15 @@ public class ActionBarView extends RelativeLayout {
 
     private void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-
         inflater.inflate(R.layout.custom_action_bar, this);
-        this.actionBarTitle=findViewById(R.id.actionbar_title);
-        this.actionBarRightImg=findViewById(R.id.actionbar_right_img);
-        this.actionBarLeftImg=findViewById(R.id.actionbar_left_img);
-        this.actionBarRightLayout=findViewById(R.id.actionbar_right_layout);
-        this.actionBarLeftLayout=findViewById(R.id.actionbar_left_layout);
+
+        this.contentView = findViewById(R.id.toolbar_content);
+
+        this.titleTextView = contentView.titleTextView;
+        this.leftButton = contentView.leftButton;
+        this.rightButton1 = contentView.rightButton1;
+        this.rightButton2 = contentView.rightButton2;
+
 
     }
 }

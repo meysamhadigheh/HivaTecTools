@@ -1,11 +1,10 @@
-package hivatec.ir.hivatectools;
+package hivatec.ir.hivatectools.hivaRadioView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -19,12 +18,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import hivatec.ir.hivatectools.R;
 import hivatec.ir.hivatectools.helper.RippleHelper;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;
-import hivatec.ir.hivatectools.hivaRadioView.CheckedItem;
-import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
-import hivatec.ir.hivatectools.hivaRadioView.OnRadioItemSelectedListener;
-import hivatec.ir.hivatectools.hivaRadioView.RadioView;
 
 /**
  * Created by ashkan on 7/8/18.
@@ -199,11 +195,18 @@ public class HivaCheckBoxView extends LinearLayout {
 	};
 
 
-	public void setItems(ArrayList<CheckedItem> items){
+	public void setItems(ArrayList items){
 
-		this.items = items;
+		for(Object item : items){
+
+			if(item instanceof CheckedItem) {
+				this.items.add((CheckedItem) item);
+			}
+		}
+
 		_reloadItems();
 	}
+
 
 	public void setItems(Object[] titles){
 

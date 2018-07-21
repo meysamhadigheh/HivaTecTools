@@ -16,6 +16,7 @@ import hivatec.ir.hivatectools.hivaAdapter.ItemHolder;
 import hivatec.ir.hivatectools.hivaAdapter.ItemHolderIterator;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HivaAdapterActivity extends AppCompatActivity {
 
@@ -34,8 +35,10 @@ public class HivaAdapterActivity extends AppCompatActivity {
 		recyclerView = findViewById(R.id.recycler);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-		movies.add(new Movie("Titanic","Jack, Rose ..."));
-		movies.add(new Movie("Lord Of The Rings","Gandalf, Frodo, Bilbo ..."));
+		for(int i = 0; i < 100; i++) {
+			movies.add(new Movie("Titanic", "Jack, Rose ..."));
+			movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ..."));
+		}
 
 		/*
 
@@ -58,6 +61,10 @@ public class HivaAdapterActivity extends AppCompatActivity {
 		});
 
 		recyclerView.setAdapter(adapter);
+
+
+		OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
 
 	}
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/actionBar"
+    >
+
+
+    <RelativeLayout
+
+        android:layout_width="@dimen/actionBar"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        >
+
+
+        <ImageButton
+            android:id="@+id/leftButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+
+            android:layout_margin="4dp"
+
+            style="@style/ActionbarButtonStyle"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/White"
+            />
+
+    </RelativeLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/actionbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/iransansmobilemedium"
+        android:gravity="center"
+
+        android:text="عنوان"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+
+            android:layout_width="@dimen/actionBar"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            >
+
+
+            <ImageButton
+                android:id="@+id/rightButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+
+                android:layout_margin="4dp"
+
+                style="@style/ActionbarButtonStyle"
+                android:src="@drawable/ic_action_cancel"
+                android:tint="@color/White"
+                />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+
+            android:layout_width="@dimen/actionBar"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            >
+
+
+            <ImageButton
+                android:id="@+id/rightButton1"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+
+                android:layout_margin="8dp"
+
+                style="@style/ActionbarButtonStyle"
+                android:src="@drawable/ic_rubbish_bin"
+                android:tint="@color/White"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

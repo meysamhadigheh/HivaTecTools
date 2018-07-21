@@ -196,9 +196,15 @@ public class HivaRadioView extends LinearLayout {
 	};
 
 
-	public void setItems(ArrayList<RadioItem> items){
+	public void setItems(ArrayList items){
 
-		this.items = items;
+		for(Object item : items){
+
+			if(item instanceof RadioItem) {
+				this.items.add((RadioItem) item);
+			}
+		}
+
 		_reloadItems();
 	}
 

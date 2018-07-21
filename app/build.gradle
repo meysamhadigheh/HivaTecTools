@@ -34,6 +34,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
 
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
+
 
     implementation project(':hivatectools')
 }
