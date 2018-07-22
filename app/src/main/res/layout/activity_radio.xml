@@ -7,10 +7,10 @@
     tools:context="hivatec.ir.hivatectoolstest.activities.RadioActivity">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <android.support.design.widget.AppBarLayout
@@ -29,17 +29,16 @@
         </android.support.design.widget.AppBarLayout>
 
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="رادیو لیست"
-        android:textSize="12sp"
-        android:layout_margin="20dp"
-        />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Radio List"
+            android:textSize="12sp" />
 
 
-    <hivatec.ir.hivatectools.hivaRadioView.HivaRadioView
+        <hivatec.ir.hivatectools.hivaRadioView.HivaRadioView
             android:id="@+id/hivaRadio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,10 +55,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="چک لیست"
-            android:textSize="12sp"
             android:layout_margin="20dp"
-            />
+            android:text="Check List"
+            android:textSize="12sp" />
 
 
         <hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView
@@ -67,21 +65,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            app:colNum="2"
-            >
+            app:colNum="2">
 
 
         </hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView>
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="check"
-        android:onClick="check"
-        />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="check"
+            android:text="check" />
 
-</LinearLayout>
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
