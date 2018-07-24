@@ -31,36 +31,47 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:gravity="center"
+            android:background="@color/RoyalBlue"
+            android:textColor="@color/White"
             android:text="Radio List"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
 
 
-        <hivatec.ir.hivatectools.views.HivaRadioView
+        <hivatec.ir.hivatectools.hivaRadioView.HivaRadioView
             android:id="@+id/hivaRadio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
 
-            app:textColor="@color/Red"
+            app:textColor="@color/Black"
             app:textSize="14sp"
-            >
+
+            app:iconOn="@drawable/idea_on"
+            app:iconOff="@drawable/idea_off"
+
+            app:iconSize="24dp"
 
 
-        </hivatec.ir.hivatectools.views.HivaRadioView>
+            />
+
+
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:gravity="center"
+            android:background="@color/Indigo"
+            android:textColor="@color/White"
             android:text="Check List"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
 
-        <hivatec.ir.hivatectools.views.HivaCheckBoxView
+        <hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView
             android:id="@+id/hivaCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,14 +79,34 @@
             app:colNum="2">
 
 
-        </hivatec.ir.hivatectools.views.HivaCheckBoxView>
+        </hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView>
 
 
-        <Button
-            android:layout_width="wrap_content"
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="check"
-            android:text="check" />
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:onClick="check_radio"
+                android:text="check radio" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="check_checklist"
+                android:text="check checklist"/>
+
+
+        </RelativeLayout>
+
+
+
 
     </LinearLayout>
 

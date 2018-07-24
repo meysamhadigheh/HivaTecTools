@@ -53,8 +53,8 @@
                 android:layout_height="wrap_content"
 
                 app:image="@drawable/ic_check"
-                app:title="بهترین پیشنهاد"
-                app:desc="رضا نوری روزنامه نگار، درباره بحث تغییر نام ایران و کتاب بحث برانگیز هانری لوی، نویسنده مشهور فرانسوی در یادداشتی که برای صفحه ناظران  بی بی سی فارسی نوشته  به این موضوعات پرداخته است."
+                app:title="Best Offer"
+                app:desc="Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum. Souvlaki ignitus carborundum e pluribus unum. Defacto lingo est igpay atinlay. Marquee selectus non provisio incongruous feline nolo contendre. Gratuitous octopus niacin, sodium glutimate."
                 >
 
 
@@ -71,7 +71,7 @@
                 app:image="@drawable/ic_check"
                 app:title_textColor="@color/Red"
 
-                ></hivatec.ir.hivatectoolstest.view.GalleryView>
+                />
 
 
         </LinearLayout>
