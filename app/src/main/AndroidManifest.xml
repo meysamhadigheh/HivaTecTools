@@ -39,7 +39,8 @@
             android:name=".activities.ViewBinderActivity"
             android:label="@string/title_activity_view_binder"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.DataPickerActivity"></activity>
+        <activity android:name=".activities.DataPickerActivity" />
+        <activity android:name=".activities.LoadingActivity"></activity>
     </application>
 
 </manifest>

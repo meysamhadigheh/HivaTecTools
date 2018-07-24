@@ -34,7 +34,7 @@ public class HivaRadioView extends LinearLayout {
 	public int radioOnDrawable = R.drawable.ic_radio_on;
 
 	ArrayList<RadioItem> items = new ArrayList<>();
-	ArrayList<RadioView> views = new ArrayList<>();
+	ArrayList<SelectableView> views = new ArrayList<>();
 	ArrayList<LinearLayout> columns = new ArrayList<>();
 
 	RadioItem selectedItem = null;
@@ -131,12 +131,12 @@ public class HivaRadioView extends LinearLayout {
 
 		for (RadioItem item : items){
 
-			RadioView radioView = new RadioView(getContext());
+			SelectableView selectableView = new SelectableView(getContext());
 
-			TextView textView = radioView.getTextView();
-			ImageView imageViewOn = radioView.getIconOnView();
-			ImageView imageViewOff = radioView.getIconOffView();
-			View container = radioView.getContainerView();
+			TextView textView = selectableView.getTextView();
+			ImageView imageViewOn = selectableView.getIconOnView();
+			ImageView imageViewOff = selectableView.getIconOffView();
+			View container = selectableView.getContainerView();
 
 			textView.setText(item.getTitle());
 			textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -172,15 +172,15 @@ public class HivaRadioView extends LinearLayout {
 			}
 
 			container.setBackground(RippleHelper.getRippleDrawableForTransparentColor(rippleColor, 0));
-			radioView.getDividerView().setBackgroundColor(dividerColor);
+			selectableView.getDividerView().setBackgroundColor(dividerColor);
 
-			radioView.setOnClickListener(onRadioItemClickListener);
-			radioView.setTag(item);
+			selectableView.setOnClickListener(onRadioItemClickListener);
+			selectableView.setTag(item);
 
-			views.add(radioView);
+			views.add(selectableView);
 
 			int colId = (lastColumn++) % colNum;
-			this.columns.get( colId ) .addView(radioView);
+			this.columns.get( colId ) .addView(selectableView);
 
 		}
 	}
@@ -265,7 +265,7 @@ public class HivaRadioView extends LinearLayout {
 		if(selectedItem == null){
 
 			this.selectedItem = item;
-			RadioView selectedView = _getRadioView(selectedItem);
+			SelectableView selectedView = _getRadioView(selectedItem);
 
 			hideIcon(selectedView.getIconOffView());
 			showIcon(selectedView.getIconOnView());
@@ -273,8 +273,8 @@ public class HivaRadioView extends LinearLayout {
 			return;
 		}
 
-		RadioView lastSelectedView = _getRadioView(selectedItem);
-		RadioView currentlySelectedView = _getRadioView(item);
+		SelectableView lastSelectedView = _getRadioView(selectedItem);
+		SelectableView currentlySelectedView = _getRadioView(item);
 
 		this.selectedItem = item;
 
@@ -293,9 +293,9 @@ public class HivaRadioView extends LinearLayout {
 
 	}
 
-	private RadioView _getRadioView(RadioItem byItem){
+	private SelectableView _getRadioView(RadioItem byItem){
 
-		for(RadioView v : views){
+		for(SelectableView v : views){
 
 			if(v.getTag() instanceof RadioItem){
 
@@ -303,7 +303,7 @@ public class HivaRadioView extends LinearLayout {
 				int itemId = byItem.getId();
 
 				if( vid == itemId ){
-					return (RadioView) v;
+					return (SelectableView) v;
 				}
 			}
 		}
