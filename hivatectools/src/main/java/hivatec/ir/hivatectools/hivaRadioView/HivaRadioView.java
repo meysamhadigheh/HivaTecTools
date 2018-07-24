@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -153,11 +154,11 @@ public class HivaRadioView extends LinearLayout {
 
 			if(iconSize > 0){
 
-				LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) imageViewOn.getLayoutParams();
+				RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageViewOn.getLayoutParams();
 				params.width = iconSize;
 				params.height = iconSize;
 
-				LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) imageViewOff.getLayoutParams();
+				RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) imageViewOff.getLayoutParams();
 				params2.width = iconSize;
 				params2.height = iconSize;
 			}

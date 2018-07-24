@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,48 +16,64 @@ import hivatec.ir.hivatectoolstest.model.SortType;
 
 public class RadioActivity extends AppCompatActivity {
 
-	HivaRadioView radioView;
-	HivaCheckBoxView checkBoxView;
+    HivaRadioView radioView;
+    HivaCheckBoxView checkBoxView;
 
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.activity_radio);
-			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-			setSupportActionBar(toolbar);
-
-
-			ArrayList<SortType> sorts = new ArrayList<>();
-			sorts.add(new SortType(0, "price"));
-			sorts.add(new SortType(10, "duration"));
-			sorts.add(new SortType(22, "alphabet"));
-			sorts.add(new SortType(30, "date"));
-
-			radioView = findViewById(R.id.hivaRadio);
-			radioView.setItems(sorts);
-
-			radioView.setSelectedIndex(1);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_radio);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
-			ArrayList<String> items = new ArrayList<>();
+        ArrayList<SortType> sorts = new ArrayList<>();
+        sorts.add(new SortType(0, "price"));
+        sorts.add(new SortType(1, "duration"));
+        sorts.add(new SortType(2, "alphabet"));
+        sorts.add(new SortType(3, "date"));
 
-			items.add("آیتم ۱");
-			items.add("آیتم ۲");
-			items.add("آیتم ۳");
-			items.add("آیتم ۴");
+        radioView = findViewById(R.id.hivaRadio);
+        radioView.setItems(sorts);
 
-			checkBoxView = findViewById(R.id.hivaCheck);
-			checkBoxView.setItems(items.toArray());
+        radioView.setSelectedIndex(1);
 
-			//findViewById(R.id.testRipple).setBackground(RippleHelper.getRippleDrawableForTransparentColor(Color.parseColor("#aaaaaa"), 0));
 
-		}
+        ArrayList<String> items = new ArrayList<>();
 
-		public void check(View view){
+        items.add("Item 1");
+        items.add("Item 2");
+        items.add("Item 3");
+        items.add("Item 4");
 
-			Log.i("radio", radioView.getSelectedId() + "");
-			Log.i("checkbox", checkBoxView.getSelectedIds() + "");
 
-		}
+        checkBoxView = findViewById(R.id.hivaCheck);
+        checkBoxView.setItems(items.toArray());
 
-	}
+        //findViewById(R.id.testRipple).setBackground(RippleHelper.getRippleDrawableForTransparentColor(Color.parseColor("#aaaaaa"), 0));
+
+    }
+
+
+    public void check_radio(View view) {
+        Log.i("radio", radioView.getSelectedId() + "");
+        Toast.makeText(this, radioView.getSelectedId() + " ", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public void check_checklist(View view) {
+        Log.i("radio", checkBoxView.getSelectedIds() + "");
+
+        String text="";
+
+        for (int i = 0; i <checkBoxView.getSelectedIds().size() ; i++) {
+
+            text=text +"  "+ checkBoxView.getSelectedIds().get(i) ;
+
+        }
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+
+
+    }
+}
