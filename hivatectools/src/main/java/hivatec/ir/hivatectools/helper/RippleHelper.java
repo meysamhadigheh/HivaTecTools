@@ -19,7 +19,7 @@ public class RippleHelper {
 	public static Drawable getRippleDrawableForTransparentColor(int color, int radius)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			ColorStateList pressedColor = ColorStateList.valueOf(color); //lightenOrDarken(color, 0.3D));
+			ColorStateList pressedColor = ColorStateList.valueOf(color);
 			Drawable shape =  getRoundDrawable(Color.TRANSPARENT, radius);
 			Drawable rippleColor = getRoundDrawable(color, radius);
 
@@ -37,16 +37,26 @@ public class RippleHelper {
 		}
 	}
 
-	public static Drawable getRippleDrawableByColor(int color, int radius)
+	public static Drawable getRippleDrawableByColor(int color, int radius){
+
+		return getRippleDrawableByColor(color, radius, color);
+	}
+
+	public static Drawable getRippleDrawableByColor(int color, int radius, int rippleColor)
 	{
+
+		if(rippleColor == 0){
+			rippleColor = color;
+		}
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			ColorStateList pressedColor = ColorStateList.valueOf(lightenOrDarken(color, 0.3D));
 			Drawable shape =  getRoundDrawable(color, radius);
-			Drawable rippleColor = getRoundDrawable(color, radius);
+			Drawable rc = getRoundDrawable(rippleColor, radius);
 			return new RippleDrawable(
 					pressedColor,
 					shape,
-					rippleColor
+					rc
 			);
 
 		}else{

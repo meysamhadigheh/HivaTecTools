@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.support.v4.widget.CircularProgressDrawable;
 import android.util.AttributeSet;
@@ -51,6 +52,7 @@ public class HivaButton extends RelativeLayout {
 
 	int backgroundColor = getContext().getResources().getColor(R.color.colorPrimary);
 	int backgroundDrawable = 0;
+	int rippleColor = 0;
 
 	int icon = 0;
 	int space = -999;
@@ -81,6 +83,7 @@ public class HivaButton extends RelativeLayout {
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
+			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, textColor);
 
 			iconWidth = a.getDimensionPixelSize(R.styleable.HivaButton_iconWidth, iconWidth);
 			space = a.getDimensionPixelSize(R.styleable.HivaButton_space, space);
@@ -285,13 +288,18 @@ public class HivaButton extends RelativeLayout {
 
 		//this.setBackgroundColor(backgroundColor);
 
-		if(backgroundDrawable == 0) {
-			this.setBackground(RippleHelper.getRippleDrawableByColor(backgroundColor, radius));
-			//this.setBackgroundResource(backgroundDrawable);
+		if(backgroundColor == Color.TRANSPARENT) {
+
+			this.setBackground(RippleHelper.getRippleDrawableForTransparentColor(rippleColor, radius));
+
+		}else if(backgroundDrawable == 0){
+
+			this.setBackground(RippleHelper.getRippleDrawableByColor(backgroundColor, radius, rippleColor));
+
 		}else{
+
 			this.setBackground(RippleHelper.getRippleDrawableByDrawable(
 					getContext().getResources().getDrawable(backgroundDrawable), Color.parseColor("#44ffffff")));
-
 
 		}
     }
