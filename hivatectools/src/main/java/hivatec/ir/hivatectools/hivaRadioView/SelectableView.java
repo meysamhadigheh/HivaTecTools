@@ -20,7 +20,7 @@ import hivatec.ir.hivatectools.hivaViewBinder.HivaRelativeLayout;
  * Created by ashkan on 7/7/18.
  */
 
-public class RadioView extends RelativeLayout {
+public class SelectableView extends RelativeLayout {
 
 	ImageView iconOn;
 	ImageView iconOff;
@@ -28,13 +28,13 @@ public class RadioView extends RelativeLayout {
 	View dividerView;
 	RelativeLayout container;
 
-	public RadioView(Context context) {
+	public SelectableView(Context context) {
 		super(context);
 
 		init();
 	}
 
-	public RadioView(Context context, AttributeSet attrs) {
+	public SelectableView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 		init();

@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">@color/Red</color>
     <color name="actionBar">@color/Red</color>
+    <color name="background">#f8f8f8</color>
 
 
     <color name="White">#FFFFFF</color>
