@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.hivaRadioView;
+package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;

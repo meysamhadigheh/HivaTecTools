@@ -38,7 +38,7 @@
             android:textSize="12sp" />
 
 
-        <hivatec.ir.hivatectools.hivaRadioView.HivaRadioView
+        <hivatec.ir.hivatectools.views.HivaRadioView
             android:id="@+id/hivaRadio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             >
 
 
-        </hivatec.ir.hivatectools.hivaRadioView.HivaRadioView>
+        </hivatec.ir.hivatectools.views.HivaRadioView>
 
         <TextView
             android:id="@+id/textView2"
@@ -60,7 +60,7 @@
             android:textSize="12sp" />
 
 
-        <hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView
+        <hivatec.ir.hivatectools.views.HivaCheckBoxView
             android:id="@+id/hivaCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             app:colNum="2">
 
 
-        </hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView>
+        </hivatec.ir.hivatectools.views.HivaCheckBoxView>
 
 
         <Button

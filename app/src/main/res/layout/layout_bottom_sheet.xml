@@ -51,7 +51,7 @@
         android:layout_height="1dp"
         android:background="@color/DimGray"/>
 
-    <hivatec.ir.hivatectools.hivaLoopView.LoopView
+    <hivatec.ir.hivatectools.views.LoopView
         android:id="@+id/data_picker"
         android:layout_width="match_parent"
         android:layout_height="240dp" />

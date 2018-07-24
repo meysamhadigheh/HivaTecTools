@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.hivaAdapter;
+package hivatec.ir.hivatectools.adapters;
 
 public interface OnItemClickListener<T> {
 

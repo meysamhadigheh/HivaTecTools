@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import hivatec.ir.hivatectools.hivaLoopView.LoopView;
+import hivatec.ir.hivatectools.views.LoopView;
 import hivatec.ir.hivatectoolstest.R;
 
 

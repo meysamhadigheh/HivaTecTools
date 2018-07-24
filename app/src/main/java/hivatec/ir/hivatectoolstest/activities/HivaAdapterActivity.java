@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
-import hivatec.ir.hivatectools.hivaAdapter.HivaRecyclerAdapter;
-import hivatec.ir.hivatectools.hivaAdapter.ItemHolder;
-import hivatec.ir.hivatectools.hivaAdapter.ItemHolderIterator;
+import hivatec.ir.hivatectools.adapters.HivaRecyclerAdapter;
+import hivatec.ir.hivatectools.adapters.ItemHolder;
+import hivatec.ir.hivatectools.adapters.ItemHolderIterator;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;

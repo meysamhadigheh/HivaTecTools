@@ -5,8 +5,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import hivatec.ir.hivatectools.hivaAdapter.ItemBinder;
-import hivatec.ir.hivatectools.hivaAdapter.ItemHolder;
+import hivatec.ir.hivatectools.adapters.ItemBinder;
+import hivatec.ir.hivatectools.adapters.ItemHolder;
 import hivatec.ir.hivatectoolstest.R;
 
 /**

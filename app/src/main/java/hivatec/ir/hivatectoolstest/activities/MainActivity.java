@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import hivatec.ir.hivatectools.hivaActionBarView.ActionBarView;
+import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
 import hivatec.ir.hivatectoolstest.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RadioActivity.class));
-            }
-        });
-
-        hivaViewBinder =findViewById(R.id.hivaViewBinder);
-        hivaViewBinder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ViewBinderActivity.class));
             }
         });
 

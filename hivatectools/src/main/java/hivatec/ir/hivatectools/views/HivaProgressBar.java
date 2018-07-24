@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.hivaProgressBar;
+package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
 import android.graphics.Paint;

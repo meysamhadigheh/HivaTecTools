@@ -1,6 +1,6 @@
 package hivatec.ir.hivatectoolstest.model;
 
-import hivatec.ir.hivatectools.hivaRadioView.RadioItem;
+import hivatec.ir.hivatectools.views.RadioItem;
 
 /**
  * Created by ashkan on 7/18/18.

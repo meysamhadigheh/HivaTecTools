@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import hivatec.ir.hivatectools.hivaButtonView.HivaButton;
+import hivatec.ir.hivatectools.views.HivaButton;
 import hivatec.ir.hivatectoolstest.R;
 
 public class ButtonActivity extends AppCompatActivity {

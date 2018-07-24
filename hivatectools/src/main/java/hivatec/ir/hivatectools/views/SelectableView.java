@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.hivaRadioView;
+package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,8 +13,6 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import hivatec.ir.hivatectools.R;
-import hivatec.ir.hivatectools.hivaViewBinder.HivaLinearLayout;
-import hivatec.ir.hivatectools.hivaViewBinder.HivaRelativeLayout;
 
 /**
  * Created by ashkan on 7/7/18.

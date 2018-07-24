@@ -8,8 +8,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import hivatec.ir.hivatectools.hivaRadioView.HivaCheckBoxView;
-import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
+import hivatec.ir.hivatectools.views.HivaCheckBoxView;
+import hivatec.ir.hivatectools.views.HivaRadioView;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.SortType;
 

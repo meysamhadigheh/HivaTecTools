@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.helper;
+package hivatec.ir.hivatectools.activityHelpers;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hivatec.ir.hivatectools.R;
-import hivatec.ir.hivatectools.hivaActionBarView.ActionBarView;
+import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
+import hivatec.ir.hivatectools.helper.FontsOverride;
 
 
 public abstract class ParentActivity extends AppCompatActivity {

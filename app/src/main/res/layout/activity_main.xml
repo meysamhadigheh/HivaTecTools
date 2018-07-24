@@ -6,12 +6,12 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
-    <hivatec.ir.hivatectools.hivaActionBarView.ActionBarView
+    <hivatec.ir.hivatectools.activityHelpers.ActionBarView
         android:id="@+id/actionbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </hivatec.ir.hivatectools.hivaActionBarView.ActionBarView>
+    </hivatec.ir.hivatectools.activityHelpers.ActionBarView>
 
     <Button
         android:id="@+id/hiva_button"

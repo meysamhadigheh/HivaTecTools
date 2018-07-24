@@ -1,4 +1,4 @@
-package hivatec.ir.hivatectools.hivaRadioView;
+package hivatec.ir.hivatectools.views;
 
 /**
  * Created by ashkan on 7/7/18.

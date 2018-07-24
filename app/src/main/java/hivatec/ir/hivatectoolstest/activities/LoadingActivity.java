@@ -4,10 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import hivatec.ir.hivatectools.helper.ActivityParent;
+import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
 import hivatec.ir.hivatectoolstest.R;
 
-public class LoadingActivity extends ActivityParent {
+public class LoadingActivity extends ParentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,43 @@ public class LoadingActivity extends ActivityParent {
 			public void onClick(View v) {
 
 
-				showLoadingPage();
+				//showLoadingPage();
 			}
 		});
+	}
+
+	@Override
+	protected void setContentViewActivity() {
+
+	}
+
+	@Override
+	protected void getIntentData() {
+
+	}
+
+	@Override
+	protected void prepareToolbar() {
+
+	}
+
+	@Override
+	protected void instantiateViews() {
+
+	}
+
+	@Override
+	protected void setViewListeners() {
+
+	}
+
+	@Override
+	protected void setActivityContent() {
+
+	}
+
+	@Override
+	protected void refreshContent() {
+
 	}
 }

@@ -26,13 +26,13 @@
             app:contentInsetStart="0dp">
 
 
-            <hivatec.ir.hivatectools.hivaActionBarView.ToolBarContentView
+            <hivatec.ir.hivatectools.activityHelpers.ToolBarContentView
                 android:id="@+id/toolbar_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </hivatec.ir.hivatectools.hivaActionBarView.ToolBarContentView>
+            </hivatec.ir.hivatectools.activityHelpers.ToolBarContentView>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>

@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package hivatec.ir.hivatectools.hivaLoopView;
+package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
 import android.content.res.Resources;

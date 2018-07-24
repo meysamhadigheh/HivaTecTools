@@ -1,6 +1,5 @@
-package hivatec.ir.hivatectools.hivaAdapter;
+package hivatec.ir.hivatectools.adapters;
 
-import android.content.Context;
 import android.view.View;
 
 /**

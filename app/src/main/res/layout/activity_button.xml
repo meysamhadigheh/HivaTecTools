@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".activities.ButtonActivity">
 
-    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
+    <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button"
 
@@ -25,7 +25,7 @@
         app:typeface="IRANSansMobile.ttf"
 
         app:widthPadding="50dp" />
-    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
+    <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button3"
 
@@ -43,7 +43,7 @@
         app:typeface="IRANSansMobile.ttf"
 
         app:widthPadding="50dp" />
-    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
+    <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button4"
 
@@ -62,7 +62,7 @@
         app:widthPadding="50dp" />
 
 
-    <hivatec.ir.hivatectools.hivaButtonView.HivaButton
+    <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button2"
         android:layout_width="wrap_content"

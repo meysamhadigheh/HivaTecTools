@@ -1,6 +1,4 @@
-package hivatec.ir.hivatectools.hivaAdapter;
-
-import android.content.Context;
+package hivatec.ir.hivatectools.adapters;
 
 /**
  * Created by ashkan on 2/1/18.
