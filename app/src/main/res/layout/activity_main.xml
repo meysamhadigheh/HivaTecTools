@@ -43,15 +43,6 @@
 
 
     <Button
-        android:id="@+id/hivaViewBinder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="hiva view binder"
-        android:layout_gravity="center_horizontal"/>
-
-    <Button
         android:id="@+id/hivaDataPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
