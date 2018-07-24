@@ -1,13 +1,10 @@
 package hivatec.ir.hivatectoolstest.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -35,9 +32,12 @@ public class HivaAdapterActivity extends AppCompatActivity {
 		recyclerView = findViewById(R.id.recycler);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+		String lord="http://www.taosmemory.com/movies/poster/2002/51.jpg";
+		String titanic="https://i.pinimg.com/originals/44/55/d9/4455d96357fb041d1cf3c8a5264ed593.jpg";
+
 		for(int i = 0; i < 100; i++) {
-			movies.add(new Movie("Titanic", "Jack, Rose ..."));
-			movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ..."));
+			movies.add(new Movie("Titanic", "Jack, Rose ...",titanic));
+			movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...",lord));
 		}
 
 		/*

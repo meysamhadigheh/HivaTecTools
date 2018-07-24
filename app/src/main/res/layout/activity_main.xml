@@ -7,6 +7,7 @@
     tools:context=".activities.MainActivity">
 
     <hivatec.ir.hivatectools.hivaActionBarView.ActionBarView
+        android:id="@+id/actionbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -16,33 +17,48 @@
         android:id="@+id/hiva_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hivabutton test" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="hivabutton test"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/hivaAdapterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva adapter test" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="hiva adapter test"
+        android:layout_gravity="center_horizontal"/>
 
 
     <Button
         android:id="@+id/hivaRadioView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva radio test" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="hiva radio test"
+        android:layout_gravity="center_horizontal"/>
 
 
     <Button
         android:id="@+id/hivaViewBinder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva view binder" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="hiva view binder"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/hivaDataPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hiva data picker" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="hiva data picker"
+        android:layout_gravity="center_horizontal"/>
 
 
 </LinearLayout>

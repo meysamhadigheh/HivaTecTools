@@ -2,6 +2,7 @@ package hivatec.ir.hivatectools.hivaActionBarView;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
@@ -46,5 +47,9 @@ public class ActionBarView extends RelativeLayout {
         this.rightButton2 = contentView.rightButton2;
 
 
+    }
+    public Toolbar getToolbar(){
+
+        return findViewById(R.id.toolbar);
     }
 }

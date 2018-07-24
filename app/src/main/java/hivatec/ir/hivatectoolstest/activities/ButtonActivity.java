@@ -1,20 +1,15 @@
 package hivatec.ir.hivatectoolstest.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import java.util.ArrayList;
-
 import hivatec.ir.hivatectools.hivaButtonView.HivaButton;
-import hivatec.ir.hivatectools.hivaRadioView.HivaRadioView;
 import hivatec.ir.hivatectoolstest.R;
 
 public class ButtonActivity extends AppCompatActivity {
 
-    HivaButton hivaButton;
-    HivaButton hivaButton2;
+    HivaButton hivaButton,hivaButton2,hivaButton3,hivaButton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +17,14 @@ public class ButtonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_button);
         hivaButton=findViewById(R.id.hiva_button);
 
-        //hivaButton.setEnabled(false);
         hivaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                hivaButton.startLoadingState();
 
-                hivaButton.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        hivaButton.stopLoadingState();
-                    }
-                }, 3000);
+                startLoading(v);
+
 
             }
         });
@@ -43,23 +32,51 @@ public class ButtonActivity extends AppCompatActivity {
 
         hivaButton2=findViewById(R.id.hiva_button2);
 
-        //hivaButton.setEnabled(false);
         hivaButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startLoading(v);
 
-                hivaButton2.startLoadingState();
 
-                hivaButton2.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        hivaButton2.stopLoadingState();
-                    }
-                }, 3000);
 
             }
         });
+        hivaButton3=findViewById(R.id.hiva_button3);
+
+        hivaButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLoading(v);
+
+
+            }
+        });
+        hivaButton4=findViewById(R.id.hiva_button4);
+
+        //hivaButton.setEnabled(false);
+        hivaButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLoading(v);
+
+
+            }
+        });
+    }
+
+    private void startLoading(View button) {
+
+
+        ((HivaButton) button).startLoadingState();
+
+        button.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                ((HivaButton) button).stopLoadingState();
+            }
+        }, 3000);
+
     }
 
 
