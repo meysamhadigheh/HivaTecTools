@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     Button hivaButtonTest;
     Button hivaAdapterTest;
     Button hivaRadio;
-    Button hivaViewBinder;
     Button hivaDataPicker;
     ActionBarView actionBarView;
 
