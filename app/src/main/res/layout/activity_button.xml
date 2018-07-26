@@ -123,6 +123,25 @@
 
         app:widthPadding="50dp" />
 
+    <hivatec.ir.hivatectools.views.HivaButton
+
+        android:id="@+id/hiva_button_drawable"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:heightPadding="10dp"
+
+        app:radius="45dp"
+        app:text="hello"
+        app:textColor="#fff"
+        app:typeface="IRANSansMobile.ttf"
+        app:backgroundDrawable="@drawable/button_border"
+
+        app:widthPadding="50dp" />
+
 
 
     <hivatec.ir.hivatectools.views.HivaButton

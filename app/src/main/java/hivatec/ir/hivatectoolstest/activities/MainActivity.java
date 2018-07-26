@@ -7,31 +7,21 @@ import android.view.View;
 import android.widget.Button;
 
 import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
+import hivatec.ir.hivatectools.views.HivaButton;
 import hivatec.ir.hivatectoolstest.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button hivaButtonTest;
-    Button hivaAdapterTest;
-    Button hivaRadio;
-    Button hivaDataPicker;
-    ActionBarView actionBarView;
+    HivaButton hivaButtonTest;
+    HivaButton hivaAdapterTest;
+    HivaButton hivaRadio;
+    HivaButton hivaDataPicker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        actionBarView=findViewById(R.id.actionbar);
-
-        actionBarView.leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
         hivaButtonTest =findViewById(R.id.hiva_button);
         hivaButtonTest.setOnClickListener(new View.OnClickListener() {

@@ -1,55 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
+    
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-    <hivatec.ir.hivatectools.activityHelpers.ActionBarView
-        android:id="@+id/actionbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:paddingTop="200dp"
 
-    </hivatec.ir.hivatectools.activityHelpers.ActionBarView>
-
-    <Button
-        android:id="@+id/hiva_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="hivabutton test"
-        android:layout_gravity="center_horizontal"/>
-
-    <Button
-        android:id="@+id/hivaAdapterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="hiva adapter test"
-        android:layout_gravity="center_horizontal"/>
+        android:orientation="horizontal"
+        >
+        
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            
+            android:layout_weight="1"
+            
+            android:orientation="vertical"
+            
+            android:gravity="right"
+            >
 
 
-    <Button
-        android:id="@+id/hivaRadioView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="hiva radio test"
-        android:layout_gravity="center_horizontal"/>
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/hiva_button"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="buttons"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border_reverse"
+
+                app:widthPadding="50dp" />
 
 
-    <Button
-        android:id="@+id/hivaDataPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="hiva data picker"
-        android:layout_gravity="center_horizontal"/>
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/hivaAdapterButton"
+                android:layout_marginTop="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="adapter"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border_reverse"
+                app:widthPadding="50dp" />
+            
+        </LinearLayout>
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="match_parent" 
+            
+            android:background="#794900"
+            />
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
 
 
-</LinearLayout>
+            android:orientation="vertical"
+            
+            android:layout_gravity="left"
+            >
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/hivaRadioView"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="radio"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border"
+
+                app:widthPadding="50dp" />
+
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/hivaDataPicker"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_`content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="data picker"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border"
+
+                app:widthPadding="50dp" />
+
+
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+    
+    
+    
+    
+
+
+   
+
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +10,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.CircularProgressDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -83,7 +85,7 @@ public class HivaButton extends RelativeLayout {
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
-			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, textColor);
+			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, ColorUtils.setAlphaComponent(textColor, Math.round(255 * 0.4f)));
 
 			iconWidth = a.getDimensionPixelSize(R.styleable.HivaButton_iconWidth, iconWidth);
 			space = a.getDimensionPixelSize(R.styleable.HivaButton_space, space);

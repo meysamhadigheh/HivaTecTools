@@ -15,54 +15,24 @@ public class ButtonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button);
-        hivaButton=findViewById(R.id.hiva_button);
-
-        hivaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
 
-
-                startLoading(v);
-
-
-            }
-        });
-
-
-        hivaButton2=findViewById(R.id.hiva_button2);
-
-        hivaButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLoading(v);
-
-
-
-            }
-        });
-        hivaButton3=findViewById(R.id.hiva_button3);
-
-        hivaButton3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLoading(v);
-
-
-            }
-        });
-        hivaButton4=findViewById(R.id.hiva_button4);
-
-        //hivaButton.setEnabled(false);
-        hivaButton4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startLoading(v);
-
-
-            }
-        });
+        findViewById(R.id.hiva_button).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button2).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button3).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button4).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button_top).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button_bottom).setOnClickListener(clickListener);
+        findViewById(R.id.hiva_button_nobg).setOnClickListener(clickListener);
     }
+
+
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startLoading(v);
+        }
+    };
 
     private void startLoading(View button) {
 
