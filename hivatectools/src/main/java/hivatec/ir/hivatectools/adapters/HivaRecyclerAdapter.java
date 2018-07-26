@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -84,8 +85,8 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
         this.itemsListenerMap.put(forItemWithClass, itemsListener);
     }
 
-    public <T> void setOnItemClickListener(Class<T> forItemWithClass, OnItemClickListener<T> listener) {
-        this.itemClickListenerMap.put(forItemWithClass, listener);
+    public <T> void setOnItemClickListener(Class<T> forItemsWithClass, OnItemClickListener<T> listener) {
+        this.itemClickListenerMap.put(forItemsWithClass, listener);
     }
 
     public void addItem(ItemBinder item) {
@@ -115,6 +116,21 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
     public ArrayList getItems() {
 
         return items;
+    }
+
+    public <T> ArrayList<T> getItems(Class<T> clazz) {
+
+        ArrayList<T> _items = new ArrayList<>();
+
+        for(Object item : items) {
+
+            if(item.getClass() == clazz){
+
+                _items.add((T) item);
+            }
+        }
+
+        return _items;
     }
 
     public void removeItem(ItemBinder item){

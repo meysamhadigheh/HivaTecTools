@@ -12,6 +12,7 @@ import hivatec.ir.hivatectools.adapters.HivaRecyclerAdapter;
 import hivatec.ir.hivatectools.adapters.ItemHolder;
 import hivatec.ir.hivatectools.adapters.ItemHolderIterator;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.HeaderItem;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -20,7 +21,7 @@ public class HivaAdapterActivity extends AppCompatActivity {
 	RecyclerView recyclerView;
 	HivaRecyclerAdapter adapter;
 
-	ArrayList<Movie> movies = new ArrayList<Movie>();
+	ArrayList movies = new ArrayList();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +36,14 @@ public class HivaAdapterActivity extends AppCompatActivity {
 		String lord="http://www.taosmemory.com/movies/poster/2002/51.jpg";
 		String titanic="https://i.pinimg.com/originals/44/55/d9/4455d96357fb041d1cf3c8a5264ed593.jpg";
 
+
+		movies.add(new HeaderItem());
+
 		for(int i = 0; i < 100; i++) {
 			movies.add(new Movie("Titanic", "Jack, Rose ...",titanic));
 			movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...",lord));
 		}
 
-		/*
-
-
-		*/
 
 		adapter = new HivaRecyclerAdapter();
 
