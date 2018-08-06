@@ -1,5 +1,10 @@
 package hivatec.ir.hivatectoolstest.model;
 
+import android.graphics.Color;
+import android.support.v4.graphics.ColorUtils;
+
+import java.util.Random;
+
 import hivatec.ir.hivatectools.adapters.ItemBinder;
 import hivatec.ir.hivatectools.adapters.ItemHolder;
 import hivatec.ir.hivatectoolstest.R;
@@ -11,6 +16,13 @@ import hivatec.ir.hivatectoolstest.R;
 public class HeaderItem implements ItemBinder {
 
 
+	int color = 0;
+
+	public HeaderItem(){
+		Random rnd = new Random();
+		color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+	}
+
 	@Override
 	public int getResourceId() {
 		return R.layout.item_header;
@@ -19,5 +31,6 @@ public class HeaderItem implements ItemBinder {
 	@Override
 	public void bindToHolder(ItemHolder binder, Object listener) {
 
+		binder.itemView.setBackgroundColor(color);
 	}
 }

@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import hivatec.ir.hivatectools.adapters.HivaRecyclerAdapter;
+import hivatec.ir.hivatectools.adapters.ItemDecoration;
 import hivatec.ir.hivatectools.adapters.ItemHolder;
 import hivatec.ir.hivatectools.adapters.ItemHolderIterator;
 import hivatec.ir.hivatectoolstest.R;
@@ -45,26 +47,20 @@ public class HivaAdapterActivity extends AppCompatActivity {
 		}
 
 
+		movies.add(2, new HeaderItem());
+		movies.add(5, new HeaderItem());
+		movies.add(10, new HeaderItem());
+		movies.add(13, new HeaderItem());
+
 		adapter = new HivaRecyclerAdapter();
 
-		adapter.forEach(movies, new ItemHolderIterator<Movie>(R.layout.item_movie) {
-			@Override
-			public void bindToHolder(ItemHolder binder, Movie item) {
+		adapter.setItems(movies);
 
-				item.bindToHolder(binder, null);
-			}
-
-			@Override
-			public void itemClicked(ItemHolder binder, Movie item) {
-
-			}
-		});
+		adapter.makeClassHeader(HeaderItem.class);
 
 		recyclerView.setAdapter(adapter);
 
-
-		OverScrollDecoratorHelper.setUpOverScroll(recyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
-
+		recyclerView.addItemDecoration(new ItemDecoration(), 0);
 
 	}
 

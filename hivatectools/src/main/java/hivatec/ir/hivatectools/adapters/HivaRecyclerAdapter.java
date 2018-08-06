@@ -19,6 +19,9 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
 
     HashMap<Class, Object> itemsListenerMap = new HashMap<>();
 	HashMap<Class, OnItemClickListener> itemClickListenerMap = new HashMap<>();
+	HashMap<ItemBinder, Integer> headerItems = new HashMap<>();
+
+	private int headerId = 0;
 
     public HivaRecyclerAdapter() {
 
@@ -50,6 +53,14 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
         holder.context = holder.itemView.getContext();
         items.get(position).bindToHolder(holder, listener);
 
+        if(headerItems.get(items.get(position)) != null){
+
+            holder.itemView.setTag(headerItems.get(items.get(position)));
+        }else{
+
+            holder.itemView.setTag(null);
+        }
+
         final OnItemClickListener clickListener = itemClickListenerMap.get(items.get(position).getClass());
         if(clickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +74,6 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
                 }
             });
         }
-
-
-
-
     }
 
 
@@ -141,6 +148,15 @@ public class HivaRecyclerAdapter extends RecyclerView.Adapter<ItemHolder> {
     public void clearItems(){
 
         items = new ArrayList<>();
+    }
+
+    public <T> void makeClassHeader(Class<T> clazz){
+
+        for(T item : getItems(clazz)){
+
+            headerItems.put((ItemBinder) item, headerId++);
+        }
+
     }
 
 

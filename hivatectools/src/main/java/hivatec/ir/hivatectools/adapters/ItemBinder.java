@@ -7,7 +7,6 @@ package hivatec.ir.hivatectools.adapters;
 public interface ItemBinder {
 
     int getResourceId();
-
 	void bindToHolder(ItemHolder binder, Object listener);
 
 }
