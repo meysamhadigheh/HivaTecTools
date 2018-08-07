@@ -33,12 +33,14 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.github.florent37:viewtooltip:1.1.5'
 
     implementation 'com.weigan:loopView:0.1.2'
     implementation 'com.qhutch.bottomsheetlayout:bottomsheetlayout:0.1.6'
 
 
-
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 
 

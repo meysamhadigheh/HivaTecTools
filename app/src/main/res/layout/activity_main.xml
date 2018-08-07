@@ -63,7 +63,24 @@
                 app:typeface="IRANSansMobile.ttf"
                 app:backgroundDrawable="@drawable/button_border_reverse"
                 app:widthPadding="50dp" />
-            
+
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/retrofitActivity"
+                android:layout_marginTop="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="retrofit"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border_reverse"
+                app:widthPadding="50dp" />
+
+
         </LinearLayout>
 
         <View
@@ -119,7 +136,27 @@
                 app:widthPadding="50dp" />
 
 
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:id="@+id/formActivityButton"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:heightPadding="10dp"
+
+                app:radius="45dp"
+                app:text="form activity"
+                app:textColor="#fff"
+                app:typeface="IRANSansMobile.ttf"
+                app:backgroundDrawable="@drawable/button_border"
+
+                app:widthPadding="50dp" />
+
+
         </LinearLayout>
+
+
+
         
         
     </LinearLayout>
