@@ -19,11 +19,16 @@ public class Movie implements ItemBinder {
     String name;
     String stars;
     String imgUrl;
+    Notice notice;
 
     public Movie(String name, String stars, String imgUrl) {
         this.name = name;
         this.stars = stars;
         this.imgUrl = imgUrl;
+
+        notice = new Notice();
+        notice.setId(11);
+        notice.setName("this is a good movie");
     }
 
 
