@@ -36,6 +36,8 @@ dependencies {
     implementation 'com.github.florent37:viewtooltip:1.1.5'
     implementation 'com.weigan:loopView:0.1.2'
     implementation 'com.qhutch.bottomsheetlayout:bottomsheetlayout:0.1.6'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
 
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

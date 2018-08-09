@@ -47,10 +47,5 @@ public class Movie implements ItemBinder {
 
         Glide.with(binder.context).load(imgUrl).into(binder.<ImageView>find(R.id.movie_image));
 
-
-
-
-
-
     }
 }
