@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import hivatec.ir.hivatectools.RetrofitHelper.RetroCallBack;
 import hivatec.ir.hivatectools.RetrofitHelper.Webservice;
@@ -17,7 +18,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public class RetrofitActivity extends AppCompatActivity {
 
@@ -27,7 +32,7 @@ public class RetrofitActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_retrofit);
 
 
-		String BASE_URL = "http://demo0617111.mockable.io/";
+		String BASE_URL = "http://10.0.2.2:3000/";
 
 		Webservice.setUrl(BASE_URL);
 
@@ -35,7 +40,14 @@ public class RetrofitActivity extends AppCompatActivity {
 		new Webservice().call(new RetroCallBack<NoticeService, Notice>() {
 			@Override
 			public Call<Notice> shouldCall(NoticeService service) {
-				return service.getSingleNotice();
+
+				HashMap<String, Object> objects = new HashMap<>();
+
+				objects.put("id", 100);
+
+				Log.i("retrofit", objects.toString() + "");
+
+				return service.getSingleNotice(objects);
 			}
 
 			@Override
@@ -50,23 +62,23 @@ public class RetrofitActivity extends AppCompatActivity {
 			}
 		});
 
-		new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
-			@Override
-			public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
-				return service.getNoticeList();
-			}
-
-			@Override
-			public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
-
-				Log.i("response", response.body().size() + "");
-			}
-
-			@Override
-			public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
-
-			}
-		});
+//		new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
+//			@Override
+//			public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
+//				return service.getNoticeList();
+//			}
+//
+//			@Override
+//			public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
+//
+//				Log.i("response", response.body().size() + "");
+//			}
+//
+//			@Override
+//			public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
+//
+//			}
+//		});
 
 
 	}
@@ -74,8 +86,9 @@ public class RetrofitActivity extends AppCompatActivity {
 
 	interface NoticeService {
 
-		@GET("notice")
-		Call<Notice> getSingleNotice();
+		@FormUrlEncoded
+		@POST("notice")
+		Call<Notice> getSingleNotice(@FieldMap HashMap<String, Object> body);
 
 		@GET("notices")
 		Call<ArrayList<Notice>> getNoticeList();

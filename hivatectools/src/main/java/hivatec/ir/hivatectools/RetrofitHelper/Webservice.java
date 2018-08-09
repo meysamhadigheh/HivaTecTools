@@ -43,6 +43,7 @@ public class Webservice{
 		Call<Y> call = callback.shouldCall(service);
 
 		Log.wtf("URL Called", call.request().url() + "");
+		Log.i("URL Called", call.request().body().toString() + "");
 		call.enqueue(new Callback<Y>() {
 			@Override
 			public void onResponse(Call<Y> call, Response<Y> response) {
@@ -54,7 +55,7 @@ public class Webservice{
 
 			@Override
 			public void onFailure(Call<Y> call, Throwable t) {
-				Log.e("retrofit", "has error");
+				Log.e("retrofit", t.getMessage());
 
 				callback.onFailure(call, t);
 			}

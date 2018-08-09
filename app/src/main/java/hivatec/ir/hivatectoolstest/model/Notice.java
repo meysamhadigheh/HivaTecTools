@@ -1,5 +1,7 @@
 package hivatec.ir.hivatectoolstest.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by ashkan on 8/7/18.
  */
@@ -7,6 +9,8 @@ package hivatec.ir.hivatectoolstest.model;
 public class Notice {
 
 	int id;
+
+	@SerializedName("title")
 	String name;
 
 	public int getId() {
