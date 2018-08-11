@@ -23,6 +23,7 @@ public class ActionBarView extends RelativeLayout {
     public ImageButton leftButton;
     public ImageButton rightButton1;
     public ImageButton rightButton2;
+    private Toolbar toolbar;
 
     public ActionBarView(Context context) {
         super(context);
@@ -39,6 +40,7 @@ public class ActionBarView extends RelativeLayout {
         inflater.inflate(R.layout.custom_action_bar, this);
 
         this.contentView = findViewById(R.id.toolbar_content);
+        this.toolbar = findViewById(R.id.theToolbar);
 
         this.titleTextView = contentView.titleTextView;
         this.leftButton = contentView.leftButton;
@@ -49,6 +51,6 @@ public class ActionBarView extends RelativeLayout {
     }
     public Toolbar getToolbar(){
 
-        return findViewById(R.id.toolbar);
+        return this.toolbar;
     }
 }

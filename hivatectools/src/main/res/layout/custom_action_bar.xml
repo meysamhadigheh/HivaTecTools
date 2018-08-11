@@ -12,7 +12,7 @@
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/theToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionBar"
             android:background="@color/actionBar"

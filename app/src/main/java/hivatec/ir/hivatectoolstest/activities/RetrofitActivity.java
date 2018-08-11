@@ -28,6 +28,7 @@ import java.util.List;
 import hivatec.ir.hivatectools.RetrofitHelper.JsonMap;
 import hivatec.ir.hivatectools.RetrofitHelper.RetroCallBack;
 import hivatec.ir.hivatectools.RetrofitHelper.Webservice;
+import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
 import hivatec.ir.hivatectools.helper.GlideHelper;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
@@ -51,12 +52,38 @@ import retrofit2.http.Part;
 
 import static javax.xml.transform.OutputKeys.MEDIA_TYPE;
 
-public class RetrofitActivity extends AppCompatActivity {
+public class RetrofitActivity extends ParentActivity {
+
+
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void setContentViewActivity() {
 		setContentView(R.layout.activity_retrofit);
+	}
+
+	@Override
+	protected void getIntentData() {
+
+	}
+
+	@Override
+	protected void prepareToolbar() {
+
+	}
+
+	@Override
+	protected void instantiateViews() {
+
+	}
+
+	@Override
+	protected void setViewListeners() {
+
+	}
+
+	@Override
+	protected void setActivityContent() {
+
 
 
 		String BASE_URL = "http://10.0.2.2:3000/";
@@ -100,25 +127,10 @@ public class RetrofitActivity extends AppCompatActivity {
 		});
 
 
+	}
 
-//		new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
-//			@Override
-//			public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
-//				return service.getNoticeList();
-//			}
-//
-//			@Override
-//			public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
-//
-//				Log.i("response", response.body().size() + "");
-//			}
-//
-//			@Override
-//			public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
-//
-//			}
-//		});
-
+	@Override
+	protected void refreshContent() {
 
 	}
 
