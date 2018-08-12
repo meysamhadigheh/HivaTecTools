@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="HivaAppTheme">
 
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
 
 

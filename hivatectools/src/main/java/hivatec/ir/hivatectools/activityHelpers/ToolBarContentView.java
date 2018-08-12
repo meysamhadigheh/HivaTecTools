@@ -1,6 +1,8 @@
 package hivatec.ir.hivatectools.activityHelpers;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -21,6 +23,8 @@ public class ToolBarContentView extends RelativeLayout {
 	public ImageButton rightButton1;
 	public ImageButton rightButton2;
 
+	public int tintColor = Color.WHITE;
+
 	public ToolBarContentView(Context context) {
 		super(context);
 		init();
@@ -39,8 +43,24 @@ public class ToolBarContentView extends RelativeLayout {
 		this.leftButton=findViewById(R.id.leftButton);
 		this.rightButton1=findViewById(R.id.rightButton1);
 		this.rightButton2=findViewById(R.id.rightButton2);
+
+		this.titleTextView.setTextColor(tintColor);
+		this.leftButton.setColorFilter(tintColor);
+		this.rightButton1.setColorFilter(tintColor);
+		this.rightButton2.setColorFilter(tintColor);
+	}
+
+	public void setTintColor(int tintColor){
+
+		this.tintColor = tintColor;
+
+		this.titleTextView.setTextColor(tintColor);
+		this.leftButton.setColorFilter(tintColor);
+		this.rightButton1.setColorFilter(tintColor);
+		this.rightButton2.setColorFilter(tintColor);
 	}
 
 }
+
 
 

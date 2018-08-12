@@ -3,7 +3,7 @@
 
     <style name="HivaAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/DarkGreen</item>
         <item name="colorPrimaryDark">#7c000a</item>
         <item name="colorAccent">#ffe41b</item>
         <item name="android:colorControlHighlight">#88ffffff</item>

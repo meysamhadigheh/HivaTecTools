@@ -3,15 +3,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/actionBar"
+    android:layout_height="@dimen/actionBarExtended"
     >
 
 
     <RelativeLayout
 
         android:layout_width="@dimen/actionBar"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         >
 
@@ -69,10 +68,10 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
 
-                android:layout_margin="4dp"
+                android:layout_margin="8dp"
 
                 style="@style/ActionbarButtonStyle"
-                android:src="@drawable/ic_action_cancel"
+                android:src="@drawable/ic_rubbish_bin"
                 android:tint="@color/White"
                 />
 

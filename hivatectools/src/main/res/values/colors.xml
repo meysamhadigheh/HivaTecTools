@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/Red</color>
-    <color name="actionBar">@color/Red</color>
+
+    <color name="colorPrimary">#43e9d0</color>
     <color name="background">#f8f8f8</color>
 
 

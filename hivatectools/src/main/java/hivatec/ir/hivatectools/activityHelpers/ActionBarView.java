@@ -1,6 +1,8 @@
 package hivatec.ir.hivatectools.activityHelpers;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -25,6 +27,9 @@ public class ActionBarView extends RelativeLayout {
     public ImageButton rightButton2;
     private Toolbar toolbar;
 
+    private int backgroundColor = 0;
+    private int tintColor = 0;
+
     public ActionBarView(Context context) {
         super(context);
         init();
@@ -32,6 +37,14 @@ public class ActionBarView extends RelativeLayout {
 
     public ActionBarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ActionBarView, 0, 0);
+
+        backgroundColor = a.getColor(R.styleable.ActionBarView_backgroundColor, getContext().getResources().getColor(R.color.colorPrimary));
+        tintColor = a.getColor(R.styleable.ActionBarView_tintColor, Color.WHITE);
+
+        a.recycle();
+
         init();
     }
 
@@ -41,6 +54,9 @@ public class ActionBarView extends RelativeLayout {
 
         this.contentView = findViewById(R.id.toolbar_content);
         this.toolbar = findViewById(R.id.theToolbar);
+
+        toolbar.setBackgroundColor(backgroundColor);
+        contentView.setTintColor(tintColor);
 
         this.titleTextView = contentView.titleTextView;
         this.leftButton = contentView.leftButton;

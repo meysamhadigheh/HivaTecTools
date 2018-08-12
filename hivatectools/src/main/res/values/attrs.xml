@@ -9,10 +9,18 @@
     <attr name="iconOff" format="reference"></attr>
     <attr name="dividerColor" format="color"></attr>
     <attr name="rippleColor" format="color"></attr>
+    <attr name="tintColor" format="color"></attr>
 
     <attr name="colNum" format="integer"></attr>
     <attr name="hideAnimation" format="reference"></attr>
     <attr name="showAnimation" format="reference"></attr>
+
+    <declare-styleable name="ActionBarView" >
+
+        <attr name="backgroundColor"></attr>
+        <attr name="tintColor"></attr>
+
+    </declare-styleable>
 
     <declare-styleable name="HivaRadioView">
 
