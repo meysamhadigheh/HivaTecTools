@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -37,7 +38,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -96,7 +96,7 @@ public class RetrofitActivity extends ParentActivity {
 
 				((ImageView) findViewById(R.id.image)).setImageBitmap(bitmap);
 
-				new Webservice().call(new RetroCallBack<NoticeService, Notice>() {
+				/*new Webservice().call(new RetroCallBack<NoticeService, Notice>() {
 					@Override
 					public Call<Notice> shouldCall(NoticeService service) {
 
@@ -112,16 +112,18 @@ public class RetrofitActivity extends ParentActivity {
 					}
 
 					@Override
-					public void onResponse(Call<Notice> call, Response<Notice> response) {
-
-						Log.i("response", response.body().getName());
-					}
-
-					@Override
 					public void onFailure(Call<Notice> call, Throwable t) {
 
 					}
-				});
+
+					@Override
+					public void onResponse(Call<Notice> call, Response<Notice> response) {
+						Log.i("response", response.body().getName());
+
+					}
+
+
+				});*/
 
 			}
 		});
@@ -137,12 +139,12 @@ public class RetrofitActivity extends ParentActivity {
 
 	interface NoticeService {
 
-		@Multipart
+/*		@Multipart
 		@POST("notice")
-		Call<Notice> getSingleNotice(@Part List<MultipartBody.Part> body);
+        Call<Notice> getSingleNotice(@Part List<MultipartBody.Part> body);
 
 		@GET("notices")
-		Call<ArrayList<Notice>> getNoticeList();
+        Call<ArrayList<Notice>> getNoticeList();*/
 	}
 
 
