@@ -3,6 +3,8 @@ package hivatec.ir.hivatectools.helper;
 import android.app.Application;
 import android.content.Context;
 
+import com.appizona.yehiahd.fastsave.FastSave;
+
 /**
  * Created by meysam on 12/23/17.
  */
@@ -18,6 +20,7 @@ public class G extends Application {
         super.onCreate();
 
         context = this;
+        FastSave.init(getApplicationContext());
 
 
 
