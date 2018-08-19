@@ -90,15 +90,36 @@ public class RetrofitActivity extends ParentActivity {
 
 		Webservice.setUrl(BASE_URL);
 
+
+		new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
+			@Override
+			public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
+				return service.getNoticeList();
+			}
+
+			@Override
+			public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
+
+
+				Log.i("", response.body().size() + "");
+			}
+
+			@Override
+			public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
+
+			}
+		});
+
+
 		GlideHelper.downloadImage(this, "https://picsum.photos/200/300", "fileeee", new GlideHelper.DownloadCallback() {
 			@Override
 			public void downloaded(Bitmap bitmap, Uri fileUri) {
 
 				((ImageView) findViewById(R.id.image)).setImageBitmap(bitmap);
 
-				new Webservice().call(new RetroCallBack<NoticeService, Notice>() {
+			/*	new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
 					@Override
-					public Call<Notice> shouldCall(NoticeService service) {
+					public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
 
 						JsonMap objects = new JsonMap();
 
@@ -108,20 +129,20 @@ public class RetrofitActivity extends ParentActivity {
 						objects.putItem("movie", new Movie("titanic", "4.5", "http://image.com"));
 						objects.putItem("file1",new File(((Uri) fileUri).getPath()));
 
-						return service.getSingleNotice(objects.getParts());
+						return service.getNoticeList();
 					}
 
 					@Override
-					public void onResponse(Call<Notice> call, Response<Notice> response) {
+					public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
 
-						Log.i("response", response.body().getName());
+						//Log.i("response", response.body().getName());
 					}
 
 					@Override
-					public void onFailure(Call<Notice> call, Throwable t) {
+					public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
 
 					}
-				});
+				});*/
 
 			}
 		});

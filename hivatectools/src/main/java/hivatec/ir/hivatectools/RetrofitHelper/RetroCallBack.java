@@ -1,6 +1,7 @@
 package hivatec.ir.hivatectools.RetrofitHelper;
 
 import com.google.gson.internal.$Gson$Types;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -28,7 +29,7 @@ public abstract class RetroCallBack<T, Y> implements Callback<Y> {
 		}
 		ParameterizedType parameterized = (ParameterizedType) superclass;
 		classT = (Class<T>) $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
-		classY = (Class<Y>) $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[1]);
+		//classY = (Class<Y>) new TypeToken<Y>(){}.getType();//(Class<Y>) $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[1]);
 
 	}
 
