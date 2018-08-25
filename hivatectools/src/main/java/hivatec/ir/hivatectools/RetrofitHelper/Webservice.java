@@ -2,6 +2,9 @@ package hivatec.ir.hivatectools.RetrofitHelper;
 
 import android.util.Log;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,21 +19,36 @@ public class Webservice{
 
 
 	public static String url = "";
+	public static int timeout = 10;
 
 	public static void setUrl(String baseUrl){
 		url = baseUrl;
 	}
 
 
+	public Webservice setTimeOut(int timeOut){
+
+		timeout = timeOut;
+		return this;
+	}
 
 
 	public static Retrofit getRetrofit(){
 
+
+		OkHttpClient okHttpClient = new OkHttpClient.Builder()
+				.readTimeout(timeout, TimeUnit.SECONDS)
+				.connectTimeout(timeout, TimeUnit.SECONDS)
+				.build();
+
 		Retrofit retrofit = new retrofit2.Retrofit.Builder()
 				.baseUrl(url)
 				.addConverterFactory(GsonConverterFactory.create())
+				.client(okHttpClient)
 				.build();
 
+		timeout = 10;
+		
 		return retrofit;
 	}
 
@@ -43,19 +61,19 @@ public class Webservice{
 		Call<Y> call = callback.shouldCall(service);
 
 		Log.wtf("URL Called", call.request().url() + "");
-		Log.i("URL Called", call.request().body().toString() + "");
+
 		call.enqueue(new Callback<Y>() {
 			@Override
 			public void onResponse(Call<Y> call, Response<Y> response) {
 
-				Log.i("retrofit", response.message());
+				Log.i("retrofit", "response from " + call.request().url() + " ->>> " + response.body().toString());
 
 				callback.onResponse(call, response);
 			}
 
 			@Override
 			public void onFailure(Call<Y> call, Throwable t) {
-				Log.e("retrofit", t.getMessage());
+				Log.e("retrofit",  "response from " + call.request().url() + " ->>> " +  t.getMessage());
 
 				callback.onFailure(call, t);
 			}
