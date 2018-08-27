@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
+
 /**
  * Created by aliparsa on 8/31/2014.
  */
@@ -116,6 +119,30 @@ public class SharedPreference {
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(key);
         editor.apply();
+    }
+
+    public static void putObject(String key, Object object) {
+
+        Context context = getContext();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        editor.putString(key, gson.toJson(object));
+        editor.apply();
+    }
+
+    public static <GenericClass> GenericClass getObject(String key, String defaultValue,Class<GenericClass> classType) {
+
+        Context context = getContext();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String value = preferences.getString(key, defaultValue);
+        Gson gson = new Gson();
+
+
+        return gson.fromJson(value, classType);
+
     }
 
     public static Context getContext() {
