@@ -48,7 +48,7 @@ public class Webservice{
 				.build();
 
 		timeout = 10;
-		
+
 		return retrofit;
 	}
 
@@ -66,7 +66,11 @@ public class Webservice{
 			@Override
 			public void onResponse(Call<Y> call, Response<Y> response) {
 
-				Log.i("retrofit", "response from " + call.request().url() + " ->>> " + response.body().toString());
+				try {
+					Log.i("retrofit", "response from " + call.request().url() + " ->>> " + response.body().toString());
+				}catch (Exception e){
+
+				}
 
 				callback.onResponse(call, response);
 			}
