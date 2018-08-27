@@ -30,6 +30,7 @@ import hivatec.ir.hivatectools.RetrofitHelper.RetroCallBack;
 import hivatec.ir.hivatectools.RetrofitHelper.Webservice;
 import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
 import hivatec.ir.hivatectools.helper.GlideHelper;
+import hivatec.ir.hivatectools.helper.SharedPreference;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import hivatec.ir.hivatectoolstest.model.Notice;
@@ -84,6 +85,12 @@ public class RetrofitActivity extends ParentActivity {
 	@Override
 	protected void setActivityContent() {
 
+
+		//Shared preference
+		Movie m = new Movie("a", "b", "c");
+
+		SharedPreference.putObject("movie", m);
+		Movie mm = SharedPreference.getObject("movie", Movie.class);
 
 
 		String BASE_URL = "http://10.0.2.2:3000/";

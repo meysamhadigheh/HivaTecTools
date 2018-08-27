@@ -132,16 +132,15 @@ public class SharedPreference {
         editor.apply();
     }
 
-    public static <GenericClass> GenericClass getObject(String key, String defaultValue,Class<GenericClass> classType) {
+    public static <T> T getObject(String key, Class<T> type) {
 
         Context context = getContext();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String value = preferences.getString(key, defaultValue);
+        String value = preferences.getString(key, "");
         Gson gson = new Gson();
 
-
-        return gson.fromJson(value, classType);
+        return gson.fromJson(value, type);
 
     }
 
