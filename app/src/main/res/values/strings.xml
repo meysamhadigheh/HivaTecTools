@@ -3,4 +3,5 @@
     <string name="title_activity_hiva_adapter">HivaAdapterActivity</string>
     <string name="title_activity_radio">RadioActivity</string>
     <string name="title_activity_view_binder">ViewBinderActivity</string>
+    <string name="title_activity_webservice">WebserviceActivity</string>
 </resources>
