@@ -75,12 +75,14 @@
         android:layout_height="wrap_content"
 
         app:heightPadding="20dp"
-        app:icon="@drawable/ic_cached_black_24dp"
+        app:icon="@drawable/idea_on"
         app:iconPosition="bottom"
         app:radius="5dp"
         app:text="hello"
+        app:textSize="24sp"
         app:textColor="#fff"
         app:typeface="IRANSansMobile.ttf"
+        app:iconTint="@android:color/transparent"
 
         app:widthPadding="20dp" />
 

@@ -58,6 +58,7 @@ public class HivaButton extends RelativeLayout {
 
 	int icon = 0;
 	int space = -999;
+	int iconTint = 0;
 	int iconWidth = ViewUIHelper.dpToPx(0);
 	int iconPosition = 0;
 
@@ -91,6 +92,7 @@ public class HivaButton extends RelativeLayout {
 			space = a.getDimensionPixelSize(R.styleable.HivaButton_space, space);
 			icon = a.getResourceId(R.styleable.HivaButton_icon, icon);
 			iconPosition = a.getInt(R.styleable.HivaButton_iconPosition, iconPosition);
+			iconTint = a.getColor(R.styleable.HivaButton_iconTint, textColor);
 
 			a.recycle();
         }
@@ -140,14 +142,14 @@ public class HivaButton extends RelativeLayout {
 					textSize * 4 / 3 ,
 					textSize * 4 / 3 );
 
-			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(6));
+			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
 
 		}else{
 			indicatorViewParams = new LayoutParams(
 					iconWidth / 2,
 					iconWidth / 2);
 
-			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(iconWidth / 20));
+			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
 
 		}
 		indicatorViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -185,7 +187,9 @@ public class HivaButton extends RelativeLayout {
 		}
 		imageView.setImageResource(icon);
 		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-		imageView.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
+		if(iconTint != Color.TRANSPARENT) {
+			imageView.setColorFilter(iconTint, PorterDuff.Mode.SRC_IN);
+		}
 
 
 		if(icon != 0 && space == -999){
