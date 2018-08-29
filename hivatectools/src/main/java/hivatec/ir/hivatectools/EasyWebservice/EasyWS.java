@@ -534,15 +534,19 @@ public class EasyWS {
             }
 
         } catch (JSONException e) {
+            Log.e("webservice", "error while parsing " + key);
             e.printStackTrace();
             return null;
         }catch (IllegalStateException e){
+            Log.e("webservice", "error while parsing " + key);
             e.printStackTrace();
             return null;
         }catch (JsonSyntaxException e){
+            Log.e("webservice", "error while parsing " + key);
             e.printStackTrace();
             return null;
         }catch (Exception e){
+            Log.e("webservice", "error while parsing " + key);
             e.printStackTrace();
             return null;
         }
