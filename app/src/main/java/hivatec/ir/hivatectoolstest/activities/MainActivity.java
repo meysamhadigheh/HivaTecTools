@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.retrofitActivity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RetrofitActivity.class));
+                startActivity(new Intent(MainActivity.this, WebserviceActivity.class));
             }
         });
     }

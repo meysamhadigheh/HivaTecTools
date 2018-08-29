@@ -82,6 +82,7 @@
 
         <attr name="typeface" ></attr>
         <attr name="icon" format="reference"></attr>
+        <attr name="iconTint" ></attr>
         <attr name="iconWidth" format="dimension"></attr>
         <attr name="space" format="dimension"></attr>
         <attr name="iconPosition" format="enum">
