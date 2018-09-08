@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,9 +37,13 @@ public class Webservice{
 	public static Retrofit getRetrofit(){
 
 
+		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+		interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
 		OkHttpClient okHttpClient = new OkHttpClient.Builder()
 				.readTimeout(timeout, TimeUnit.SECONDS)
 				.connectTimeout(timeout, TimeUnit.SECONDS)
+				.addInterceptor(interceptor)
 				.build();
 
 		Retrofit retrofit = new retrofit2.Retrofit.Builder()
@@ -46,6 +51,7 @@ public class Webservice{
 				.addConverterFactory(GsonConverterFactory.create())
 				.client(okHttpClient)
 				.build();
+
 
 		timeout = 10;
 
@@ -55,6 +61,7 @@ public class Webservice{
 
 
 	public <T, Y> void  call(RetroCallBack<T, Y> callback) {
+
 
 
 		T service = getRetrofit().create(callback.classT);

@@ -128,7 +128,7 @@ public class EasyWS {
          AsyncTask task = new AsyncTask() {
 
             @Override
-            protected String doInBackground(Object[] objects) {
+            protected OkHttpResponse doInBackground(Object[] objects) {
 
                 MultipartBody.Builder mBody = new MultipartBody.Builder();
                 mBody.setType(MultipartBody.FORM);
@@ -185,22 +185,42 @@ public class EasyWS {
                 }
 
                 Request request = null;
-
                 if(method == Method.POST) {
-                    request = builder.url(urlStr).post(mBody.build()).build();
+                    request = builder
+                            .url(urlStr)
+                            .post(mBody.build())
+                            .build();
                 }else{
                     request = builder.url(urlStr).get().build();
                 }
 
                 try {
 
-                    Log.i("webservice", urlStr);
+                    Log.i("webservice", (method == Method.POST ? "POST : " : "GET : ") + urlStr);
                     Log.i("webservice", "headers : " + new Gson().toJson(headers));
                     Log.i("webservice", "bodies : " + new Gson().toJson(bodies));
 
                     Response res = client.newCall(request).execute();
+                    OkHttpResponse cres = new OkHttpResponse();
+                    cres.code = res.code();
+                    cres.res = res;
 
-                    return res.body().string();
+                    try {
+
+                        if (res.isSuccessful()) {
+                            cres.body = res.body().string();
+                            Log.i("webservice", "--> " + urlStr + " : " + cres.body);
+                            return cres;
+                        } else {
+                            Log.e("webservice", "--> " + urlStr + " : " + res);
+
+                            cres.error = res.message();
+                            return  cres;
+                        }
+                    }catch (Exception e){
+                        cres.error = res.message();
+                        return  cres;
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -219,15 +239,14 @@ public class EasyWS {
                     return;
                 }
 
-                Log.i("webservice", "--> " + urlStr + " : " + o);
+                OkHttpResponse res = (OkHttpResponse) o;
 
-                if(o.toString().startsWith("<!DOCTYPE html>") || o.toString().startsWith("\n<!DOCTYPE html>")){
-
-                    callback.onError(SERVER_ERROR);
-                    return;
+                if(res.res.isSuccessful()){
+                    callback.onSuccess(res.body);
+                }else{
+                    callback.onError(res.error);
                 }
 
-                callback.onSuccess((String) o);
 
             }
         };
@@ -591,5 +610,14 @@ public class EasyWS {
         };
 
         task.execute();
+    }
+
+
+    private class OkHttpResponse {
+
+        Response res;
+        String body;
+        int code;
+        String error;
     }
 }
