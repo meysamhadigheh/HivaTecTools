@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,8 +17,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import hivatec.ir.hivatectools.helper.SharedPreference;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -69,7 +73,7 @@ public class EasyWS {
     }
 
 
-    public EasyWS addBody(String key, Object value) {
+    public EasyWS addParam(String key, Object value) {
 
         this.bodies.put(key, value);
         return this;
@@ -83,12 +87,43 @@ public class EasyWS {
 
     public static void addGlobalHeader(String key, String value){
 
+        getGlobals();
         gHeaders.put(key, value);
+        putGlobals();
     }
 
-    public static void addGlobalBody(String key, Object value){
+    public static void addGlobalParam(String key, Object value){
 
+        getGlobals();
         gBodies.put(key, value);
+        putGlobals();
+    }
+
+    private static void getGlobals(){
+
+        //gHeaders = SharedPreference.getObject("easywebservice_gheaders", new TypeToken<HashMap<String, String>>() {}.getClass());
+
+        String headers = SharedPreference.getString("easywebservice_gheaders", "");
+        String bodies = SharedPreference.getString("easywebservice_gbodies", "");
+        Gson gson = new Gson();
+
+        gHeaders = gson.fromJson(headers, new TypeToken<HashMap<String,String>>() {}.getType());
+        gBodies = gson.fromJson(bodies, new TypeToken<HashMap<String,Object>>() {}.getType());
+    }
+
+    private static void putGlobals(){
+
+        //gHeaders = SharedPreference.getObject("easywebservice_gheaders", new TypeToken<HashMap<String, String>>() {}.getClass());
+
+        Gson gson = new Gson();
+
+        String headers = gson.toJson(gHeaders);
+        String bodies = gson.toJson(gBodies);
+
+        SharedPreference.putString("easywebservice_gheaders", headers);
+        SharedPreference.putString("easywebservice_gbodies", bodies);
+
+
     }
 
 
@@ -125,13 +160,18 @@ public class EasyWS {
             return;
         }
 
-         AsyncTask task = new AsyncTask() {
+        getGlobals();
+
+        AsyncTask task = new AsyncTask() {
 
             @Override
             protected OkHttpResponse doInBackground(Object[] objects) {
 
                 MultipartBody.Builder mBody = new MultipartBody.Builder();
                 mBody.setType(MultipartBody.FORM);
+
+                HttpUrl.Builder httpBuider = HttpUrl.parse(urlStr).newBuilder();
+
 
                 Request.Builder builder = new Request.Builder();
 
@@ -150,53 +190,27 @@ public class EasyWS {
                 }
 
 
-                for (HashMap.Entry<String, Object> entry : gBodies.entrySet()) {
-                    String key = entry.getKey();
-                    Object value = entry.getValue();
 
-                    if(value instanceof File){
-
-                        File file = (File) value;
-                        mBody.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse(MEDIA_TYPE), file));
-                    }else if(value instanceof String){
-
-                        mBody.addFormDataPart(key, value.toString());
-                    }else {
-
-                        mBody.addFormDataPart(key, new Gson().toJson(value));
-                    }
-                }
-
-                for (HashMap.Entry<String, Object> entry : bodies.entrySet()) {
-                    String key = entry.getKey();
-                    Object value = entry.getValue();
-
-                    if(value instanceof File){
-
-                        File file = (File) value;
-                        mBody.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse(MEDIA_TYPE), file));
-                    }else if(value instanceof String){
-
-                        mBody.addFormDataPart(key, value.toString());
-                    }else {
-
-                        mBody.addFormDataPart(key, new Gson().toJson(value));
-                    }
-                }
 
                 Request request = null;
                 if(method == Method.POST) {
+
+                    fillBodyParams(mBody);
+
                     request = builder
-                            .url(urlStr)
+                            .url(httpBuider.build())
                             .post(mBody.build())
                             .build();
                 }else{
-                    request = builder.url(urlStr).get().build();
+
+                    fillQueryParams(httpBuider);
+
+                    request = builder.url(httpBuider.build()).get().build();
                 }
 
                 try {
 
-                    Log.i("webservice", (method == Method.POST ? "POST : " : "GET : ") + urlStr);
+                    Log.i("webservice", (method == Method.POST ? "POST : " : "GET : ") + httpBuider.build().toString());
                     Log.i("webservice", "headers : " + new Gson().toJson(headers));
                     Log.i("webservice", "bodies : " + new Gson().toJson(bodies));
 
@@ -234,6 +248,7 @@ public class EasyWS {
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
 
+
                 if(o == null){
                     callback.onError(REQUEST_ERROR);
                     return;
@@ -256,7 +271,69 @@ public class EasyWS {
     }
 
 
-    public <A> void perform(final Callback.A<A> callback) {
+    private void fillBodyParams(MultipartBody.Builder mBody){
+
+        for (HashMap.Entry<String, Object> entry : gBodies.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof File) {
+
+                File file = (File) value;
+                mBody.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse(MEDIA_TYPE), file));
+            } else if (value instanceof String) {
+
+                mBody.addFormDataPart(key, value.toString());
+            } else {
+
+                mBody.addFormDataPart(key, new Gson().toJson(value));
+            }
+        }
+
+        for (HashMap.Entry<String, Object> entry : bodies.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof File) {
+
+                File file = (File) value;
+                mBody.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse(MEDIA_TYPE), file));
+            } else if (value instanceof String) {
+
+                mBody.addFormDataPart(key, value.toString());
+            } else {
+
+                mBody.addFormDataPart(key, new Gson().toJson(value));
+            }
+        }
+    }
+
+
+
+    private void fillQueryParams(HttpUrl.Builder urlBuilder){
+
+        for (HashMap.Entry<String, Object> entry : gBodies.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof String) {
+
+                urlBuilder.addQueryParameter(key, value.toString());
+            }
+        }
+
+        for (HashMap.Entry<String, Object> entry : bodies.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof String) {
+
+                urlBuilder.addQueryParameter(key, value.toString());
+            }
+        }
+    }
+
+    public <A> void call(final Callback.A<A> callback) {
 
         _perform(new CallbackString() {
             @Override
@@ -300,7 +377,7 @@ public class EasyWS {
         });
     }
 
-    public <A, B> void perform(final Callback.AB<A, B> callback) {
+    public <A, B> void call(final Callback.AB<A, B> callback) {
 
         _perform(new CallbackString() {
             @Override
@@ -338,7 +415,7 @@ public class EasyWS {
     }
 
 
-    public <A, B, C> void perform(final Callback.ABC<A, B, C> callback) {
+    public <A, B, C> void call(final Callback.ABC<A, B, C> callback) {
 
         _perform(new CallbackString() {
             @Override
@@ -377,7 +454,7 @@ public class EasyWS {
     }
 
 
-    public <A, B, C, D> void perform(final Callback.ABCD<A, B, C, D> callback) {
+    public <A, B, C, D> void call(final Callback.ABCD<A, B, C, D> callback) {
 
         _perform(new CallbackString() {
             @Override
@@ -415,7 +492,7 @@ public class EasyWS {
         });
     }
 
-    public <A, B, C, D, E> void perform(final Callback.ABCDE<A, B, C, D, E> callback) {
+    public <A, B, C, D, E> void call(final Callback.ABCDE<A, B, C, D, E> callback) {
 
         _perform(new CallbackString() {
             @Override
@@ -571,45 +648,6 @@ public class EasyWS {
         }
 
         return null;
-    }
-
-
-
-    public void normalCall(final String url, final Callback.A<String> callback){
-
-        AsyncTask task = new AsyncTask() {
-
-            @Override
-            protected String doInBackground(Object[] objects) {
-                Request request = new Request.Builder()
-                        .url(url)
-                        .build();
-                try {
-                    Response response = client.newCall(request).execute();
-
-                    return response.body().string();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                    return null;
-                }
-
-            }
-
-            @Override
-            protected void onPostExecute(Object o) {
-                super.onPostExecute(o);
-
-                if(o != null) {
-                    callback.onSuccess(o.toString());
-                }else {
-                    callback.onError(REQUEST_ERROR);
-                }
-            }
-        };
-
-        task.execute();
     }
 
 
