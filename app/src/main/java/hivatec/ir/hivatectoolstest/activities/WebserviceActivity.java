@@ -57,60 +57,65 @@ public class WebserviceActivity extends ParentActivity {
 	@Override
 	protected void setActivityContent() {
 
-		//EasyWS.addGlobalHeader("token", "41827364879123648");
+		EasyWS.addGlobalHeader("token", "41827364879123648");
 
-//		new EasyWS("http://viewplusapp.ir/api/v1/test/")
-//				.method(Method.POST)
-////				.addHeader("token", "24i13b123kbj4")
-////				.addBody("imei", PhoneInformation.IMEI(G.context))
-////				.addBody("buildNumber", PhoneInformation.getSerialNumber(G.context))
-////				.addBody("deviceModel", PhoneInformation.BRANDMODEL())
-////				.addBody("os", "Android")
-//				.addBody("osVersion", PhoneInformation.getAndroidVersion())
-//				.perform(new Callback.AB<Boolean, String>("res", "msg") {
-//					@Override
-//					public void onSuccess(Boolean res, String msg) {
+		new EasyWS("http://viewplusapp.ir/api/v1/test")
+				.method(Method.POST)
+				.addParam("id", 100)
+				.addParam("name", "ashkan")
+				.call(new Callback.AB<Boolean, String>("res", "msg") {
+					@Override
+					public void onSuccess(Boolean res, String msg) {
+
+						showToast(msg);
+					}
+
+					@Override
+					public void onError(String error) {
+
+						showToast(error);
+					}
+				});
+
+
+
+//		new AsyncTask() {
 //
-//						showToast("success");
-//					}
+//			@Override
+//			protected Object doInBackground(Object[] objects) {
 //
-//					@Override
-//					public void onError(String error) {
+//				RequestBody requestBody = new MultipartBody.Builder()
+//						.setType(MultipartBody.FORM)
+//						.addFormDataPart("token", "someVaksjdnflakjsalue")
+//						.build();
 //
-//						showToast(error);
+//				Request request = new Request.Builder()
+//						.url("http://hivatec.ir/hamber/api/v1/auth/token/new")
+//						.post(requestBody)
+//						.build();
 //
-//					}
-//				});
-
-
-
-		new AsyncTask() {
-
-			@Override
-			protected Object doInBackground(Object[] objects) {
-
-				RequestBody requestBody = new MultipartBody.Builder()
-						.setType(MultipartBody.FORM)
-						.addFormDataPart("token", "someVaksjdnflakjsalue")
-						.build();
-
-				Request request = new Request.Builder()
-						.url("http://hivatec.ir/hamber/api/v1/auth/token/new")
-						.post(requestBody)
-						.build();
-
-				try {
-					Response response = new OkHttpClient().newCall(request).execute();
-					String body = response.body().string();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				return null;
-			}
-
-		}.execute();
+//				try {
+//					Response response = new OkHttpClient().newCall(request).execute();
+//					String body = response.body().string();
+//
+//
+//					return body;
+//
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(Object o) {
+//				super.onPostExecute(o);
+//
+//				showToast((String) o);
+//
+//			}
+//		}.execute();
 
 	}
 
