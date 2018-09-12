@@ -137,21 +137,27 @@ public class HivaButton extends RelativeLayout {
 		indicatorView.setIndeterminateDrawable(circularDrawable);
 		LayoutParams indicatorViewParams = null;
 
-		if(iconWidth == 0) {
-			indicatorViewParams = new LayoutParams(
-					textSize * 4 / 3 ,
-					textSize * 4 / 3 );
+		indicatorViewParams = new LayoutParams(
+				ViewUIHelper.dpToPx(25) ,
+				ViewUIHelper.dpToPx(25) );
 
-			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
+		circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
 
-		}else{
-			indicatorViewParams = new LayoutParams(
-					iconWidth / 2,
-					iconWidth / 2);
+//		if(iconWidth == 0) {
+//			indicatorViewParams = new LayoutParams(
+//					ViewUIHelper.dpToPx(25) ,
+//					ViewUIHelper.dpToPx(25) );
+//
+//			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
+//
+//		}else{
+//			indicatorViewParams = new LayoutParams(
+//					iconWidth,
+//					iconWidth);
+//
+//			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
+//		}
 
-			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
-
-		}
 		indicatorViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
 		indicatorView.setVisibility(GONE);
