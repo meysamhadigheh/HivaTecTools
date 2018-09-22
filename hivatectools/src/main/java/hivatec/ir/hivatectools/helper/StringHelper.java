@@ -53,7 +53,7 @@ public class StringHelper {
      * @return
      */
     public static boolean validatePhone(String phoneStr) {
-        phoneStr = StringHelper.convertFarsiToEnglishNumber(phoneStr);
+        phoneStr = StringHelper.convertFarsiToEnglishNumberNoChange(phoneStr);
         boolean result = false;
         result = Phone_REGEX.matcher(phoneStr).matches();
         if (phoneStr.length() < 11)
@@ -62,7 +62,7 @@ public class StringHelper {
 
     }
     public static boolean validateMobile(String phoneStr) {
-        phoneStr = StringHelper.convertFarsiToEnglishNumber(phoneStr);
+        phoneStr = StringHelper.convertFarsiToEnglishNumberNoChange(phoneStr);
         boolean result = false;
         result = Mobile_REGEX.matcher(phoneStr).matches();
         if (phoneStr.length() < 11)
@@ -186,5 +186,45 @@ public class StringHelper {
         }
 
         return builder.toString();
+    }
+
+    public static String convertFarsiToEnglishNumberNoChange(String str) {
+
+        StringBuilder builder = new StringBuilder();
+
+        if(str == null){
+            return "";
+        }
+
+
+        for (int i = 0; i < str.length(); i++) {
+
+            char c = str.toCharArray()[i];
+            boolean added = false;
+
+            for (int j = 0; j < farsiChars.length; j++) {
+
+                char ac = arabicChars[j];
+                char fc = farsiChars[j];
+
+                if (fc == c || ac == c) {
+                    builder.append(j);
+                    added = true;
+                    break;
+                }
+            }
+
+            if(!added){
+                builder.append(c);
+            }
+
+        }
+
+        return builder.toString();
+    }
+
+    public static String getTomanString(int price){
+
+        return get3Digits(convertEnglishToFarsiNumbers(price + "")) + " " + "تومان";
     }
 }
