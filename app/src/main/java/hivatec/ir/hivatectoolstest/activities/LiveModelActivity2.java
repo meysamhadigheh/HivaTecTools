@@ -1,25 +1,15 @@
 package hivatec.ir.hivatectoolstest.activities;
 
-import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
-import android.provider.Settings;
-import android.widget.Toast;
-
-import java.io.IOException;
+import android.view.View;
 
 import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
-import hivatec.ir.hivatectools.helper.G;
-import hivatec.ir.hivatectools.helper.PhoneInformation;
 import hivatec.ir.hivatectoolstest.R;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import retrofit2.http.POST;
+import hivatec.ir.hivatectoolstest.model.Movie;
+import hivatec.ir.hivatectoolstest.model.User;
 
-public class WebserviceActivity extends ParentActivity {
+public class LiveModelActivity2 extends ParentActivity<User> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +18,7 @@ public class WebserviceActivity extends ParentActivity {
 
 	@Override
 	protected void setContentViewActivity() {
-		setContentView(R.layout.activity_webservice);
+		setContentView(R.layout.activity_live_model2);
 	}
 
 	@Override
@@ -49,6 +39,14 @@ public class WebserviceActivity extends ParentActivity {
 	@Override
 	protected void setViewListeners() {
 
+		findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				getLiveData().addOneCoin();
+				liveData.saveLiveData();
+			}
+		});
 	}
 
 	@Override
@@ -61,5 +59,4 @@ public class WebserviceActivity extends ParentActivity {
 	protected void refreshContent() {
 
 	}
-
 }

@@ -46,7 +46,12 @@
         <activity android:name=".activities.RetrofitActivity" />
         <activity
             android:name=".activities.WebserviceActivity"
-            android:label="@string/title_activity_webservice"></activity>
+            android:label="@string/title_activity_webservice" />
+        <activity
+            android:name=".activities.LiveModelActivity"
+            android:label="@string/title_activity_live_model"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.LiveModelActivity2"></activity>
     </application>
 
 </manifest>

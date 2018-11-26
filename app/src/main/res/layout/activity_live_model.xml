@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LiveModelActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <hivatec.ir.hivatectools.activityHelpers.ActionBarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+
+            />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:text="hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            />
+
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="goto next activity"
+            />
+
+        <hivatec.ir.hivatectools.views.HivaProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            app:tintColor="@color/Red"
+            app:lineWidth="6dp"
+            />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

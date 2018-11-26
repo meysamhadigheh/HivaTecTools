@@ -5,6 +5,7 @@
     <attr name="typeface" format="string" ></attr>
     <attr name="textColor" format="color"></attr>
     <attr name="iconSize" format="dimension"></attr>
+    <attr name="lineWidth" format="dimension"></attr>
     <attr name="iconOn" format="reference"></attr>
     <attr name="iconOff" format="reference"></attr>
     <attr name="dividerColor" format="color"></attr>
@@ -95,5 +96,12 @@
 
     </declare-styleable>
 
+
+    <declare-styleable name="HivaProgressBar">
+
+        <attr name="tintColor"></attr>
+        <attr name="lineWidth"></attr>
+
+    </declare-styleable>
 
 </resources>

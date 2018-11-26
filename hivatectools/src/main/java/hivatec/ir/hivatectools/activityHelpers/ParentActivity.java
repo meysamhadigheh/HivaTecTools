@@ -1,22 +1,34 @@
 package hivatec.ir.hivatectools.activityHelpers;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.internal.$Gson$Types;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 import hivatec.ir.hivatectools.R;
 import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
 import hivatec.ir.hivatectools.helper.FontsOverride;
 
 
-public abstract class ParentActivity extends AppCompatActivity {
+public abstract class ParentActivity<T> extends AppCompatActivity {
 
     protected ActionBarView toolbar;
     protected Activity context;
+
+    protected  LiveViewModel<T> liveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +39,27 @@ public abstract class ParentActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+
+        Type superclass = getClass().getGenericSuperclass();
+        if (superclass instanceof Class) {
+        }else {
+            ParameterizedType parameterized = (ParameterizedType) superclass;
+            Class<T> clazz = (Class<T>) $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
+
+            liveData = ViewModelProviders.of(this).get(LiveViewModel.getClass(clazz));
+            liveData.setClass(clazz);
+            liveData.get().observe(this, data -> {
+                // update UI
+                liveDataUpdated(data);
+            });
+        }
+
         //set what horizontal_item to show
         setContentViewActivity();
 
         //if activity has any intent data
         getIntentData();
+
         //set custom settings for toolbar if needed
         setToolbar();
 
@@ -145,7 +173,31 @@ public abstract class ParentActivity extends AppCompatActivity {
      * @return
      */
 
+    protected T getLiveData(){
+        return liveData.get().getValue();
+    }
 
+    protected void liveDataUpdated(T data){
+
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//
+//        if(liveData != null) {
+//            liveData.saveLiveData();
+//        }
+//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(liveData != null) {
+            liveData.update();
+        }
+    }
 
     //*********
     //easier stuff

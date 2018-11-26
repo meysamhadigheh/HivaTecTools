@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
+import hivatec.ir.hivatectools.activityHelpers.LiveViewModel;
 import hivatec.ir.hivatectools.views.HivaButton;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.Movie;
+import hivatec.ir.hivatectoolstest.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //LiveViewModel.setData(Movie.class, new Movie("titanic", "leo, kate", ""));
+
+
+        LiveViewModel.setData(User.class, new User("ashkan", 0));
+        startActivity(new Intent(this, LiveModelActivity.class));
+
 
         hivaButtonTest =findViewById(R.id.hiva_button);
         hivaButtonTest.setOnClickListener(new View.OnClickListener() {

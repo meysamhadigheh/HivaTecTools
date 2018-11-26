@@ -16,10 +16,14 @@ import hivatec.ir.hivatectoolstest.R;
 public class Movie implements ItemBinder {
 
 
-    String name;
+    public String name;
     String stars;
     String imgUrl;
     Notice notice;
+
+    public Movie(){
+
+    }
 
     public Movie(String name, String stars, String imgUrl) {
         this.name = name;
