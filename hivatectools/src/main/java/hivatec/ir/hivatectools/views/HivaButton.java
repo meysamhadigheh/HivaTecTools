@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.support.v4.graphics.ColorUtils;
@@ -54,7 +55,10 @@ public class HivaButton extends RelativeLayout {
 
 	int backgroundColor = getContext().getResources().getColor(R.color.colorPrimary);
 	int backgroundDrawable = 0;
-	int rippleColor = 0;
+	int disabledDrawable = 0;
+	int disabledBackground = Color.LTGRAY;
+	int disabledForeground = Color.WHITE;
+	int rippleColor = Color.parseColor("#44ffffff");
 
 	int icon = 0;
 	int space = -999;
@@ -62,6 +66,8 @@ public class HivaButton extends RelativeLayout {
 	int iconWidth = ViewUIHelper.dpToPx(0);
 	int iconPosition = 0;
 
+
+	Drawable currentRipple = null;
 
     public HivaButton(Context context) {
         super(context);
@@ -86,7 +92,11 @@ public class HivaButton extends RelativeLayout {
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
-			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, ColorUtils.setAlphaComponent(textColor, Math.round(255 * 0.4f)));
+			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, ColorUtils.setAlphaComponent(textColor, (int) Math.round(255 * 0.5)));
+
+			disabledBackground = a.getColor(R.styleable.HivaButton_disabledBackground, disabledBackground);
+			disabledForeground = a.getColor(R.styleable.HivaButton_disabledForeground, disabledForeground);
+			disabledDrawable = a.getResourceId(R.styleable.HivaButton_disabledDrawable, disabledDrawable);
 
 			iconWidth = a.getDimensionPixelSize(R.styleable.HivaButton_iconWidth, iconWidth);
 			space = a.getDimensionPixelSize(R.styleable.HivaButton_space, space);
@@ -298,23 +308,22 @@ public class HivaButton extends RelativeLayout {
 		this.invalidate();
 
 
-		//this.setBackgroundColor(backgroundColor);
-
 		if(backgroundColor == Color.TRANSPARENT) {
 
-			this.setBackground(RippleHelper.getRippleDrawableForTransparentColor(rippleColor, radius));
+			currentRipple = RippleHelper.getRippleDrawableForTransparentColor(rippleColor, radius);
 
 		}else if(backgroundDrawable == 0){
 
-			this.setBackground(RippleHelper.getRippleDrawableByColor(backgroundColor, radius, rippleColor));
-
+			currentRipple = RippleHelper.getRippleDrawableByColor(backgroundColor, radius, rippleColor);
 		}else{
 
-			this.setBackground(RippleHelper.getRippleDrawableByDrawable(
-					getContext().getResources().getDrawable(backgroundDrawable), Color.parseColor("#44ffffff")));
-
+			currentRipple = RippleHelper.getRippleDrawableByDrawable(
+					getContext().getResources().getDrawable(backgroundDrawable), rippleColor);
 		}
-    }
+
+		this.setBackground(currentRipple);
+
+	}
 
     public void startLoadingState(){
 
@@ -352,11 +361,31 @@ public class HivaButton extends RelativeLayout {
         super.setEnabled(enabled);
 
         if(enabled == true){
-			this.setBackground(RippleHelper.getRippleDrawableByColor(backgroundColor, radius));
-			this.setForegroundColor(textColor);
+
+			enable();
 		}else {
-			this.setBackground(RippleHelper.getRippleDrawableByColor(Color.LTGRAY, radius));
-			this.setForegroundColor(Color.WHITE);
+
+        	disable();
 		}
+	}
+
+
+	private void enable(){
+
+		this.setBackground(currentRipple);
+		this.setForegroundColor(textColor);
+
+	}
+
+	private void disable(){
+
+    	if(disabledDrawable == 0) {
+			this.setBackground(RippleHelper.getRippleDrawableByColor(disabledBackground, radius));
+		}else{
+    		setBackground(RippleHelper.getRippleDrawableByDrawable(
+					getContext().getResources().getDrawable(disabledDrawable), Color.TRANSPARENT));
+		}
+
+		this.setForegroundColor(disabledForeground);
 	}
 }

@@ -21,10 +21,10 @@
         app:iconPosition="right"
         app:radius="5dp"
         app:text="hello"
-        app:textColor="#fff"
+        app:textColor="#ffffff"
         app:typeface="IRANSansMobile.ttf"
-
         app:widthPadding="50dp" />
+
     <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button3"
@@ -83,6 +83,7 @@
         app:textColor="#fff"
         app:typeface="IRANSansMobile.ttf"
         app:iconTint="@android:color/transparent"
+        app:backgroundColor="@color/Orange"
 
         app:widthPadding="20dp" />
 
@@ -109,6 +110,28 @@
     <hivatec.ir.hivatectools.views.HivaButton
 
         android:id="@+id/hiva_button_nobg"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:heightPadding="10dp"
+
+        app:radius="45dp"
+        app:text="hello"
+        app:textColor="@color/colorPrimaryDark"
+        app:typeface="IRANSansMobile.ttf"
+        app:backgroundColor="@android:color/transparent"
+
+        app:disabledBackground="@android:color/transparent"
+        app:disabledForeground="@color/LightGrey"
+
+        app:widthPadding="50dp" />
+
+    <hivatec.ir.hivatectools.views.HivaButton
+
+        android:id="@+id/hiva_button_nobgg"
 
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"

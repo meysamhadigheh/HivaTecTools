@@ -70,6 +70,11 @@
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
 
+        <attr name="disabledBackground" format="color"></attr>
+        <attr name="disabledForeground" format="color"></attr>
+        <attr name="disabledDrawable" format="reference"></attr>
+
+
         <attr name="radius" format="dimension"></attr>
 
         <attr name="backgroundColor" format="color"></attr>

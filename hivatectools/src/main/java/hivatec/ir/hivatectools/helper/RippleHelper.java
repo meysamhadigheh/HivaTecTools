@@ -50,7 +50,7 @@ public class RippleHelper {
 		}
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			ColorStateList pressedColor = ColorStateList.valueOf(lightenOrDarken(color, 0.3D));
+			ColorStateList pressedColor = ColorStateList.valueOf(rippleColor);
 			Drawable shape =  getRoundDrawable(color, radius);
 			Drawable rc = getRoundDrawable(rippleColor, radius);
 			return new RippleDrawable(
@@ -61,7 +61,7 @@ public class RippleHelper {
 
 		}else{
 
-			return getDrawableFromColor(color, lightenOrDarken(color, 0.2D), radius);
+			return getDrawableFromColor(color, rippleColor, radius);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class RippleHelper {
 	}
 
 
-	/// lighten darken
+	/*/// lighten darken
 	private static int lightenOrDarken(int color, double fraction) {
 		if (canLighten(color, fraction)) {
 			return lighten(color, fraction);
@@ -176,5 +176,5 @@ public class RippleHelper {
 
 	private static int lightenColor(int color, double fraction) {
 		return (int) Math.min(color + (color * fraction), 255);
-	}
+	}*/
 }
