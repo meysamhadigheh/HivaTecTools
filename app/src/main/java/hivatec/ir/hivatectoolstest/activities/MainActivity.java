@@ -26,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //LiveViewModel.setData(Movie.class, new Movie("titanic", "leo, kate", ""));
-
-
-        LiveViewModel.setData(User.class, new User("ashkan", 0));
-        startActivity(new Intent(this, LiveModelActivity.class));
-
 
         hivaButtonTest =findViewById(R.id.hiva_button);
         hivaButtonTest.setOnClickListener(new View.OnClickListener() {
