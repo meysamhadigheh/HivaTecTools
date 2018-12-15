@@ -92,7 +92,7 @@ public class HivaButton extends RelativeLayout {
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
-			rippleColor = a.getResourceId(R.styleable.HivaRadioView_rippleColor, ColorUtils.setAlphaComponent(textColor, (int) Math.round(255 * 0.5)));
+			rippleColor = a.getResourceId(R.styleable.HivaButton_rippleColor, ColorUtils.setAlphaComponent(textColor, (int) Math.round(255 * 0.5)));
 
 			disabledBackground = a.getColor(R.styleable.HivaButton_disabledBackground, disabledBackground);
 			disabledForeground = a.getColor(R.styleable.HivaButton_disabledForeground, disabledForeground);
@@ -153,20 +153,6 @@ public class HivaButton extends RelativeLayout {
 
 		circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
 
-//		if(iconWidth == 0) {
-//			indicatorViewParams = new LayoutParams(
-//					ViewUIHelper.dpToPx(25) ,
-//					ViewUIHelper.dpToPx(25) );
-//
-//			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
-//
-//		}else{
-//			indicatorViewParams = new LayoutParams(
-//					iconWidth,
-//					iconWidth);
-//
-//			circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
-//		}
 
 		indicatorViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
