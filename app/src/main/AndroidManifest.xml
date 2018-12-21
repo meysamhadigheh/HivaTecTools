@@ -47,6 +47,10 @@
         <activity
             android:name=".activities.WebserviceActivity"
             android:label="@string/title_activity_webservice" />
+        <activity
+            android:name=".activities.TestNewButton"
+            android:label="@string/title_activity_test_new_button"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

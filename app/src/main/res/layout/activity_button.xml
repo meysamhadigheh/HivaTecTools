@@ -1,192 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.ButtonActivity">
 
-    <hivatec.ir.hivatectools.views.HivaButton
+    >
 
-        android:id="@+id/hiva_button"
-
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-
-        app:heightPadding="10dp"
-        app:icon="@drawable/ic_cached_black_24dp"
-        app:iconPosition="right"
-        app:radius="5dp"
-        app:text="hello"
-        app:textColor="#ffffff"
-        app:typeface="IRANSansMobile.ttf"
-        app:widthPadding="50dp" />
-
-    <hivatec.ir.hivatectools.views.HivaButton
-
-        android:id="@+id/hiva_button3"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:heightPadding="10dp"
-        app:icon="@drawable/ic_cached_black_24dp"
-        app:iconPosition="left"
-        app:radius="5dp"
-        app:text="hello"
-        app:textColor="#fff"
-        app:typeface="IRANSansMobile.ttf"
-
-        app:widthPadding="50dp" />
+        android:orientation="vertical"
+        tools:context=".activities.ButtonActivity"
+        android:gravity="center"
+        android:padding="20dp"
+        >
 
 
-    <hivatec.ir.hivatectools.views.HivaButton
+        <hivatec.ir.hivatectools.views.HivaButton
 
-        android:id="@+id/hiva_button_top"
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            app:text="hello"
+            app:textColor="#ffffff"
+            app:typeface="IRANSansMobile.ttf"
 
-        app:heightPadding="20dp"
-        app:icon="@drawable/ic_cached_black_24dp"
-        app:iconPosition="top"
-        app:radius="5dp"
-        app:text="hello"
-        app:textColor="#fff"
-        app:typeface="IRANSansMobile.ttf"
-        app:widthPadding="20dp" />
+            app:backgroundColor="@color/Purple"
 
+            app:heightPadding="10dp"
+            app:widthPadding="50dp"
 
+            app:icon="@drawable/ic_check"
+            app:iconPosition="right"
 
-    <hivatec.ir.hivatectools.views.HivaButton
+            app:radius="5dp"
+            />
 
-        android:id="@+id/hiva_button_bottom"
+        <hivatec.ir.hivatectools.views.HivaButton
 
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:id="@+id/hiva_button"
 
-        app:heightPadding="20dp"
-        app:icon="@drawable/idea_on"
-        app:iconPosition="bottom"
-        app:radius="5dp"
-        app:text="hello"
-        app:textSize="24sp"
-        app:textColor="#fff"
-        app:typeface="IRANSansMobile.ttf"
-        app:iconTint="@android:color/transparent"
-        app:backgroundColor="@color/Orange"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
 
-        app:widthPadding="20dp" />
+            app:heightPadding="10dp"
+            app:icon="@drawable/ic_cached_black_24dp"
+            app:iconPosition="right"
+            app:radius="1dp"
+            app:topLeftCorner="40dp"
+            app:topRightCorner="40dp"
+            app:text="hello"
+            app:textColor="#ffffff"
+            app:typeface="IRANSansMobile.ttf"
+            app:widthPadding="50dp"
+            />
 
-    <hivatec.ir.hivatectools.views.HivaButton
+        <hivatec.ir.hivatectools.views.HivaButton
 
-        android:id="@+id/hiva_button4"
+            android:id="@+id/circle"
 
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            app:icon="@drawable/ic_cached_black_24dp"
+            app:iconWidth="40dp"
+            app:iconPosition="top"
+            app:rounded="true"
+            app:text="hello"
+            app:textColor="@color/Green"
+            app:typeface="IRANSansMobile.ttf"
+            app:strokeWidth="2dp"
+            app:strokePressedColor="@color/DarkGreen"
+            app:backgroundColor="@color/White"
+            style="@style/Base.Widget.AppCompat.Button"
+            android:elevation="5dp"
 
-        app:heightPadding="10dp"
+            app:disabledForeground="@color/LightGrey"
+            />
 
-        app:radius="45dp"
-        app:text="hello"
-        app:textColor="#fff"
-        app:typeface="IRANSansMobile.ttf"
+        <hivatec.ir.hivatectools.views.HivaButton
 
-        app:widthPadding="50dp" />
+            android:id="@+id/hiva_button3"
 
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-
-    <hivatec.ir.hivatectools.views.HivaButton
-
-        android:id="@+id/hiva_button_nobg"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:heightPadding="10dp"
-
-        app:radius="45dp"
-        app:text="hello"
-        app:textColor="@color/colorPrimaryDark"
-        app:typeface="IRANSansMobile.ttf"
-        app:backgroundColor="@android:color/transparent"
-
-        app:disabledBackground="@android:color/transparent"
-        app:disabledForeground="@color/LightGrey"
-
-        app:widthPadding="50dp" />
-
-    <hivatec.ir.hivatectools.views.HivaButton
-
-        android:id="@+id/hiva_button_nobgg"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:heightPadding="10dp"
-
-        app:radius="45dp"
-        app:text="hello"
-        app:textColor="@color/colorPrimaryDark"
-        app:typeface="IRANSansMobile.ttf"
-        app:backgroundColor="@android:color/transparent"
-
-        app:widthPadding="50dp" />
-
-    <hivatec.ir.hivatectools.views.HivaButton
-
-        android:id="@+id/hiva_button_drawable"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:heightPadding="10dp"
-
-        app:radius="45dp"
-        app:text="hello"
-        app:textColor="#fff"
-        app:typeface="IRANSansMobile.ttf"
-        app:backgroundDrawable="@drawable/button_border"
-
-        app:widthPadding="50dp" />
+            app:heightPadding="10dp"
+            app:icon="@drawable/ic_cached_black_24dp"
+            app:iconPosition="left"
+            app:rounded="true"
+            app:text="hello"
+            app:textColor="#fff"
+            app:typeface="IRANSansMobile.ttf"
+            app:strokeWidth="2dp"
+            app:backgroundColor="@color/Yellow"
+            app:strokeColor="@color/BlueViolet"
+            app:backgroundSecondColor="@color/Red"
+            app:rippleColor="@color/SkyBlue"
 
 
+            app:widthPadding="50dp"
+            android:elevation="2dp"
+            style="@style/Base.Widget.AppCompat.Button"
 
-    <hivatec.ir.hivatectools.views.HivaButton
+            />
 
-        android:id="@+id/hiva_button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        app:heightPadding="10dp"
-        app:icon="@drawable/ic_cached_black_24dp"
-        app:iconPosition="right"
-        app:iconWidth="40dp"
-        app:radius="60dp"
-        app:space="0dp"
-        app:text=""
-        app:textColor="#fff"
-        app:textSize="18sp"
-        app:typeface="IRANSansMobile.ttf"
-        app:widthPadding="10dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            >
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                app:topLeftCorner="20dp"
+                app:bottomLeftCorner="20dp"
+                app:radius="0dp"
+
+                android:layout_marginRight="-2dp"
+
+                app:text="home"
+
+                app:isToggle="true"
+                app:toggleGroup="0"
+                app:toggleGroupCanBeEmpty="false"
+                app:textColorOff="@color/Purple"
+                app:backgroundColorOff="@color/White"
+
+                app:textColor="@color/White"
+                app:backgroundColor="@color/Purple"
+                app:backgroundSecondColor="@color/DeepPink"
+                app:strokeColor="@color/Purple"
+
+                app:strokeWidth="1dp"
+                app:widthPadding="30dp"
+                />
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                app:radius="0dp"
+                app:text="second"
+
+                app:isToggle="true"
+                app:toggleGroup="0"
+                app:toggleGroupCanBeEmpty="false"
+                app:isOn="false"
+
+                app:textColorOff="@color/Purple"
+                app:backgroundColorOff="@color/White"
+
+                app:textColor="@color/White"
+                app:backgroundColor="@color/Purple"
+                app:backgroundSecondColor="@color/DeepPink"
+                app:strokeColor="@color/Purple"
+
+                app:strokeWidth="1dp"
+
+                app:widthPadding="30dp"
+                />
+
+            <hivatec.ir.hivatectools.views.HivaButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                app:topRightCorner="20dp"
+                app:bottomRightCorner="20dp"
+                app:radius="0dp"
+
+                app:text="third"
+                app:isToggle="true"
+                app:toggleGroup="0"
+                app:toggleGroupCanBeEmpty="false"
+                app:isOn="false"
+                app:textColorOff="@color/Purple"
+                app:backgroundColorOff="@color/White"
+
+                app:textColor="@color/White"
+                app:backgroundColor="@color/Purple"
+                app:backgroundSecondColor="@color/DeepPink"
+                app:strokeColor="@color/Purple"
+
+                android:layout_marginLeft="-2dp"
+
+                app:strokeWidth="1dp"
+
+                app:widthPadding="30dp"
+                />
+
+        </LinearLayout>
 
 
-</LinearLayout>
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button_top"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="20dp"
+            app:icon="@drawable/ic_cached_black_24dp"
+            app:iconPosition="top"
+            app:radius="5dp"
+            app:text="hello"
+            app:textColor="#fff"
+            app:typeface="IRANSansMobile.ttf"
+            app:widthPadding="20dp" />
+
+
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button_bottom"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="20dp"
+            app:icon="@drawable/idea_on"
+            app:iconPosition="bottom"
+            app:radius="5dp"
+            app:text="hello"
+            app:textSize="24sp"
+            app:textColor="#fff"
+            app:typeface="IRANSansMobile.ttf"
+            app:iconTint="@android:color/transparent"
+            app:backgroundColor="@color/Orange"
+
+            app:widthPadding="20dp" />
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button4"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="10dp"
+
+            app:radius="45dp"
+            app:text="hello"
+            app:textColor="#fff"
+            app:typeface="IRANSansMobile.ttf"
+
+            app:widthPadding="50dp" />
+
+
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button_nobg"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="10dp"
+
+            app:radius="45dp"
+            app:text="hello"
+            app:textColor="@color/colorPrimaryDark"
+            app:typeface="IRANSansMobile.ttf"
+            app:backgroundColor="@android:color/transparent"
+
+            app:disabledBackground="@android:color/transparent"
+            app:disabledForeground="@color/LightGrey"
+
+            app:widthPadding="50dp" />
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button_nobgg"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="10dp"
+
+            app:radius="45dp"
+            app:text="hello"
+            app:textColor="@color/colorPrimaryDark"
+            app:typeface="IRANSansMobile.ttf"
+            app:backgroundColor="@android:color/transparent"
+
+            app:widthPadding="50dp" />
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button_drawable"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:heightPadding="10dp"
+
+            app:radius="45dp"
+            app:text="hello"
+            app:textColor="#fff"
+            app:typeface="IRANSansMobile.ttf"
+            app:backgroundDrawable="@drawable/button_border"
+
+            app:widthPadding="50dp" />
+
+
+
+        <hivatec.ir.hivatectools.views.HivaButton
+
+            android:id="@+id/hiva_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            app:heightPadding="10dp"
+            app:icon="@drawable/ic_cached_black_24dp"
+            app:iconPosition="right"
+            app:iconWidth="40dp"
+            app:radius="60dp"
+            app:space="0dp"
+            app:text=""
+            app:textColor="#fff"
+            app:textSize="18sp"
+            app:typeface="IRANSansMobile.ttf"
+            app:widthPadding="10dp" />
+
+
+    </LinearLayout>
+</ScrollView>

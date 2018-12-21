@@ -76,15 +76,34 @@
 
 
         <attr name="radius" format="dimension"></attr>
+        <attr name="rounded" format="boolean"></attr>
 
         <attr name="backgroundColor" format="color"></attr>
         <attr name="backgroundDrawable" format="reference"></attr>
         <attr name="rippleColor"></attr>
 
 
+        <attr name="backgroundSecondColor" format="color"></attr>
+        <attr name="gradientAgnle" format="integer"></attr>
+
+        <attr name="strokeWidth" format="dimension"></attr>
+        <attr name="strokeDashGap" format="dimension"></attr>
+        <attr name="strokeColor" format="color"></attr>
+        <attr name="strokePressedColor" format="color"></attr>
+
+        <attr name="topLeftCorner" format="dimension"></attr>
+        <attr name="bottomLeftCorner" format="dimension"></attr>
+        <attr name="topRightCorner" format="dimension"></attr>
+        <attr name="bottomRightCorner" format="dimension"></attr>
+
+
         <attr name="widthPadding" format="dimension"></attr>
         <attr name="heightPadding" format="dimension"></attr>
 
+        <attr name="isToggle" format="boolean"></attr>
+        <attr name="isOn" format="boolean"></attr>
+        <attr name="toggleGroup"></attr>
+        <attr name="toggleGroupCanBeEmpty" format="boolean"></attr>
 
         <attr name="typeface" ></attr>
         <attr name="icon" format="reference"></attr>
@@ -97,6 +116,21 @@
             <enum name="top" value="2"></enum>
             <enum name="bottom" value="3"></enum>
         </attr>
+
+
+        <attr name="textOff" format="string"></attr>
+        <attr name="textColorOff" format="color"></attr>
+        <attr name="backgroundColorOff" format="color"></attr>
+        <attr name="backgroundDrawableOff" format="reference"></attr>
+        <attr name="backgroundSecondColorOff" format="color"></attr>
+        <attr name="gradientAgnleOff" format="integer"></attr>
+        <attr name="rippleColorOff"></attr>
+        <attr name="iconTintOff" ></attr>
+        <attr name="iconOff"></attr>
+        <attr name="strokeWidthOff" format="dimension"></attr>
+        <attr name="strokeColorOff" format="color"></attr>
+        <attr name="strokePressedColorOff" format="color"></attr>
+        <attr name="strokeDashGapOff" format="dimension"></attr>
 
 
     </declare-styleable>

@@ -24,8 +24,10 @@ public class ButtonActivity extends AppCompatActivity {
         findViewById(R.id.hiva_button_top).setOnClickListener(clickListener);
         findViewById(R.id.hiva_button_bottom).setOnClickListener(clickListener);
         findViewById(R.id.hiva_button_nobg).setOnClickListener(clickListener);
+        findViewById(R.id.circle).setOnClickListener(clickListener);
 
         findViewById(R.id.hiva_button_nobg).setEnabled(false);
+        //findViewById(R.id.circle).setEnabled(false);
     }
 
 

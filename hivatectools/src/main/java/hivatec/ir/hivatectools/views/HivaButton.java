@@ -26,8 +26,8 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import hivatec.ir.hivatectools.R;
-import hivatec.ir.hivatectools.helper.RippleHelper;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;
+import top.defaults.drawabletoolbox.DrawableBuilder;
 
 
 /**
@@ -36,67 +36,125 @@ import hivatec.ir.hivatectools.helper.ViewUIHelper;
 
 public class HivaButton extends RelativeLayout {
 
-    String title = "دکمه";
-    int textColor = Color.WHITE;
-    int textSize = ViewUIHelper.spToPx(15, getContext());
-    String typeface = "";
+
+	//views
 	TextView textView;
 	ImageView imageView;
 	LinearLayout linearLayout;
 	ProgressBar indicatorView;
+
+
+	//global settings
+	int textSize = ViewUIHelper.spToPx(15, getContext());
+	String typeface = "";
 	private CircularProgressDrawable circularDrawable;
-
 	int radius = ViewUIHelper.dpToPx(5);
-
+	boolean rounded = false;
 	int widthPadding = ViewUIHelper.dpToPx(0);
 	int heightPadding = ViewUIHelper.dpToPx(0);
-
-	boolean isWrapContent = false;
-
-	int backgroundColor = getContext().getResources().getColor(R.color.colorPrimary);
-	int backgroundDrawable = 0;
-	int disabledDrawable = 0;
-	int disabledBackground = Color.LTGRAY;
-	int disabledForeground = Color.WHITE;
-	int rippleColor = Color.parseColor("#44ffffff");
-
-	int icon = 0;
+	boolean isToggle = false;
+	boolean isOn = true;
+	boolean toggleGroupCanBeEmpty = true;
+	String toggleGroup = null;
 	int space = -999;
-	int iconTint = 0;
 	int iconWidth = ViewUIHelper.dpToPx(0);
 	int iconPosition = 0;
+	int strokeWidth = 0;
+	int topLeftCorner = 0;
+	int bottomLeftCorner = 0;
+	int topRightCorner = 0;
+	int bottomRightCorner = 0;
+
+	//on state
+	String title = "دکمه";
+	int icon = 0;
+	int textColor = Color.WHITE;
+	int backgroundColor = getContext().getResources().getColor(R.color.colorPrimary);
+	int backgroundDrawable = 0;
+	int backgroundSecondColor = 0;
+	int gradientAngle = 0;
+	int rippleColor = Color.parseColor("#44ffffff");
+	int iconTint = 0;
+	int strokeColor = 0;
+	int strokeDashGap = 0;
+	int strokePressedColor = 0;
+
+	//off state
+	String titleOff = "دکمه";
+	int iconOff = 0;
+	int textColorOff = Color.WHITE;
+	int backgroundColorOff = getContext().getResources().getColor(R.color.colorPrimary);
+	int backgroundDrawableOff = 0;
+	int backgroundSecondColorOff = 0;
+	int gradientAngleOff = 0;
+	int rippleColorOff = Color.parseColor("#44ffffff");
+	int iconTintOff = 0;
+	int strokeColorOff = 0;
+	int strokeDashGapOff = 0;
+	int strokePressedColorOff = 0;
+
+	//disabled state
+	int disabledDrawable = 0;
+	int disabledBackground = 0;
+	int disabledForeground = Color.LTGRAY;
 
 
+	//extra
 	Drawable currentRipple = null;
-
-    public HivaButton(Context context) {
-        super(context);
-
-        init();
-    }
-
-    public HivaButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+	Drawable offRipple = null;
+	OnToggleListener toggleListener;
 
 
-        if (attrs != null) {
-            TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HivaButton, 0, 0);
 
-            title = a.getString(R.styleable.HivaButton_text);
-            textColor = a.getColor(R.styleable.HivaButton_textColor, textColor);
-            textSize = a.getDimensionPixelSize(R.styleable.HivaButton_textSize, textSize);
-            radius = a.getDimensionPixelSize(R.styleable.HivaButton_radius, radius);
-            widthPadding = a.getDimensionPixelSize(R.styleable.HivaButton_widthPadding, widthPadding);
-            heightPadding = a.getDimensionPixelSize(R.styleable.HivaButton_heightPadding, heightPadding);
-            typeface = a.getString(R.styleable.HivaButton_typeface);
+	public HivaButton(Context context) {
+		super(context);
+
+		init();
+	}
+
+	public HivaButton(Context context, AttributeSet attrs) {
+		super(context, attrs);
+
+
+		if (attrs != null) {
+			TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HivaButton, 0, 0);
+
+			title = a.getString(R.styleable.HivaButton_text);
+			textColor = a.getColor(R.styleable.HivaButton_textColor, textColor);
+			textSize = a.getDimensionPixelSize(R.styleable.HivaButton_textSize, textSize);
+			radius = a.getDimensionPixelSize(R.styleable.HivaButton_radius, radius);
+			widthPadding = a.getDimensionPixelSize(R.styleable.HivaButton_widthPadding, widthPadding);
+			heightPadding = a.getDimensionPixelSize(R.styleable.HivaButton_heightPadding, heightPadding);
+			typeface = a.getString(R.styleable.HivaButton_typeface);
+
+			isToggle = a.getBoolean(R.styleable.HivaButton_isToggle, isToggle);
+			isOn = a.getBoolean(R.styleable.HivaButton_isOn, isOn);
+			toggleGroupCanBeEmpty = a.getBoolean(R.styleable.HivaButton_toggleGroupCanBeEmpty, toggleGroupCanBeEmpty);
+			toggleGroup = a.getString(R.styleable.HivaButton_toggleGroup);
+
+			rounded = a.getBoolean(R.styleable.HivaButton_rounded, rounded);
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
-			rippleColor = a.getResourceId(R.styleable.HivaButton_rippleColor, ColorUtils.setAlphaComponent(textColor, (int) Math.round(255 * 0.5)));
+			rippleColor = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColor, textColor), (int) Math.round(255 * 0.3));
+
+			backgroundSecondColor = a.getColor(R.styleable.HivaButton_backgroundSecondColor, backgroundSecondColor);
+			gradientAngle = a.getInt(R.styleable.HivaButton_gradientAgnle, 90);
+
 
 			disabledBackground = a.getColor(R.styleable.HivaButton_disabledBackground, disabledBackground);
 			disabledForeground = a.getColor(R.styleable.HivaButton_disabledForeground, disabledForeground);
 			disabledDrawable = a.getResourceId(R.styleable.HivaButton_disabledDrawable, disabledDrawable);
+
+			strokeColor = a.getColor(R.styleable.HivaButton_strokeColor, textColor);
+			strokePressedColor = a.getColor(R.styleable.HivaButton_strokePressedColor, strokeColor);
+			strokeWidth = a.getDimensionPixelSize(R.styleable.HivaButton_strokeWidth, strokeWidth);
+			strokeDashGap = a.getInt(R.styleable.HivaButton_strokeDashGap, strokeDashGap);
+
+			topLeftCorner = a.getDimensionPixelSize(R.styleable.HivaButton_topLeftCorner, topLeftCorner);
+			bottomLeftCorner = a.getDimensionPixelSize(R.styleable.HivaButton_bottomLeftCorner, bottomLeftCorner);
+			topRightCorner = a.getDimensionPixelSize(R.styleable.HivaButton_topRightCorner, topRightCorner);
+			bottomRightCorner = a.getDimensionPixelSize(R.styleable.HivaButton_bottomRightCorner, bottomRightCorner);
 
 			iconWidth = a.getDimensionPixelSize(R.styleable.HivaButton_iconWidth, iconWidth);
 			space = a.getDimensionPixelSize(R.styleable.HivaButton_space, space);
@@ -104,30 +162,79 @@ public class HivaButton extends RelativeLayout {
 			iconPosition = a.getInt(R.styleable.HivaButton_iconPosition, iconPosition);
 			iconTint = a.getColor(R.styleable.HivaButton_iconTint, textColor);
 
+
+			//off state
+			titleOff = a.getString(R.styleable.HivaButton_textOff);
+			if(titleOff == null || titleOff.equals("")) titleOff = title;
+			iconOff = a.getResourceId(R.styleable.HivaButton_iconOff, icon);
+			textColorOff = a.getColor(R.styleable.HivaButton_textColorOff, textColor);
+			backgroundColorOff = a.getColor(R.styleable.HivaButton_backgroundColorOff, backgroundColor);
+			backgroundDrawableOff = a.getResourceId(R.styleable.HivaButton_backgroundDrawableOff, backgroundDrawable);
+			rippleColorOff = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColorOff, textColorOff), (int) Math.round(255 * 0.3));
+			backgroundSecondColorOff = a.getColor(R.styleable.HivaButton_backgroundSecondColorOff, backgroundSecondColorOff);
+			gradientAngleOff = a.getInt(R.styleable.HivaButton_gradientAgnleOff, gradientAngle);
+			iconTintOff = a.getColor(R.styleable.HivaButton_iconTintOff, iconTint);
+			strokeColorOff = a.getColor(R.styleable.HivaButton_strokeColorOff, strokeColor);
+			strokePressedColorOff = a.getColor(R.styleable.HivaButton_strokePressedColorOff, strokeColorOff);
+			strokeDashGapOff = a.getInt(R.styleable.HivaButton_strokeDashGapOff, strokeDashGap);
+
 			a.recycle();
-        }
+		}
 
-        init();
-    }
+		init();
+	}
 
 
-    void init() {
+	void init() {
 
-    	this.setClickable(true);
+		this.setClickable(true);
 
-        textView = new TextView(getContext());
-        textView.setText(title);
-        //textView.setBackgroundColor(Color.GREEN);
-        textView.setSingleLine();
-        textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+		if(isToggle){
+			this.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+
+					if(isOn && !toggleGroupCanBeEmpty) {
+						//can not be turned off
+					}else{
+						toggle();
+					}
+
+					if(getParent() instanceof ViewGroup){
+
+						ViewGroup parent = (ViewGroup) getParent();
+
+						for(int index = 0; index < parent.getChildCount(); index++){
+
+							if(parent.getChildAt(index) instanceof HivaButton){
+								HivaButton sibiling = (HivaButton) parent.getChildAt(index);
+
+								if(sibiling == HivaButton.this){
+									continue;
+								}
+
+								if(HivaButton.this.toggleGroup != null && sibiling.toggleGroup != null && sibiling.toggleGroup.equals(HivaButton.this.toggleGroup)){
+									sibiling.setOn(false);
+								}
+							}
+						}
+					}
+				}
+			});
+		}
+
+		textView = new TextView(getContext());
+		textView.setText(title);
+		textView.setSingleLine();
+		textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(textColor);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+		textView.setGravity(Gravity.CENTER);
+		textView.setTextColor(textColor);
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
-        if(typeface != null && !typeface.equals("")) {
-        	try {
+		if(typeface != null && !typeface.equals("")) {
+			try {
 				Typeface t = Typeface.createFromAsset(getContext().getAssets(), String.format("fonts/%s", typeface));
 				textView.setTypeface(t);
 			}catch (Exception e){
@@ -288,90 +395,247 @@ public class HivaButton extends RelativeLayout {
 
 
 		this.addView(indicatorView, indicatorViewParams);
-        this.addView(linearLayout);
+		this.addView(linearLayout);
 
 		this.setClipToPadding(false);
 		this.invalidate();
 
+		createCurrentRipple();
+		createOffRipple();
 
-		if(backgroundColor == Color.TRANSPARENT) {
-
-			currentRipple = RippleHelper.getRippleDrawableForTransparentColor(rippleColor, radius);
-
-		}else if(backgroundDrawable == 0){
-
-			currentRipple = RippleHelper.getRippleDrawableByColor(backgroundColor, radius, rippleColor);
-		}else{
-
-			currentRipple = RippleHelper.getRippleDrawableByDrawable(
-					getContext().getResources().getDrawable(backgroundDrawable), rippleColor);
-		}
-
-		this.setBackground(currentRipple);
+		setOn(isOn);
 
 	}
 
-    public void startLoadingState(){
+	private void createCurrentRipple(){
+		DrawableBuilder builder = new DrawableBuilder();
+
+		builder.rectangle()
+				.hairlineBordered()
+				.strokeColor(strokeColor)
+				.strokeWidth(strokeWidth)
+				.strokeColorPressed(strokePressedColor);
+
+		if(backgroundSecondColor != 0){
+
+			builder.gradient()
+					.linearGradient()
+					.startColor(backgroundSecondColor)
+					.endColor(backgroundColor)
+					.angle(gradientAngle);
+		}else{
+
+			builder.solidColor(backgroundColor);
+		}
+
+		if(strokeDashGap > 0) {
+			builder.dashed()
+					.dashGap(strokeDashGap);
+		}
+
+		if(rounded){
+			builder.rounded();
+
+		} else {
+
+			topLeftCorner = topLeftCorner != 0 ? topLeftCorner : radius;
+			topRightCorner = topRightCorner != 0 ? topRightCorner : radius;
+			bottomLeftCorner = bottomLeftCorner != 0 ? bottomLeftCorner : radius;
+			bottomRightCorner = bottomRightCorner != 0 ? bottomRightCorner : radius;
+
+			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
+		}
+
+		if(rippleColor != 0){
+
+			builder.ripple()
+					.rippleColor(rippleColor);
+		}
+
+		if(backgroundDrawable != 0){
+			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawable));
+		}
+
+		currentRipple = builder.build();
+	}
+
+	private void createOffRipple(){
+		DrawableBuilder builder = new DrawableBuilder();
+
+		builder.rectangle()
+				.hairlineBordered()
+				.strokeColor(strokeColorOff)
+				.strokeWidth(strokeWidth)
+				.strokeColorPressed(strokePressedColorOff);
+
+		if(backgroundSecondColorOff != 0){
+
+			builder.gradient()
+					.linearGradient()
+					.startColor(backgroundSecondColorOff)
+					.endColor(backgroundColorOff)
+					.angle(gradientAngleOff);
+		}else{
+
+			builder.solidColor(backgroundColorOff);
+		}
+
+		if(strokeDashGapOff > 0) {
+			builder.dashed()
+					.dashGap(strokeDashGapOff);
+		}
+
+		if(rounded){
+			builder.rounded();
+
+		} else {
+
+			topLeftCorner = topLeftCorner != 0 ? topLeftCorner : radius;
+			topRightCorner = topRightCorner != 0 ? topRightCorner : radius;
+			bottomLeftCorner = bottomLeftCorner != 0 ? bottomLeftCorner : radius;
+			bottomRightCorner = bottomRightCorner != 0 ? bottomRightCorner : radius;
+
+			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
+		}
+
+		if(rippleColorOff != 0){
+
+			builder.ripple()
+					.rippleColor(rippleColorOff);
+		}
+
+		if(backgroundDrawableOff != 0){
+			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawableOff));
+		}
+
+		offRipple = builder.build();
+	}
+
+	public void startLoadingState(){
 
 		linearLayout.setVisibility(INVISIBLE);
 		indicatorView.setVisibility(VISIBLE);
 		indicatorView.setIndeterminate(false);
-        this.setClickable(false);
-    }
+		this.setClickable(false);
+	}
 
-    public void setTitle(String setTitle){
+	public void setTitle(String setTitle){
 
 		title = setTitle;
 		textView.setVisibility(VISIBLE);
 		textView.setText(setTitle);
-    }
+	}
 
-    public void stopLoadingState(){
+	public void stopLoadingState(){
 
 		linearLayout.setVisibility(VISIBLE);
 		indicatorView.setVisibility(GONE);
 		indicatorView.setIndeterminate(true);
 
-        this.setClickable(true);
-    }
-
-    public void setForegroundColor(int color){
-
-    	this.textView.setTextColor(color);
-		this.imageView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-		this.circularDrawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+		this.setClickable(true);
 	}
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
+	public void setForegroundColor(){
 
-        if(enabled == true){
+		if(isEnabled()){
 
-			enable();
+
+
+			if(isOn) {
+				this.textView.setTextColor(textColor);
+				this.imageView.setColorFilter(iconTint, PorterDuff.Mode.SRC_IN);
+				this.circularDrawable.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
+			}else{
+				this.textView.setTextColor(textColorOff);
+				this.imageView.setColorFilter(iconTintOff, PorterDuff.Mode.SRC_IN);
+				this.circularDrawable.setColorFilter(textColorOff, PorterDuff.Mode.SRC_IN);
+			}
+		}else{
+			this.textView.setTextColor(disabledForeground);
+			this.imageView.setColorFilter(disabledForeground, PorterDuff.Mode.SRC_IN);
+		}
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		super.setEnabled(enabled);
+
+		if(enabled == true){
+
+			setOn(isOn);
 		}else {
 
-        	disable();
+			disable();
 		}
 	}
 
 
+	public boolean toggle(){
+		isOn = !isOn;
+
+		if(isOn){
+			enable();
+		}else{
+			off();
+		}
+
+		return isOn;
+	}
+
+	public void setOn(boolean isOn){
+		this.isOn = isOn;
+
+		if(isOn){
+			enable();
+		}else{
+			off();
+		}
+	}
+
+	public void setOnToggleListener(OnToggleListener listener){
+
+	}
+
+	private void off(){
+
+		this.setTitle(titleOff);
+		this.setBackground(offRipple);
+		this.setForegroundColor();
+
+	}
+
 	private void enable(){
 
+		this.setTitle(title);
 		this.setBackground(currentRipple);
-		this.setForegroundColor(textColor);
+		this.setForegroundColor();
 
 	}
 
 	private void disable(){
 
-    	if(disabledDrawable == 0) {
-			this.setBackground(RippleHelper.getRippleDrawableByColor(disabledBackground, radius));
-		}else{
-    		setBackground(RippleHelper.getRippleDrawableByDrawable(
-					getContext().getResources().getDrawable(disabledDrawable), Color.TRANSPARENT));
+		DrawableBuilder builder = new DrawableBuilder().rectangle()
+				.strokeColor(disabledForeground)
+				.strokeWidth(strokeWidth)
+				.solidColor(disabledBackground);
+
+
+		if(disabledDrawable != 0){
+			builder.baseDrawable(getContext().getResources().getDrawable(disabledDrawable));
 		}
 
-		this.setForegroundColor(disabledForeground);
+		if(rounded){
+			builder.rounded();
+		}else{
+			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
+
+		}
+
+		this.setBackground(builder.build());
+		this.setForegroundColor();
+	}
+
+	public interface OnToggleListener{
+		void toggled(HivaButton button);
 	}
 }
