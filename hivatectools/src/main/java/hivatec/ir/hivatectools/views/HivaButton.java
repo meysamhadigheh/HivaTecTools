@@ -370,11 +370,6 @@ public class HivaButton extends RelativeLayout {
 				break;
 		}
 
-		if(title.equals("")){
-			textView.setVisibility(GONE);
-		}
-
-
 		if(widthPadding > 0 && linearLayout.getOrientation() == LinearLayout.HORIZONTAL){
 			View widthPaddingSapce = new View(getContext());
 			widthPaddingSapce.setLayoutParams(new LayoutParams(widthPadding,1));
@@ -522,11 +517,31 @@ public class HivaButton extends RelativeLayout {
 		this.setClickable(false);
 	}
 
-	public void setTitle(String setTitle){
+	public void setTitle(String title){
 
-		title = setTitle;
-		textView.setVisibility(VISIBLE);
-		textView.setText(setTitle);
+		title = title;
+
+		if(titleOff == null && titleOff.equals("")){
+			titleOff = title;
+		}
+
+		setTextViewTitle();
+	}
+
+	public void setTitleOff(String title){
+
+		titleOff = title;
+
+		setTextViewTitle();
+	}
+
+	private void setTextViewTitle(){
+
+		if(isOn){
+			textView.setText(title);
+		}else{
+			textView.setText(titleOff);
+		}
 	}
 
 	public void stopLoadingState(){
