@@ -519,7 +519,7 @@ public class HivaButton extends RelativeLayout {
 
 	public void setTitle(String title){
 
-		title = title;
+		this.title = title;
 
 		if(titleOff == null && titleOff.equals("")){
 			titleOff = title;
