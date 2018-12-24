@@ -113,11 +113,15 @@ public class HivaButton extends RelativeLayout {
 	}
 
 	public HivaButton(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		this(context, attrs, 0);
+	}
 
+
+	public HivaButton( Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
 
 		if (attrs != null) {
-			TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HivaButton, 0, 0);
+			TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HivaButton, defStyle, 0);
 
 			title = a.getString(R.styleable.HivaButton_text);
 			textColor = a.getColor(R.styleable.HivaButton_textColor, textColor);
@@ -183,7 +187,6 @@ public class HivaButton extends RelativeLayout {
 
 		init();
 	}
-
 
 	void init() {
 
@@ -429,7 +432,7 @@ public class HivaButton extends RelativeLayout {
 		}
 
 		if(strokeDashGap > 0) {
-			builder.dashed()
+			builder.dashWidth(strokeDashGap)
 					.dashGap(strokeDashGap);
 		}
 
@@ -481,7 +484,7 @@ public class HivaButton extends RelativeLayout {
 		}
 
 		if(strokeDashGapOff > 0) {
-			builder.dashed()
+			builder.dashWidth(strokeDashGapOff)
 					.dashGap(strokeDashGapOff);
 		}
 
@@ -574,7 +577,7 @@ public class HivaButton extends RelativeLayout {
 		isOn = !isOn;
 
 		if(isOn){
-			enable();
+			on();
 		}else{
 			off();
 		}
@@ -592,9 +595,25 @@ public class HivaButton extends RelativeLayout {
 		}
 	}
 
-	public void setOnToggleListener(OnToggleListener listener){
-
+	public boolean getOn(){
+		return this.isOn;
 	}
+
+	public void setOnToggleListener(OnToggleListener listener){
+		this.toggleListener = listener;
+	}
+
+
+
+	private void on(){
+
+		enable();
+
+		if(this.toggleListener != null){
+			this.toggleListener.toggled(this);
+		}
+	}
+
 
 	private void off(){
 
@@ -602,14 +621,17 @@ public class HivaButton extends RelativeLayout {
 		this.setBackground(offRipple);
 		this.setForegroundColor();
 
+		if(this.toggleListener != null){
+			this.toggleListener.toggled(this);
+		}
 	}
+
 
 	private void enable(){
 
 		this.setTitle(title);
 		this.setBackground(currentRipple);
 		this.setForegroundColor();
-
 	}
 
 	private void disable(){
