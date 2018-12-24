@@ -227,7 +227,7 @@ public class HivaButton extends RelativeLayout {
 		}
 
 		textView = new TextView(getContext());
-		textView.setText(title);
+		setTextViewTitle();
 		textView.setSingleLine();
 		textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -632,7 +632,7 @@ public class HivaButton extends RelativeLayout {
 
 	private void off(){
 
-		this.setTitle(titleOff);
+		setTextViewTitle();
 		this.setBackground(offRipple);
 		this.setForegroundColor();
 
@@ -644,7 +644,7 @@ public class HivaButton extends RelativeLayout {
 
 	private void enable(){
 
-		this.setTitle(title);
+		setTextViewTitle();
 		this.setBackground(currentRipple);
 		this.setForegroundColor();
 	}
