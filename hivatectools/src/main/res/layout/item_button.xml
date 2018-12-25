@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <hivatec.ir.hivatectools.views.HivaButton
+
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp"
+        app:backgroundColorOff="@color/White"
+        app:textColorOff="@color/Green"
+        app:strokeColorOff="@color/Green"
+        app:strokeWidthOff="1dp"
+
+        app:backgroundColor="@color/Green"
+        app:textColor="@color/White"
+        app:strokeColor="@color/Green"
+        app:strokeWidth="1dp"
+
+        app:rounded="true"
+
+        app:heightPadding="10dp"
+        app:text="دکمه شماره"
+
+        app:isToggle="true"
+        app:isOn="false"
+
+        app:widthPadding="30dp" />
+
+</LinearLayout>
