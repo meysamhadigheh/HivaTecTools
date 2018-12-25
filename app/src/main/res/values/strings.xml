@@ -6,4 +6,9 @@
     <string name="title_activity_webservice">WebserviceActivity</string>
     <string name="title_activity_live_model">LiveModelActivity</string>
     <string name="title_activity_test_new_button">TestNewButton</string>
+
+
+    <string name="hiva_button_font">iransans_mobile.ttf</string>
+
+
 </resources>

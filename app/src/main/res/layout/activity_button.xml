@@ -56,7 +56,7 @@
             app:radius="1dp"
             app:topLeftCorner="40dp"
             app:topRightCorner="40dp"
-            app:text="hello"
+            app:text="hello\nbye"
             app:textColor="#ffffff"
             app:typeface="IRANSansMobile.ttf"
             app:widthPadding="50dp"
@@ -132,7 +132,7 @@
 
                 android:layout_marginRight="-2dp"
 
-                app:text="home"
+                app:text="خانه"
 
                 app:isToggle="true"
                 app:toggleGroup="0"
@@ -154,7 +154,7 @@
                 android:layout_height="match_parent"
 
                 app:radius="0dp"
-                app:text="second"
+                app:text="محبوبه‌ها"
 
                 app:isToggle="true"
                 app:toggleGroup="0"
@@ -182,7 +182,8 @@
                 app:bottomRightCorner="20dp"
                 app:radius="0dp"
 
-                app:text="third"
+                app:typeface="iransans_mobile.ttf"
+                app:text="بیشتر"
                 app:isToggle="true"
                 app:toggleGroup="0"
                 app:toggleGroupCanBeEmpty="false"

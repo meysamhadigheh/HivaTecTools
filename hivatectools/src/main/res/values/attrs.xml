@@ -87,7 +87,7 @@
         <attr name="gradientAgnle" format="integer"></attr>
 
         <attr name="strokeWidth" format="dimension"></attr>
-        <attr name="strokeDashGap" format="dimension"></attr>
+        <attr name="strokeDashGap" format="integer"></attr>
         <attr name="strokeColor" format="color"></attr>
         <attr name="strokePressedColor" format="color"></attr>
 
@@ -130,7 +130,7 @@
         <attr name="strokeWidthOff" format="dimension"></attr>
         <attr name="strokeColorOff" format="color"></attr>
         <attr name="strokePressedColorOff" format="color"></attr>
-        <attr name="strokeDashGapOff" format="dimension"></attr>
+        <attr name="strokeDashGapOff" format="integer"></attr>
 
 
     </declare-styleable>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hivatec.ir.hivatectoolstest.activities.RetrofitActivity"
+    tools:context="hivatec.ir.hivatectoolstest.activities.RecyclerLoadMoreTestActivity"
 
     android:orientation="vertical"
     >
@@ -17,12 +17,14 @@
         />
 
 
-    <ImageView
+    <hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:scaleType="centerCrop"
+        android:layout_height="match_parent"
 
-        android:id="@+id/image"
-        />
+        android:background="#efefef"
+        >
+
+    </hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh>
 
 </LinearLayout>

@@ -25,12 +25,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import hivatec.ir.easywebservice.EasyWebservice;
 import hivatec.ir.hivatectools.RetrofitHelper.JsonMap;
 import hivatec.ir.hivatectools.RetrofitHelper.RetroCallBack;
 import hivatec.ir.hivatectools.RetrofitHelper.Webservice;
 import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
 import hivatec.ir.hivatectools.helper.GlideHelper;
 import hivatec.ir.hivatectools.helper.SharedPreference;
+import hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import hivatec.ir.hivatectoolstest.model.Notice;
@@ -53,9 +55,13 @@ import retrofit2.http.Part;
 
 import static javax.xml.transform.OutputKeys.MEDIA_TYPE;
 
-public class RetrofitActivity extends ParentActivity {
+public class RecyclerLoadMoreTestActivity extends ParentActivity implements RecyclerLoadMoreAndRefresh.Delegate {
 
 
+	RecyclerLoadMoreAndRefresh recycler;
+
+	String lord="http://www.taosmemory.com/movies/poster/2002/51.jpg";
+	String titanic="https://i.pinimg.com/originals/44/55/d9/4455d96357fb041d1cf3c8a5264ed593.jpg";
 
 	@Override
 	protected void setContentViewActivity() {
@@ -75,6 +81,7 @@ public class RetrofitActivity extends ParentActivity {
 	@Override
 	protected void instantiateViews() {
 
+		recycler = findViewById(R.id.recycler);
 	}
 
 	@Override
@@ -85,76 +92,8 @@ public class RetrofitActivity extends ParentActivity {
 	@Override
 	protected void setActivityContent() {
 
-
-		//Shared preference
-		Movie m = new Movie("a", "b", "c");
-
-		SharedPreference.putObject("movie", m);
-		Movie mm = SharedPreference.getObject("movie", Movie.class);
-
-
-		String BASE_URL = "http://10.0.2.2:3000/";
-
-		Webservice.setUrl(BASE_URL);
-
-
-		new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
-			@Override
-			public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
-				return service.getNoticeList();
-			}
-
-			@Override
-			public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
-
-
-				Log.i("", response.body().size() + "");
-			}
-
-			@Override
-			public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
-
-			}
-		});
-
-
-		GlideHelper.downloadImage(this, "https://picsum.photos/200/300", "fileeee", new GlideHelper.DownloadCallback() {
-			@Override
-			public void downloaded(Bitmap bitmap, Uri fileUri) {
-
-				((ImageView) findViewById(R.id.image)).setImageBitmap(bitmap);
-
-			/*	new Webservice().call(new RetroCallBack<NoticeService, ArrayList<Notice>>() {
-					@Override
-					public Call<ArrayList<Notice>> shouldCall(NoticeService service) {
-
-						JsonMap objects = new JsonMap();
-
-						objects.putItem("id", 100);
-						objects.putItem("name", "ashkan");
-						objects.putItem("price", 100.1);
-						objects.putItem("movie", new Movie("titanic", "4.5", "http://image.com"));
-						objects.putItem("file1",new File(((Uri) fileUri).getPath()));
-
-						return service.getNoticeList();
-					}
-
-					@Override
-					public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
-
-						//Log.i("response", response.body().getName());
-					}
-
-					@Override
-					public void onFailure(Call<ArrayList<Notice>> call, Throwable t) {
-
-					}
-				});*/
-
-			}
-		});
-
-
+		recycler.getRefreshLayout().setEnabled(false);
+		recycler.setDelegate(this);
 	}
 
 	@Override
@@ -163,16 +102,36 @@ public class RetrofitActivity extends ParentActivity {
 	}
 
 
-	interface NoticeService {
+	@Override
+	public void loadMore(int page) {
 
-		@Multipart
-		@POST("notice")
-		Call<Notice> getSingleNotice(@Part List<MultipartBody.Part> body);
+		new EasyWebservice("loading page number =>" + page)
+				.fakeJson("[1, 2, 3, 4, 5, 6, 6, 8]")
+				.call(new hivatec.ir.easywebservice.Callback.A<ArrayList<Integer>>() {
+					@Override
+					public void onSuccess(ArrayList<Integer> array) {
 
-		@GET("notices")
-		Call<ArrayList<Notice>> getNoticeList();
+						ArrayList<Movie> movies = new ArrayList<>();
+
+						for(int i = 0; i < 10; i++) {
+
+							if(Math.random() < 0.4) {
+								movies.add(new Movie("Titanic", "Jack, Rose ...", titanic));
+							}else {
+								movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...", lord));
+							}
+
+						}
+
+						recycler.doneLoading(movies, page);
+					}
+
+					@Override
+					public void onError(String s) {
+
+						showToast(s);
+					}
+				});
+
 	}
-
-
-
 }

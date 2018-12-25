@@ -228,12 +228,11 @@ public class HivaButton extends RelativeLayout {
 
 		textView = new TextView(getContext());
 		setTextViewTitle();
-		textView.setSingleLine();
 		textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
 
 		textView.setGravity(Gravity.CENTER);
-		textView.setTextColor(textColor);
+		setTextViewColor();
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
 		if(typeface != null && !typeface.equals("")) {
@@ -299,9 +298,7 @@ public class HivaButton extends RelativeLayout {
 		}
 		imageView.setImageResource(icon);
 		imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-		if(iconTint != Color.TRANSPARENT) {
-			imageView.setColorFilter(iconTint, PorterDuff.Mode.SRC_IN);
-		}
+		setIconColor();
 
 
 		if(icon != 0 && space == -999){
@@ -409,7 +406,6 @@ public class HivaButton extends RelativeLayout {
 		DrawableBuilder builder = new DrawableBuilder();
 
 		builder.rectangle()
-				.hairlineBordered()
 				.strokeColor(strokeColor)
 				.strokeWidth(strokeWidth)
 				.strokeColorPressed(strokePressedColor);
@@ -446,8 +442,8 @@ public class HivaButton extends RelativeLayout {
 
 		if(rippleColor != 0){
 
-			builder.ripple()
-					.rippleColor(rippleColor);
+			builder.ripple();
+			builder.rippleColor(rippleColor);
 		}
 
 		if(backgroundDrawable != 0){
@@ -498,8 +494,7 @@ public class HivaButton extends RelativeLayout {
 
 		if(rippleColorOff != 0){
 
-			builder.ripple()
-					.rippleColor(rippleColorOff);
+			builder.ripple().rippleColor(rippleColorOff);
 		}
 
 		if(backgroundDrawableOff != 0){
@@ -520,19 +515,73 @@ public class HivaButton extends RelativeLayout {
 	public void setTitle(String title){
 
 		this.title = title;
-
-		if(titleOff == null && titleOff.equals("")){
-			titleOff = title;
-		}
+		this.titleOff = title;
 
 		setTextViewTitle();
 	}
 
-	public void setTitleOff(String title){
+	public void setTitle(String title, boolean state){
 
-		titleOff = title;
-
+		if(state) {
+			this.title = title;
+		}else{
+			titleOff = title;
+		}
 		setTextViewTitle();
+	}
+
+
+	public void setIcon(int icon){
+		this.imageView.setImageResource(icon);
+	}
+
+	public void setIcon(int icon, boolean state){
+
+		if(state) {
+			this.icon = icon;
+			this.imageView.setImageResource(icon);
+		}else{
+			this.iconOff = icon;
+			this.imageView.setImageResource(icon);
+		}
+	}
+
+	public void setIconTint(int color){
+		iconTint = color;
+		iconTintOff = color;
+		setIconColor();
+	}
+
+	public void setIconTint(int color, boolean state){
+
+		if(state) {
+			this.iconTint = color;
+		}else{
+			this.iconTintOff = color;
+		}
+
+		setIconColor();
+
+	}
+
+	private  void setIconColor() {
+
+		if (isEnabled()) {
+			if (isOn) {
+				if (iconTint != Color.TRANSPARENT) {
+					imageView.setColorFilter(iconTint, PorterDuff.Mode.SRC_IN);
+				}
+			}else{
+				if (iconTintOff != Color.TRANSPARENT) {
+					imageView.setColorFilter(iconTintOff, PorterDuff.Mode.SRC_IN);
+				}
+			}
+		}else{
+			if (disabledForeground != Color.TRANSPARENT) {
+				imageView.setColorFilter(disabledForeground, PorterDuff.Mode.SRC_IN);
+			}
+		}
+
 	}
 
 	private void setTextViewTitle(){
@@ -544,6 +593,36 @@ public class HivaButton extends RelativeLayout {
 		}
 	}
 
+	private void setTextViewColor(){
+
+		if (isEnabled()) {
+			if (isOn) {
+				textView.setTextColor(textColor);
+			}else{
+				textView.setTextColor(textColorOff);
+			}
+		}else{
+			textView.setTextColor(disabledForeground);
+		}
+	}
+
+	private void setProgressColor(){
+
+		if (isOn) {
+			this.circularDrawable.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
+		}else{
+			this.circularDrawable.setColorFilter(textColorOff, PorterDuff.Mode.SRC_IN);
+		}
+	}
+
+	private void setForegroundColor(){
+
+		setTextViewColor();
+		setIconColor();
+		setProgressColor();
+	}
+
+
 	public void stopLoadingState(){
 
 		linearLayout.setVisibility(VISIBLE);
@@ -553,26 +632,6 @@ public class HivaButton extends RelativeLayout {
 		this.setClickable(true);
 	}
 
-	public void setForegroundColor(){
-
-		if(isEnabled()){
-
-
-
-			if(isOn) {
-				this.textView.setTextColor(textColor);
-				this.imageView.setColorFilter(iconTint, PorterDuff.Mode.SRC_IN);
-				this.circularDrawable.setColorFilter(textColor, PorterDuff.Mode.SRC_IN);
-			}else{
-				this.textView.setTextColor(textColorOff);
-				this.imageView.setColorFilter(iconTintOff, PorterDuff.Mode.SRC_IN);
-				this.circularDrawable.setColorFilter(textColorOff, PorterDuff.Mode.SRC_IN);
-			}
-		}else{
-			this.textView.setTextColor(disabledForeground);
-			this.imageView.setColorFilter(disabledForeground, PorterDuff.Mode.SRC_IN);
-		}
-	}
 
 	@Override
 	public void setEnabled(boolean enabled) {
@@ -633,7 +692,9 @@ public class HivaButton extends RelativeLayout {
 	private void off(){
 
 		setTextViewTitle();
+		this.setClickable(false);
 		this.setBackground(offRipple);
+		this.setClickable(true);
 		this.setForegroundColor();
 
 		if(this.toggleListener != null){
