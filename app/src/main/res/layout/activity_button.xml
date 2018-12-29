@@ -83,8 +83,25 @@
             style="@style/Base.Widget.AppCompat.Button"
             android:elevation="5dp"
 
+
+            app:isToggle="true"
+            app:isOn="false"
+
+            app:textColorOff="@color/White"
+            app:strokePressedColorOff="@color/DarkGreen"
+            app:backgroundColorOff="@color/Green"
+
+
             app:disabledForeground="@color/LightGrey"
             />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        </android.support.v7.widget.RecyclerView>
 
         <hivatec.ir.hivatectools.views.HivaButton
 
@@ -107,6 +124,7 @@
             app:strokeColor="@color/BlueViolet"
             app:backgroundSecondColor="@color/Red"
             app:rippleColor="@color/SkyBlue"
+            app:rippleColor_Off="@android:color/transparent"
 
 
             app:widthPadding="50dp"
@@ -144,6 +162,7 @@
                 app:backgroundColor="@color/Purple"
                 app:backgroundSecondColor="@color/DeepPink"
                 app:strokeColor="@color/Purple"
+                app:rippleColor_Off="@android:color/transparent"
 
                 app:strokeWidth="1dp"
                 app:widthPadding="30dp"
@@ -168,6 +187,7 @@
                 app:backgroundColor="@color/Purple"
                 app:backgroundSecondColor="@color/DeepPink"
                 app:strokeColor="@color/Purple"
+                app:rippleColor_Off="@android:color/transparent"
 
                 app:strokeWidth="1dp"
 
@@ -195,6 +215,7 @@
                 app:backgroundColor="@color/Purple"
                 app:backgroundSecondColor="@color/DeepPink"
                 app:strokeColor="@color/Purple"
+                app:rippleColor_Off="@android:color/transparent"
 
                 android:layout_marginLeft="-2dp"
 

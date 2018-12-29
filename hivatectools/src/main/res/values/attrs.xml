@@ -124,7 +124,7 @@
         <attr name="backgroundDrawableOff" format="reference"></attr>
         <attr name="backgroundSecondColorOff" format="color"></attr>
         <attr name="gradientAgnleOff" format="integer"></attr>
-        <attr name="rippleColorOff"></attr>
+        <attr name="rippleColor_Off" format="color"></attr>
         <attr name="iconTintOff" ></attr>
         <attr name="iconOff"></attr>
         <attr name="strokeWidthOff" format="dimension"></attr>

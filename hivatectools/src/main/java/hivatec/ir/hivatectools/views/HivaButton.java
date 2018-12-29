@@ -87,7 +87,7 @@ public class HivaButton extends RelativeLayout {
 	int backgroundDrawableOff = 0;
 	int backgroundSecondColorOff = 0;
 	int gradientAngleOff = 0;
-	int rippleColorOff = Color.parseColor("#44ffffff");
+	int rippleColorOff = 0;
 	int iconTintOff = 0;
 	int strokeColorOff = 0;
 	int strokeDashGapOff = 0;
@@ -174,10 +174,10 @@ public class HivaButton extends RelativeLayout {
 			textColorOff = a.getColor(R.styleable.HivaButton_textColorOff, textColor);
 			backgroundColorOff = a.getColor(R.styleable.HivaButton_backgroundColorOff, backgroundColor);
 			backgroundDrawableOff = a.getResourceId(R.styleable.HivaButton_backgroundDrawableOff, backgroundDrawable);
-			rippleColorOff = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColorOff, textColorOff), (int) Math.round(255 * 0.3));
+			rippleColorOff = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColor_Off, textColorOff), (int) Math.round(255 * 0.3));
 			backgroundSecondColorOff = a.getColor(R.styleable.HivaButton_backgroundSecondColorOff, backgroundSecondColorOff);
 			gradientAngleOff = a.getInt(R.styleable.HivaButton_gradientAgnleOff, gradientAngle);
-			iconTintOff = a.getColor(R.styleable.HivaButton_iconTintOff, iconTint);
+			iconTintOff = a.getColor(R.styleable.HivaButton_iconTintOff, textColorOff);
 			strokeColorOff = a.getColor(R.styleable.HivaButton_strokeColorOff, strokeColor);
 			strokePressedColorOff = a.getColor(R.styleable.HivaButton_strokePressedColorOff, strokeColorOff);
 			strokeDashGapOff = a.getInt(R.styleable.HivaButton_strokeDashGapOff, strokeDashGap);
@@ -201,6 +201,9 @@ public class HivaButton extends RelativeLayout {
 						//can not be turned off
 					}else{
 						toggle();
+						if(toggleListener != null){
+							toggleListener.toggled(HivaButton.this);
+						}
 					}
 
 					if(getParent() instanceof ViewGroup){
@@ -218,6 +221,10 @@ public class HivaButton extends RelativeLayout {
 
 								if(HivaButton.this.toggleGroup != null && sibiling.toggleGroup != null && sibiling.toggleGroup.equals(HivaButton.this.toggleGroup)){
 									sibiling.setOn(false);
+
+									if(sibiling.toggleListener != null){
+										sibiling.toggleListener.toggled(sibiling);
+									}
 								}
 							}
 						}
@@ -440,11 +447,9 @@ public class HivaButton extends RelativeLayout {
 			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
 		}
 
-		if(rippleColor != 0){
 
-			builder.ripple();
-			builder.rippleColor(rippleColor);
-		}
+		builder.ripple().rippleColor(rippleColor);
+
 
 		if(backgroundDrawable != 0){
 			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawable));
@@ -492,10 +497,7 @@ public class HivaButton extends RelativeLayout {
 			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
 		}
 
-		if(rippleColorOff != 0){
-
-			builder.ripple().rippleColor(rippleColorOff);
-		}
+		builder.ripple().rippleColor(rippleColorOff);
 
 		if(backgroundDrawableOff != 0){
 			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawableOff));
@@ -682,10 +684,6 @@ public class HivaButton extends RelativeLayout {
 	private void on(){
 
 		enable();
-
-		if(this.toggleListener != null){
-			this.toggleListener.toggled(this);
-		}
 	}
 
 
@@ -694,12 +692,10 @@ public class HivaButton extends RelativeLayout {
 		setTextViewTitle();
 		this.setClickable(false);
 		this.setBackground(offRipple);
-		this.setClickable(true);
+		setClickable(true);
 		this.setForegroundColor();
 
-		if(this.toggleListener != null){
-			this.toggleListener.toggled(this);
-		}
+
 	}
 
 
