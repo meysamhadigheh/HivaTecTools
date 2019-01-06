@@ -13,6 +13,8 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.widget.CircularProgressDrawable;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -38,8 +40,8 @@ public class HivaButton extends RelativeLayout {
 
 
 	//views
-	TextView textView;
-	ImageView imageView;
+	AppCompatTextView textView;
+	AppCompatImageView imageView;
 	LinearLayout linearLayout;
 	ProgressBar indicatorView;
 
@@ -233,7 +235,7 @@ public class HivaButton extends RelativeLayout {
 			});
 		}
 
-		textView = new TextView(getContext());
+		textView = new AppCompatTextView(getContext());
 		setTextViewTitle();
 		textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 				ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -293,7 +295,7 @@ public class HivaButton extends RelativeLayout {
 		}
 
 
-		imageView = new ImageView(getContext());
+		imageView = new AppCompatImageView(getContext());
 		//imageView.setBackgroundColor(Color.YELLOW);
 		Space spaceView = new Space(getContext());
 
