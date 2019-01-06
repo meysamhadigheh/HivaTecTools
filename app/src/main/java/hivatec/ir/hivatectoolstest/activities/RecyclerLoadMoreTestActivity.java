@@ -34,6 +34,7 @@ import hivatec.ir.hivatectools.helper.GlideHelper;
 import hivatec.ir.hivatectools.helper.SharedPreference;
 import hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.ItemLoading;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import hivatec.ir.hivatectoolstest.model.Notice;
 import okhttp3.MediaType;
@@ -92,8 +93,9 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 	@Override
 	protected void setActivityContent() {
 
-		recycler.getRefreshLayout().setEnabled(false);
+		//recycler.getRefreshLayout().setEnabled(false);
 		recycler.setDelegate(this);
+		recycler.setLoadingItem(new ItemLoading());
 	}
 
 	@Override
@@ -111,24 +113,30 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 					@Override
 					public void onSuccess(ArrayList<Integer> array) {
 
-						ArrayList<Movie> movies = new ArrayList<>();
+						if(Math.random() > 0.6) {
+							ArrayList<Movie> movies = new ArrayList<>();
 
-						for(int i = 0; i < 10; i++) {
+							for (int i = 0; i < 10; i++) {
 
-							if(Math.random() < 0.4) {
-								movies.add(new Movie("Titanic", "Jack, Rose ...", titanic));
-							}else {
-								movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...", lord));
+								if (Math.random() < 0.4) {
+									movies.add(new Movie("Titanic", "Jack, Rose ...", titanic));
+								} else {
+									movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...", lord));
+								}
+
 							}
 
-						}
+							recycler.doneLoading(movies, page);
+						}else{
 
-						recycler.doneLoading(movies, page);
+							recycler.doneWithError(page,"خطا در دریافت اطلاعات", true);
+						}
 					}
 
 					@Override
 					public void onError(String s) {
 
+						recycler.doneWithError(page,"خطا در دریافت اطلاعات", true);
 						showToast(s);
 					}
 				});

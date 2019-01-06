@@ -39,7 +39,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	boolean reverseLayout = false;
 	String errorString = "خطا در دریافت اطلاعات";
 	boolean hasError = false;
-	boolean isFirstTime = true;
 
 	public RecyclerLoadMoreAndRefresh(Context context) {
 		super(context);
@@ -109,13 +108,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 	public void startLoading(){
 
-		if(isFirstTime){
-			adapter = new HivaRecyclerAdapter();
-			adapter.addItem(getLoadingItem());
-			recyclerView.setAdapter(adapter);
-			isFirstTime = false;
-		}
-
 		if(hasError) {
 			adapter.removeItem(errorItem);
 			adapter.addItem(getLoadingItem());
@@ -138,7 +130,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 		refreshLayout.setRefreshing(false);
 
-		adapter.removeItem(loadingItem);
+		adapter.removeItem(getLoadingItem());
 
 		if(page == 0){
 			adapter.setItems(items);
@@ -149,7 +141,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		if(items.size() < minPageSize){
 			canLoadMore = false;
 		}else{
-			adapter.addItem(loadingItem);
+			adapter.addItem(getLoadingItem());
 		}
 
 		this.page++;
@@ -215,7 +207,10 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	}
 
 	public void setLoadingItem(ItemBinder loadingItem) {
+		adapter.removeItem(this.loadingItem);
 		this.loadingItem = loadingItem;
+		adapter.addItem(loadingItem);
+		adapter.notifyDataSetChanged();
 	}
 	public void setErrorItem(ErrorItemBinder errorItem) {
 		this.errorItem = errorItem;

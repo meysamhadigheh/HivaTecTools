@@ -74,7 +74,7 @@
                 app:heightPadding="10dp"
 
                 app:radius="45dp"
-                app:text="retrofit"
+                app:text="load more recyclerView"
                 app:textColor="#fff"
                 app:typeface="IRANSansMobile.ttf"
                 app:backgroundDrawable="@drawable/button_border_reverse"
