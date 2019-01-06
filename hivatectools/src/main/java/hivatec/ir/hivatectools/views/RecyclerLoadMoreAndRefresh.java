@@ -9,8 +9,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	LinearLayoutManager layoutManager;
 	HivaRecyclerAdapter adapter;
 	ItemBinder loadingItem;
-	ArrayList<ItemBinder> items = new ArrayList<>();
+	ErrorItemBinder errorItem;
 
 	Delegate delegate;
 	int minPageSize = 5;
@@ -35,6 +37,9 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	boolean isLoading = false;
 	int orientation = LinearLayoutManager.VERTICAL;
 	boolean reverseLayout = false;
+	String errorString = "خطا در دریافت اطلاعات";
+	boolean hasError = false;
+	boolean isFirstTime = true;
 
 	public RecyclerLoadMoreAndRefresh(Context context) {
 		super(context);
@@ -62,8 +67,8 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				ViewGroup.LayoutParams.MATCH_PARENT));
 		refreshLayout.setOnRefreshListener(refreshListener);
 		recyclerView.setLayoutManager(layoutManager);
-		items.add(getLoadingItem());
-		adapter = new HivaRecyclerAdapter(items);
+		adapter = new HivaRecyclerAdapter();
+		adapter.addItem(getLoadingItem());
 		recyclerView.setAdapter(adapter);
 
 		this.addView(refreshLayout, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -104,7 +109,22 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 	public void startLoading(){
 
+		if(isFirstTime){
+			adapter = new HivaRecyclerAdapter();
+			adapter.addItem(getLoadingItem());
+			recyclerView.setAdapter(adapter);
+			isFirstTime = false;
+		}
+
+		if(hasError) {
+			adapter.removeItem(errorItem);
+			adapter.addItem(getLoadingItem());
+			hasError = false;
+		}
+
 		isLoading = true;
+
+		adapter.notifyDataSetChanged();
 
 		if(delegate != null)
 			delegate.loadMore(page);
@@ -138,6 +158,19 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		isLoading = false;
 	}
 
+	public void doneWithError(int page, String error, Boolean canRefresh){
+		if(page == 0){
+			adapter.clearItems();
+		}
+
+		refreshLayout.setRefreshing(false);
+
+		hasError = true;
+		adapter.removeItem(getLoadingItem());
+		adapter.addItem(getErrorItem(error, canRefresh));
+		adapter.notifyDataSetChanged();
+	}
+
 	public ItemBinder getLoadingItem(){
 
 		if(loadingItem == null){
@@ -147,21 +180,26 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return loadingItem;
 	}
 
+	public ItemBinder getErrorItem(String error, Boolean canRefresh){
+
+		if(errorItem == null){
+			errorItem = new ErrorItem();
+			((ErrorItem) errorItem).pagerHelper = this;
+		}
+
+		errorItem.setErrorMessage(error);
+		errorItem.setCanRefresh(canRefresh);
+
+		return errorItem;
+	}
+
 
 	public SwipeRefreshLayout getRefreshLayout() {
 		return refreshLayout;
 	}
 
-	public void setRefreshLayout(SwipeRefreshLayout refreshLayout) {
-		this.refreshLayout = refreshLayout;
-	}
-
 	public RecyclerView getRecyclerView() {
 		return recyclerView;
-	}
-
-	public void setRecyclerView(RecyclerView recyclerView) {
-		this.recyclerView = recyclerView;
 	}
 
 	public LinearLayoutManager getLayoutManager() {
@@ -176,20 +214,11 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return adapter;
 	}
 
-	public void setAdapter(HivaRecyclerAdapter adapter) {
-		this.adapter = adapter;
-	}
-
 	public void setLoadingItem(ItemBinder loadingItem) {
 		this.loadingItem = loadingItem;
 	}
-
-	public ArrayList<ItemBinder> getItems() {
-		return items;
-	}
-
-	public void setItems(ArrayList<ItemBinder> items) {
-		this.items = items;
+	public void setErrorItem(ErrorItemBinder errorItem) {
+		this.errorItem = errorItem;
 	}
 
 	public Delegate getDelegate() {
@@ -224,10 +253,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return isLoading;
 	}
 
-	public void setLoading(boolean loading) {
-		isLoading = loading;
-	}
-
 	public int getOrientation() {
 		return orientation;
 	}
@@ -255,6 +280,54 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		public void bindToHolder(ItemHolder binder, Object listener) {
 
 		}
+	}
+
+
+	public class ErrorItem implements ErrorItemBinder {
+
+		public Boolean canRefresh = true;
+		public String errorString = "";
+		public RecyclerLoadMoreAndRefresh pagerHelper;
+
+		@Override
+		public void setErrorMessage(String error) {
+			this.errorString = error;
+		}
+
+		@Override
+		public void setCanRefresh(Boolean canRefresh) {
+			this.canRefresh = canRefresh;
+		}
+
+		@Override
+		public int getResourceId() {
+			return R.layout.item_error;
+		}
+
+		@Override
+		public void bindToHolder(ItemHolder binder, Object listener) {
+
+			binder.<TextView>find(R.id.errorText).setText(errorString);
+
+			if(canRefresh == false){
+				binder.<HivaButton>find(R.id.refreshBtn).setVisibility(GONE);
+			}
+
+			binder.<HivaButton>find(R.id.refreshBtn).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					pagerHelper.startLoading();
+				}
+			});
+		}
+
+
+	}
+
+	public interface ErrorItemBinder extends ItemBinder {
+
+		void setErrorMessage(String error);
+		void setCanRefresh(Boolean canRefresh);
 	}
 
 
