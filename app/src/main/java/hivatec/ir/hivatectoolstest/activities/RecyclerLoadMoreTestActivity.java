@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -34,9 +35,11 @@ import hivatec.ir.hivatectools.helper.GlideHelper;
 import hivatec.ir.hivatectools.helper.SharedPreference;
 import hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.HeaderItem;
 import hivatec.ir.hivatectoolstest.model.ItemLoading;
 import hivatec.ir.hivatectoolstest.model.Movie;
 import hivatec.ir.hivatectoolstest.model.Notice;
+import hivatec.ir.hivatectoolstest.model.RecycelerItem;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
@@ -50,6 +53,7 @@ import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -83,6 +87,33 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 	protected void instantiateViews() {
 
 		recycler = findViewById(R.id.recycler);
+
+
+		GridLayoutManager manager = new GridLayoutManager(context, 2);
+		manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+			@Override
+			public int getSpanSize(int position) {
+
+				if(position == recycler.getLoadingItemPosition()) {
+					return 2;
+				}
+
+				if(position == recycler.getErrorItemPosition()) {
+					return 2;
+				}
+
+				if(recycler.getAdapter().getItems().get(position).getClass() == HeaderItem.class){
+					return 2;
+				}
+
+				if(recycler.getAdapter().getItems().get(position).getClass() == RecycelerItem.class){
+					return 2;
+				}
+
+				return 1;
+			}
+		});
+		recycler.setLayoutManager(manager);
 	}
 
 	@Override
@@ -113,8 +144,12 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 					@Override
 					public void onSuccess(ArrayList<Integer> array) {
 
-						if(Math.random() > 0.6) {
-							ArrayList<Movie> movies = new ArrayList<>();
+						if(Math.random() > 0.3) {
+							ArrayList movies = new ArrayList<>();
+
+
+							movies.add(new HeaderItem());
+							movies.add(new RecycelerItem());
 
 							for (int i = 0; i < 10; i++) {
 
@@ -125,6 +160,7 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 								}
 
 							}
+
 
 							recycler.doneLoading(movies, page);
 						}else{

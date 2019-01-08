@@ -9,19 +9,40 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import hivatec.ir.hivatectools.activityHelpers.ParentActivity;
 import hivatec.ir.hivatectools.adapters.HivaRecyclerAdapter;
 import hivatec.ir.hivatectools.views.HivaButton;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.ButtonModel;
 
-public class ButtonActivity extends AppCompatActivity {
+public class ButtonActivity extends ParentActivity {
 
     HivaButton button,hivaButton,hivaButton2,hivaButton3,hivaButton4;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setContentViewActivity() {
         setContentView(R.layout.activity_button);
+    }
+
+    @Override
+    protected void getIntentData() {
+
+    }
+
+    @Override
+    protected void prepareToolbar() {
+
+    }
+
+    @Override
+    protected void instantiateViews() {
+
+    }
+
+    @Override
+    protected void setViewListeners() {
+
 
 
         button = findViewById(R.id.hiva_button);
@@ -46,6 +67,15 @@ public class ButtonActivity extends AppCompatActivity {
         }
 
         recycler.setAdapter(new HivaRecyclerAdapter(buttons));
+    }
+
+    @Override
+    protected void setActivityContent() {
+
+    }
+
+    @Override
+    protected void refreshContent() {
 
     }
 

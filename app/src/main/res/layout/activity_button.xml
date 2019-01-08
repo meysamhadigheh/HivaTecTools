@@ -19,6 +19,13 @@
         android:padding="20dp"
         >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="سلام تست فونت"
+            />
+
 
         <hivatec.ir.hivatectools.views.HivaButton
 
@@ -26,9 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:text="hello"
+            app:text="سلام"
             app:textColor="#ffffff"
-            app:typeface="IRANSansMobile.ttf"
 
             app:backgroundColor="@color/Purple"
 

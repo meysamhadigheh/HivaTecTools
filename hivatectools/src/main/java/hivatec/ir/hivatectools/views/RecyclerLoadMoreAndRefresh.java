@@ -35,8 +35,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	int page = 0;
 	boolean canLoadMore = true;
 	boolean isLoading = false;
-	int orientation = LinearLayoutManager.VERTICAL;
-	boolean reverseLayout = false;
 	String errorString = "خطا در دریافت اطلاعات";
 	boolean hasError = false;
 
@@ -60,7 +58,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 		refreshLayout = new SwipeRefreshLayout(getContext());
 		recyclerView = new RecyclerView(getContext());
-		layoutManager = new LinearLayoutManager(getContext(), orientation, reverseLayout);
+		layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
 		refreshLayout.addView(recyclerView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT));
@@ -74,6 +72,15 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				ViewGroup.LayoutParams.MATCH_PARENT));
 
 
+		addLayoutManagerListener();
+
+		setBackground(this.getBackground());
+
+
+	}
+
+	private void addLayoutManagerListener() {
+
 		recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -85,10 +92,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				}
 			}
 		});
-
-		setBackground(this.getBackground());
-
-
 	}
 
 	public void setDelegate(Delegate delegate){
@@ -198,8 +201,12 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return layoutManager;
 	}
 
-	public void setLayoutManager(LinearLayoutManager layoutManager) {
+	public void setLayoutManager(LinearLayoutManager layoutManager){
+
 		this.layoutManager = layoutManager;
+		recyclerView.setLayoutManager(layoutManager);
+		addLayoutManagerListener();
+		adapter.notifyDataSetChanged();
 	}
 
 	public HivaRecyclerAdapter getAdapter() {
@@ -248,22 +255,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return isLoading;
 	}
 
-	public int getOrientation() {
-		return orientation;
-	}
-
-	public void setOrientation(int orientation) {
-		this.orientation = orientation;
-	}
-
-	public boolean isReverseLayout() {
-		return reverseLayout;
-	}
-
-	public void setReverseLayout(boolean reverseLayout) {
-		this.reverseLayout = reverseLayout;
-	}
-
 	public class LoadingItem implements ItemBinder {
 
 		@Override
@@ -277,6 +268,36 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		}
 	}
 
+	public int getLoadingItemPosition(){
+
+		int i = 0;
+		for(Object item : adapter.getItems()){
+
+			if(item == getLoadingItem()){
+
+				return i;
+			}
+			i++;
+		}
+
+		return -1;
+	}
+
+
+	public int getErrorItemPosition(){
+
+		int i = 0;
+		for(Object item : adapter.getItems()){
+
+			if(item == errorItem){
+
+				return i;
+			}
+			i++;
+		}
+
+		return -1;
+	}
 
 	public class ErrorItem implements ErrorItemBinder {
 

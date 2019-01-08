@@ -2,6 +2,7 @@ package hivatec.ir.hivatectools.helper;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 
 import java.lang.reflect.Field;
 
@@ -9,9 +10,15 @@ public final class FontsOverride {
 
     public static void setDefaultFont(Context context,
                                       String staticTypefaceFieldName, String fontAssetName) {
-        final Typeface regular = Typeface.createFromAsset(context.getAssets(),
-                fontAssetName);
-        replaceFont(staticTypefaceFieldName, regular);
+
+        try {
+            final Typeface regular = Typeface.createFromAsset(context.getAssets(),
+                    fontAssetName);
+            replaceFont(staticTypefaceFieldName, regular);
+        }catch (Exception e){
+
+            Log.e("font asset not found : ", fontAssetName);
+        }
     }
 
     protected static void replaceFont(String staticTypefaceFieldName,

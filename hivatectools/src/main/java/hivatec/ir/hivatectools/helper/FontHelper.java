@@ -10,6 +10,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import android.util.Xml;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
+
+
 public class FontHelper {
 
     /**
@@ -124,6 +132,5 @@ public class FontHelper {
             ((CheckedTextView) view).setTypeface(tf, type);
 
     }
-
 
 }

@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="HivaAppTheme">
 
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:typeface">serif</item>
 
     </style>
 

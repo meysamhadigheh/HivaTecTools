@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -57,15 +58,19 @@ public abstract class ParentActivity extends AppCompatActivity {
         setViewListeners();
 
 
-        FontsOverride.setDefaultFont(this, "DEFAULT", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "MONOSPACE", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "SERIF", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "SANS_SERIF", "IRANSansMobile.ttf");
+        FontsOverride.setDefaultFont(this, "DEFAULT", getFontAssetName());
+        FontsOverride.setDefaultFont(this, "MONOSPACE", getFontAssetName());
+        FontsOverride.setDefaultFont(this, "SERIF", getFontAssetName());
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", getFontAssetName());
 
         //set views content (this makes sure all views are instantiated)
         setActivityContent();
 
 
+    }
+
+    protected String getFontAssetName(){
+        return "IRANSansMobile.ttf";
     }
 
     protected void setToolbar() {
