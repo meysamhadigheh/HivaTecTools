@@ -535,6 +535,25 @@ public class HivaButton extends RelativeLayout {
 	}
 
 
+	public void setTitleColor(int color){
+
+		this.textColor = color;
+		this.textColorOff = color;
+
+		setTextViewColor();
+	}
+
+	public void setTitleColor(int color, boolean state){
+
+		if(state) {
+			this.textColor = color;
+		}else{
+			this.textColorOff = color;
+		}
+
+		setTextViewColor();
+	}
+
 	public void setIcon(int icon){
 		this.imageView.setImageResource(icon);
 	}
