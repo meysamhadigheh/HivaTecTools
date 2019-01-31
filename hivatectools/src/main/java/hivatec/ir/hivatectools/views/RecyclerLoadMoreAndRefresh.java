@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -64,6 +65,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				ViewGroup.LayoutParams.MATCH_PARENT));
 		refreshLayout.setOnRefreshListener(refreshListener);
 		recyclerView.setLayoutManager(layoutManager);
+		recyclerView.setClipChildren(false);
 		adapter = new HivaRecyclerAdapter();
 		adapter.addItem(getLoadingItem());
 		recyclerView.setAdapter(adapter);
@@ -74,9 +76,9 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 		addLayoutManagerListener();
 
-		setBackground(this.getBackground());
 
-
+		recyclerView.setPadding(this.getPaddingLeft(),this.getPaddingTop(),this.getPaddingRight(),this.getBottom());
+		this.setPadding(0,0,0,0);
 	}
 
 	private void addLayoutManagerListener() {
