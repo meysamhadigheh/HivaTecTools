@@ -65,7 +65,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				ViewGroup.LayoutParams.MATCH_PARENT));
 		refreshLayout.setOnRefreshListener(refreshListener);
 		recyclerView.setLayoutManager(layoutManager);
-		recyclerView.setClipChildren(false);
 		recyclerView.setClipToPadding(false);
 		adapter = new HivaRecyclerAdapter();
 		adapter.addItem(getLoadingItem());
@@ -167,6 +166,14 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		adapter.removeItem(getLoadingItem());
 		adapter.addItem(getErrorItem(error, canRefresh));
 		adapter.notifyDataSetChanged();
+	}
+
+	public void resetAndStartLoading() {
+
+		adapter.clearItems();
+		adapter.addItem(getLoadingItem());
+		page = 0;
+		startLoading();
 	}
 
 	public ItemBinder getLoadingItem(){
