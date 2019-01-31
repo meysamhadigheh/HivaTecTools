@@ -22,15 +22,29 @@ public class G extends Application {
         context = this;
         FastSave.init(getApplicationContext());
 
-
-
-
-        FontsOverride.setDefaultFont(this, "DEFAULT", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "MONOSPACE", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "SERIF", "IRANSansMobile.ttf");
-        FontsOverride.setDefaultFont(this, "SANS_SERIF", "IRANSansMobile.ttf");
+        FontsOverride.setDefaultFont(this, "DEFAULT", getDefaultFontName());
+        FontsOverride.setDefaultFont(this, "MONOSPACE", getDefaultFontName());
+        FontsOverride.setDefaultFont(this, "SERIF", getDefaultFontName());
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", getDefaultFontName());
     }
 
 
+    public String getDefaultFontName(){
+        return "IRANSansMobile.ttf";
+    }
 
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+
+        context = this;
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+
+        context = this;
+    }
 }

@@ -66,6 +66,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		refreshLayout.setOnRefreshListener(refreshListener);
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setClipChildren(false);
+		recyclerView.setClipToPadding(false);
 		adapter = new HivaRecyclerAdapter();
 		adapter.addItem(getLoadingItem());
 		recyclerView.setAdapter(adapter);

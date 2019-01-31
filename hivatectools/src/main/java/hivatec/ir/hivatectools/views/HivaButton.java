@@ -20,6 +20,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -190,6 +191,13 @@ public class HivaButton extends RelativeLayout {
 		init();
 	}
 
+
+
+
+	//////////////////
+	/// main functions
+	/////////////////
+
 	void init() {
 
 		this.setClickable(true);
@@ -293,7 +301,6 @@ public class HivaButton extends RelativeLayout {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			linearLayout.setClipToOutline(false);
 		}
-
 
 		imageView = new AppCompatImageView(getContext());
 		//imageView.setBackgroundColor(Color.YELLOW);
@@ -450,14 +457,17 @@ public class HivaButton extends RelativeLayout {
 		}
 
 
+
 		builder.ripple().rippleColor(rippleColor);
 
-
-		if(backgroundDrawable != 0){
-			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawable));
+		if(backgroundColor == Color.TRANSPARENT) {
+			builder.solidColorPressedWhenRippleUnsupported(rippleColor);
+		}else {
+			builder.solidColorPressedWhenRippleUnsupported(ColorUtils.setAlphaComponent(backgroundColor,(int) Math.round(255 * 0.7)));
 		}
 
 		currentRipple = builder.build();
+
 	}
 
 	private void createOffRipple(){
@@ -501,12 +511,25 @@ public class HivaButton extends RelativeLayout {
 
 		builder.ripple().rippleColor(rippleColorOff);
 
+		if(backgroundColorOff == Color.TRANSPARENT) {
+			builder.solidColorPressedWhenRippleUnsupported(rippleColorOff);
+		}else {
+			builder.solidColorPressedWhenRippleUnsupported(ColorUtils.setAlphaComponent(backgroundColorOff,(int) Math.round(255 * 0.7)));
+		}
+
 		if(backgroundDrawableOff != 0){
 			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawableOff));
 		}
 
 		offRipple = builder.build();
 	}
+
+	/////////////////
+
+
+	/////////////
+	/// public functions
+	////////////
 
 	public void startLoadingState(){
 
@@ -587,7 +610,70 @@ public class HivaButton extends RelativeLayout {
 
 	}
 
-	private  void setIconColor() {
+	public void stopLoadingState(){
+
+		linearLayout.setVisibility(VISIBLE);
+		indicatorView.setVisibility(GONE);
+		indicatorView.setIndeterminate(true);
+
+		this.setClickable(true);
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		super.setEnabled(enabled);
+
+		if(enabled == true){
+
+			setOn(isOn);
+		}else {
+
+			disable();
+		}
+	}
+
+
+	public boolean toggle(){
+		isOn = !isOn;
+
+		if(isOn){
+			on();
+		}else{
+			off();
+		}
+
+		return isOn;
+	}
+
+	public void setOn(boolean isOn){
+		this.isOn = isOn;
+
+		if(isOn){
+			enable();
+		}else{
+			off();
+		}
+	}
+
+	public boolean getOn(){
+		return this.isOn;
+	}
+
+	public void setOnToggleListener(OnToggleListener listener){
+		this.toggleListener = listener;
+	}
+
+
+
+
+	/////////////////
+
+
+	/////////////////
+	/// private functions
+	/////////////////
+
+	private void setIconColor() {
 
 		if (isEnabled()) {
 			if (isOn) {
@@ -645,68 +731,10 @@ public class HivaButton extends RelativeLayout {
 		setProgressColor();
 	}
 
-
-	public void stopLoadingState(){
-
-		linearLayout.setVisibility(VISIBLE);
-		indicatorView.setVisibility(GONE);
-		indicatorView.setIndeterminate(true);
-
-		this.setClickable(true);
-	}
-
-
-	@Override
-	public void setEnabled(boolean enabled) {
-		super.setEnabled(enabled);
-
-		if(enabled == true){
-
-			setOn(isOn);
-		}else {
-
-			disable();
-		}
-	}
-
-
-	public boolean toggle(){
-		isOn = !isOn;
-
-		if(isOn){
-			on();
-		}else{
-			off();
-		}
-
-		return isOn;
-	}
-
-	public void setOn(boolean isOn){
-		this.isOn = isOn;
-
-		if(isOn){
-			enable();
-		}else{
-			off();
-		}
-	}
-
-	public boolean getOn(){
-		return this.isOn;
-	}
-
-	public void setOnToggleListener(OnToggleListener listener){
-		this.toggleListener = listener;
-	}
-
-
-
 	private void on(){
 
 		enable();
 	}
-
 
 	private void off(){
 
