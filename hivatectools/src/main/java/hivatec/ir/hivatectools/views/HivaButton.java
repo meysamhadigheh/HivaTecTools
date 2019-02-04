@@ -455,15 +455,17 @@ public class HivaButton extends RelativeLayout {
 
 			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
 		}
-
-
-
+		
 		builder.ripple().rippleColor(rippleColor);
 
 		if(backgroundColor == Color.TRANSPARENT) {
 			builder.solidColorPressedWhenRippleUnsupported(rippleColor);
 		}else {
 			builder.solidColorPressedWhenRippleUnsupported(ColorUtils.setAlphaComponent(backgroundColor,(int) Math.round(255 * 0.7)));
+		}
+
+		if(backgroundDrawable != 0){
+			builder.baseDrawable(getContext().getResources().getDrawable(backgroundDrawable));
 		}
 
 		currentRipple = builder.build();
