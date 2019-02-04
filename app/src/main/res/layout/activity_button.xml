@@ -85,10 +85,11 @@
             app:typeface="IRANSansMobile.ttf"
             app:strokeWidth="2dp"
             app:strokePressedColor="@color/DarkGreen"
-            app:backgroundColor="@color/White"
             style="@style/Base.Widget.AppCompat.Button"
             android:elevation="5dp"
 
+
+            app:backgroundDrawable="@drawable/button_border"
 
             app:isToggle="true"
             app:isOn="false"

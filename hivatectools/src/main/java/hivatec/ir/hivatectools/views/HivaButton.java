@@ -288,7 +288,6 @@ public class HivaButton extends RelativeLayout {
 
 		linearLayout = new LinearLayout(getContext());
 
-		//linearLayout.setBackgroundColor(Color.RED);
 
 		LayoutParams linearLayoutLayoutParams =
 				new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -301,6 +300,9 @@ public class HivaButton extends RelativeLayout {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			linearLayout.setClipToOutline(false);
 		}
+
+		linearLayout.setPadding(this.getPaddingLeft(), this.getPaddingTop(), this.getPaddingRight(), getPaddingBottom());
+		this.setPadding(0,0,0,0);
 
 		imageView = new AppCompatImageView(getContext());
 		//imageView.setBackgroundColor(Color.YELLOW);
@@ -455,7 +457,7 @@ public class HivaButton extends RelativeLayout {
 
 			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
 		}
-		
+
 		builder.ripple().rippleColor(rippleColor);
 
 		if(backgroundColor == Color.TRANSPARENT) {
