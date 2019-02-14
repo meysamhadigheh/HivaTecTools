@@ -173,6 +173,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		adapter.clearItems();
 		adapter.addItem(getLoadingItem());
 		page = 0;
+		canLoadMore = true;
 		startLoading();
 	}
 
