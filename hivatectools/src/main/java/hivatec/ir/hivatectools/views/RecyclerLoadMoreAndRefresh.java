@@ -119,6 +119,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 			hasError = false;
 		}
 
+		canLoadMore = true; // give list another chance to load more items
 		isLoading = true;
 
 		adapter.notifyDataSetChanged();
@@ -173,7 +174,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		adapter.clearItems();
 		adapter.addItem(getLoadingItem());
 		page = 0;
-		canLoadMore = true;
 		startLoading();
 	}
 
