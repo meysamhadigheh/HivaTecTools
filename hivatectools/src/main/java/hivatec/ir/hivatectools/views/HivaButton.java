@@ -253,7 +253,10 @@ public class HivaButton extends RelativeLayout {
 		textView.setGravity(Gravity.CENTER);
 		setTextViewColor();
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-		textView.setLines(textLines);
+		textView.setMaxLines(textLines);
+		if(textLines == 1){
+			textView.setSingleLine(true);
+		}
 
 		if(typeface != null && !typeface.equals("")) {
 			try {
