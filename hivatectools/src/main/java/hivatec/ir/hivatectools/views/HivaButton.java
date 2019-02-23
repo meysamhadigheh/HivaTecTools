@@ -49,6 +49,7 @@ public class HivaButton extends RelativeLayout {
 
 	//global settings
 	int textSize = ViewUIHelper.spToPx(15, getContext());
+	int textLines = 2;
 	String typeface = "";
 	private CircularProgressDrawable circularDrawable;
 	int radius = ViewUIHelper.dpToPx(5);
@@ -129,6 +130,7 @@ public class HivaButton extends RelativeLayout {
 			title = a.getString(R.styleable.HivaButton_text);
 			textColor = a.getColor(R.styleable.HivaButton_textColor, textColor);
 			textSize = a.getDimensionPixelSize(R.styleable.HivaButton_textSize, textSize);
+			textLines = a.getInteger(R.styleable.HivaButton_textLines, textLines);
 			radius = a.getDimensionPixelSize(R.styleable.HivaButton_radius, radius);
 			widthPadding = a.getDimensionPixelSize(R.styleable.HivaButton_widthPadding, widthPadding);
 			heightPadding = a.getDimensionPixelSize(R.styleable.HivaButton_heightPadding, heightPadding);
@@ -251,6 +253,7 @@ public class HivaButton extends RelativeLayout {
 		textView.setGravity(Gravity.CENTER);
 		setTextViewColor();
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+		textView.setLines(textLines);
 
 		if(typeface != null && !typeface.equals("")) {
 			try {

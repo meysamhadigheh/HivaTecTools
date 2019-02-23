@@ -69,6 +69,8 @@
         <attr name="text"></attr>
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
+        <attr name="textLines" format="integer"></attr>
+
 
         <attr name="disabledBackground" format="color"></attr>
         <attr name="disabledForeground" format="color"></attr>
