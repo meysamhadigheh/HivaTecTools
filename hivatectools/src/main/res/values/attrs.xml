@@ -63,6 +63,13 @@
 
     </declare-styleable>
 
+    <declare-styleable name="PickerView">
+
+        <attr name="textColor"></attr>
+        <attr name="textSize"></attr>
+        <attr name="typeface" ></attr>
+
+    </declare-styleable>
 
     <declare-styleable name="HivaButton">
 

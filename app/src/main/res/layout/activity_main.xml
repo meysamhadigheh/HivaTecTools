@@ -145,7 +145,7 @@
                 app:heightPadding="10dp"
 
                 app:radius="45dp"
-                app:text="form activity"
+                app:text="PickerView"
                 app:textColor="#fff"
                 app:typeface="IRANSansMobile.ttf"
                 app:backgroundDrawable="@drawable/button_border"

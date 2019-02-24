@@ -11,51 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+        <hivatec.ir.hivatectools.views.PickerView
+            android:id="@+id/picker"
+            android:layout_width="180dp"
+            android:layout_height="260dp"
             android:layout_centerInParent="true"
-
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                >
-
-                <hivatec.ir.hivatectools.form.HivaForm
-                    android:id="@+id/form"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-
-                    >
-
-
-                </hivatec.ir.hivatectools.form.HivaForm>
-
-
-                <hivatec.ir.hivatectools.views.HivaButton
-
-                    android:id="@+id/submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    app:text="ارسال"
-                    app:widthPadding="30dp"
-                    app:heightPadding="10dp"
-
-                    android:layout_marginTop="16dp"
-                    />
-
-            </LinearLayout>
-
-        </ScrollView>
+            app:textSize="22sp"
+            app:textColor="@color/Gray"
+            />
 
     </RelativeLayout>
 
