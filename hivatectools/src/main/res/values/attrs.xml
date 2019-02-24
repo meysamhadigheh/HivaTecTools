@@ -68,6 +68,13 @@
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
         <attr name="typeface" ></attr>
+        <attr name="itemPadding" format="dimension" ></attr>
+
+        <attr name="position" format="enum">
+            <enum name="right" value="-1"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="center" value="0"></enum>
+        </attr>
 
     </declare-styleable>
 

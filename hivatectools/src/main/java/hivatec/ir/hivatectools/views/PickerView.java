@@ -54,6 +54,10 @@ public class PickerView extends RelativeLayout {
 	int textSize = ViewUIHelper.spToPx(15, getContext());
 	String typeface = "";
 
+	int selectedItem = 0;
+	int itemPadding = ViewUIHelper.dpToPx(10);
+
+	int position = 0;
 
 	public PickerView(Context context) {
 		super(context);
@@ -69,7 +73,9 @@ public class PickerView extends RelativeLayout {
 
 			textColor = a.getColor(R.styleable.PickerView_textColor, textColor);
 			textSize = a.getDimensionPixelSize(R.styleable.PickerView_textSize, textSize);
-			typeface = a.getString(R.styleable.HivaButton_typeface);
+			typeface = a.getString(R.styleable.PickerView_typeface);
+			position = a.getInt(R.styleable.PickerView_position, position);
+			itemPadding = a.getDimensionPixelSize(R.styleable.PickerView_itemPadding, itemPadding);
 
 			a.recycle();
 		}
@@ -90,6 +96,7 @@ public class PickerView extends RelativeLayout {
 		recycler.setLayoutManager(layoutManager);
 
 		recycler.setClipToPadding(false);
+		recycler.setOverScrollMode(OVER_SCROLL_NEVER);
 
 		snapHelper = new LinearSnapHelper();
 		snapHelper.attachToRecyclerView(recycler);
@@ -104,7 +111,7 @@ public class PickerView extends RelativeLayout {
 
 		divider = new RelativeLayout(getContext());
 		LayoutParams viewParams = new RelativeLayout.LayoutParams(
-				ViewGroup.LayoutParams.MATCH_PARENT, 1 );
+				ViewGroup.LayoutParams.MATCH_PARENT, ViewUIHelper.dpToPx(60) );
 		viewParams.addRule(CENTER_IN_PARENT);
 		divider.setLayoutParams(viewParams);
 
@@ -132,16 +139,26 @@ public class PickerView extends RelativeLayout {
 
 
 		ArrayList<String> items = new ArrayList<>();
-		items.add("تهران");
-		items.add("شیراز");
-		items.add("اصفهان");
-		items.add("اهواز");
-		items.add("بوشهر");
-		items.add("مشهد");
-		items.add("کرج");
-		items.add("تبریز");
-		items.add("کرمان");
-		items.add("یزد");
+		items.add("1");
+		items.add("2");
+		items.add("3");
+		items.add("4");
+		items.add("5");
+		items.add("6");
+		items.add("7");
+		items.add("8");
+		items.add("9");
+		items.add("10");
+		items.add("11");
+		items.add("12");
+		items.add("13");
+		items.add("14");
+		items.add("15");
+		items.add("16");
+		items.add("17");
+		items.add("18");
+		items.add("19");
+		items.add("20");
 		setItemsStr(items);
 	}
 
@@ -164,25 +181,28 @@ public class PickerView extends RelativeLayout {
 						int foundPos = -1;
 						int lastDiff = Integer.MAX_VALUE;
 
-						if(listener != null){
 
-							for(int i = 0; i < adapter.getItems().size(); i++) {
-								RecyclerView.ViewHolder vh = recyclerView.findViewHolderForAdapterPosition(i);
+						for(int i = 0; i < adapter.getItems().size(); i++) {
+							RecyclerView.ViewHolder vh = recyclerView.findViewHolderForAdapterPosition(i);
 
-								if(vh != null) {
-									View v = vh.itemView;
+							if(vh != null) {
+								View v = vh.itemView;
 
-									int viewCenter = v.getTop();
+								int viewCenter = v.getTop();
 
-									if (lastDiff > Math.abs(halfHeight - viewCenter)) {
-										foundPos = i;
-										lastDiff = Math.abs(halfHeight - viewCenter);
-									}
+								if (lastDiff > Math.abs(halfHeight - viewCenter)) {
+									foundPos = i;
+									lastDiff = Math.abs(halfHeight - viewCenter);
 								}
 							}
+						}
 
 
-							if(foundPos >= 0) {
+						if(foundPos >= 0) {
+							selectedItem = foundPos;
+
+							if(listener != null){
+
 								listener.onItemPicked(((PickerItemHolder) adapter.getItems().get(foundPos)).item, foundPos);
 							}
 
@@ -204,6 +224,7 @@ public class PickerView extends RelativeLayout {
 
 				double circleR = PickerView.this.getHeight() / 2;
 				double Padding3dy = PickerView.this.getHeight() * 0.3;
+				double Padding3dx = PickerView.this.getWidth() * 0.25;
 
 				int halfHeight = PickerView.this.getHeight() / 2;
 				//- recyclerView.computeVerticalScrollOffset()
@@ -222,6 +243,7 @@ public class PickerView extends RelativeLayout {
 				double x = circleR * Math.cos(deg * 0.0174533); //+ PickerView.this.getHeight();
 
 				v.setTranslationY((float) Math.ceil(percent * Math.abs(percent) * 0.5 * Padding3dy));
+				v.setTranslationX((float) Math.ceil(percent * percent * 0.4 * Padding3dx) * position);
 
 				v.setScaleX((float) (1 - Math.abs((float) percent * 0.3)));
 				v.setScaleY((float) (1 - Math.abs((float) percent * 0.3)));
@@ -233,6 +255,18 @@ public class PickerView extends RelativeLayout {
 	};
 
 
+	public PickerItem getPickerItem(int index){
+		return ((PickerItemHolder) adapter.getItems().get(index)).item;
+	}
+
+	public int getSelectedIndex(){
+		return selectedItem;
+	}
+
+	public void setSelectedIndex(int index){
+		selectedItem = index;
+		recycler.smoothScrollToPosition(index);
+	}
 
 	private OnItemClickListener itemClickListener = new OnItemClickListener<PickerItemHolder>() {
 		@Override
@@ -249,7 +283,7 @@ public class PickerView extends RelativeLayout {
 
 	}
 
-	public void checkSize(int index, View v){
+	private void checkSize(int index, View v){
 		//Log.i("pickerView", getHeight() + " <- picker height");
 
 		if(v != null && index == 0) {
@@ -291,9 +325,11 @@ public class PickerView extends RelativeLayout {
 
 		adapter.notifyDataSetChanged();
 
-		recycler.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-		recycler.setPadding(0, recycler.getMeasuredHeight() / 2, 0 ,0);
-		recycler.scrollToPosition(0);
+		if(!isInEditMode()) {
+			recycler.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+			recycler.setPadding(0, recycler.getMeasuredHeight() / 2, 0, 0);
+			recycler.scrollToPosition(0);
+		}
 	}
 
 
@@ -344,14 +380,15 @@ public class PickerView extends RelativeLayout {
 		public void bindToHolder(ItemHolder binder, Object listener) {
 
 			TextView textView = binder.find(R.id.text);
-			binder.itemView.setTag(item);
-			binder.find(R.id.main).setTag(item);
 			binder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			pickerView.checkSize(index, binder.itemView);
 
 			textView.setText(item.getTitle());
 
 			if(!(textView.getTag() instanceof String)) {
+
+				binder.find(R.id.main).setPadding(pickerView.itemPadding, pickerView.itemPadding,
+						pickerView.itemPadding,pickerView.itemPadding);
 
 				textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, pickerView.textSize);
 				textView.setTextColor(pickerView.textColor);
