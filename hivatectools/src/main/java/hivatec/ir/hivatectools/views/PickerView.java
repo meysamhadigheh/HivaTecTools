@@ -59,6 +59,8 @@ public class PickerView extends RelativeLayout {
 
 	int position = 0;
 
+	private Boolean silentScroll = false;
+
 	public PickerView(Context context) {
 		super(context);
 
@@ -201,10 +203,12 @@ public class PickerView extends RelativeLayout {
 						if(foundPos >= 0) {
 							selectedItem = foundPos;
 
-							if(listener != null){
+							if(listener != null && !silentScroll){
 
 								listener.onItemPicked(((PickerItemHolder) adapter.getItems().get(foundPos)).item, foundPos);
 							}
+
+							silentScroll = false;
 
 						}
 					}
@@ -265,6 +269,7 @@ public class PickerView extends RelativeLayout {
 
 	public void setSelectedIndex(int index){
 		selectedItem = index;
+		silentScroll = true;
 		recycler.smoothScrollToPosition(index);
 	}
 
@@ -272,6 +277,7 @@ public class PickerView extends RelativeLayout {
 		@Override
 		public void onItemClicked(PickerItemHolder item, ItemHolder holder) {
 
+			silentScroll = true;
 			recycler.smoothScrollToPosition(item.index);
 		}
 	};
