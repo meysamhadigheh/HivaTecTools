@@ -45,7 +45,7 @@ public class HivaButton extends RelativeLayout {
 	AppCompatImageView imageView;
 	LinearLayout linearLayout;
 	ProgressBar indicatorView;
-
+	Space spaceView;
 
 	//global settings
 	int textSize = ViewUIHelper.spToPx(15, getContext());
@@ -312,7 +312,7 @@ public class HivaButton extends RelativeLayout {
 
 		imageView = new AppCompatImageView(getContext());
 		//imageView.setBackgroundColor(Color.YELLOW);
-		Space spaceView = new Space(getContext());
+		spaceView = new Space(getContext());
 
 		if(icon != 0 && iconWidth == 0){
 			imageView.setLayoutParams(new LayoutParams(textSize,textSize));
@@ -617,6 +617,23 @@ public class HivaButton extends RelativeLayout {
 		}
 
 		setIconColor();
+
+	}
+
+	public void setIconWidthDp(int width){
+
+		int dp = ViewUIHelper.dpToPx(width);
+
+		ViewGroup.LayoutParams params = imageView.getLayoutParams();
+		params.width = dp;
+		imageView.setLayoutParams(params);
+
+	}
+
+	public void setIconVisibility(int visible){
+
+		imageView.setVisibility(visible);
+		spaceView.setVisibility(visible);
 
 	}
 
