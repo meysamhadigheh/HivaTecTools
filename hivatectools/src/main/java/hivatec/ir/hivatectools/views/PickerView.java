@@ -55,6 +55,7 @@ public class PickerView extends RelativeLayout {
 	String typeface = "";
 
 	int selectedItem = 0;
+	Boolean firstTime = true;
 	int itemPadding = ViewUIHelper.dpToPx(10);
 
 	int position = 0;
@@ -172,12 +173,16 @@ public class PickerView extends RelativeLayout {
 		public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 			super.onScrollStateChanged(recyclerView, newState);
 
-			if(newState == RecyclerView.SCROLL_STATE_IDLE){
+			if(silentScroll) {
+
+				return;
+			}
+
+			if(newState == RecyclerView.SCROLL_STATE_SETTLING){
 
 				recyclerView.postDelayed(new Runnable() {
 					@Override
 					public void run() {
-
 
 						int halfHeight = PickerView.this.getHeight() / 2;
 						int foundPos = -1;
@@ -185,7 +190,7 @@ public class PickerView extends RelativeLayout {
 
 
 						for(int i = 0; i < adapter.getItems().size(); i++) {
-							RecyclerView.ViewHolder vh = recyclerView.findViewHolderForAdapterPosition(i);
+							RecyclerView.ViewHolder vh = recycler.findViewHolderForAdapterPosition(i);
 
 							if(vh != null) {
 								View v = vh.itemView;
@@ -208,7 +213,6 @@ public class PickerView extends RelativeLayout {
 								listener.onItemPicked(((PickerItemHolder) adapter.getItems().get(foundPos)).item, foundPos);
 							}
 
-							silentScroll = false;
 
 						}
 					}
@@ -222,38 +226,7 @@ public class PickerView extends RelativeLayout {
 		public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
 			super.onScrolled(recyclerView, dx, dy);
 
-
-			for(int i = 0; i < recyclerView.getChildCount(); i++) {
-				View v = recyclerView.getChildAt(i);
-
-				double circleR = PickerView.this.getHeight() / 2;
-				double Padding3dy = PickerView.this.getHeight() * 0.3;
-				double Padding3dx = PickerView.this.getWidth() * 0.25;
-
-				int halfHeight = PickerView.this.getHeight() / 2;
-				//- recyclerView.computeVerticalScrollOffset()
-				int distanceToTop = halfHeight - v.getHeight() / 2 - v.getTop();
-				double percent = (double) distanceToTop / (double) halfHeight;
-				v.setRotationX((float) Math.ceil(percent * 90));
-
-				v.setAlpha(1 - Math.abs((float) percent));
-
-				double deg;
-				if(percent > 0) {
-					deg = 90 * percent;
-				}else{
-					deg = 180 - 90 * Math.abs(percent);
-				}
-				double x = circleR * Math.cos(deg * 0.0174533); //+ PickerView.this.getHeight();
-
-				v.setTranslationY((float) Math.ceil(percent * Math.abs(percent) * 0.5 * Padding3dy));
-				v.setTranslationX((float) Math.ceil(percent * percent * 0.4 * Padding3dx) * position);
-
-				v.setScaleX((float) (1 - Math.abs((float) percent * 0.3)));
-				v.setScaleY((float) (1 - Math.abs((float) percent * 0.3)));
-			}
-
-
+			transformItems();
 
 		}
 	};
@@ -268,16 +241,34 @@ public class PickerView extends RelativeLayout {
 	}
 
 	public void setSelectedIndex(int index){
-		selectedItem = index;
-		silentScroll = true;
-		recycler.smoothScrollToPosition(index);
+
+		recycler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+
+				silentScroll = true;
+				recycler.smoothScrollToPosition(index);
+				silentScroll = false;
+
+			}
+		},100);
+
+//		recycler.post(new Runnable() {
+//			@Override
+//			public void run() {
+//				selectedItem = index;
+//				silentScroll = true;
+//				layoutManager.scrollToPosition(index);
+//			}
+//		});
+
 	}
+
 
 	private OnItemClickListener itemClickListener = new OnItemClickListener<PickerItemHolder>() {
 		@Override
 		public void onItemClicked(PickerItemHolder item, ItemHolder holder) {
 
-			silentScroll = true;
 			recycler.smoothScrollToPosition(item.index);
 		}
 	};
@@ -289,6 +280,38 @@ public class PickerView extends RelativeLayout {
 
 	}
 
+	private void transformItems(){
+		for(int i = 0; i < recycler.getChildCount(); i++) {
+			View v = recycler.getChildAt(i);
+
+			double circleR = PickerView.this.getHeight() / 2;
+			double Padding3dy = PickerView.this.getHeight() * 0.3;
+			double Padding3dx = PickerView.this.getWidth() * 0.25;
+
+			int halfHeight = PickerView.this.getHeight() / 2;
+			//- recyclerView.computeVerticalScrollOffset()
+			int distanceToTop = halfHeight - v.getHeight() / 2 - v.getTop();
+			double percent = (double) distanceToTop / (double) halfHeight;
+			v.setRotationX((float) Math.ceil(percent * 90));
+
+			v.setAlpha(1 - Math.abs((float) percent));
+
+			double deg;
+			if(percent > 0) {
+				deg = 90 * percent;
+			}else{
+				deg = 180 - 90 * Math.abs(percent);
+			}
+			double x = circleR * Math.cos(deg * 0.0174533); //+ PickerView.this.getHeight();
+
+			v.setTranslationY((float) Math.ceil(percent * Math.abs(percent) * 0.5 * Padding3dy));
+			v.setTranslationX((float) Math.ceil(percent * percent * 0.4 * Padding3dx) * position);
+
+			v.setScaleX((float) (1 - Math.abs((float) percent * 0.3)));
+			v.setScaleY((float) (1 - Math.abs((float) percent * 0.3)));
+		}
+	}
+
 	private void checkSize(int index, View v){
 		//Log.i("pickerView", getHeight() + " <- picker height");
 
@@ -296,15 +319,10 @@ public class PickerView extends RelativeLayout {
 
 
 			v.post(() -> {
-				int width = v.getMeasuredWidth();
 				int height = v.getMeasuredHeight();
-
-				//Log.i("pickerView", height + " firstItem height");
-
 				int padding = getHeight() / 2 - height / 2;
 
 				recycler.setPadding(0, padding, 0 , padding);
-				recycler.scrollToPosition(0);
 
 				RelativeLayout.LayoutParams params = (LayoutParams) divider.getLayoutParams();
 				params.height = height;
@@ -317,7 +335,7 @@ public class PickerView extends RelativeLayout {
 		//Log.i("pickerView", "-------------");
 	}
 
-	public void setItems(ArrayList<PickerItem> items){
+	public void setItems(ArrayList<PickerItem> items) {
 
 		adapter.clearItems();
 
@@ -329,17 +347,17 @@ public class PickerView extends RelativeLayout {
 			adapter.addItem(new PickerItemHolder(id++, item, this));
 		}
 
+		//
 		adapter.notifyDataSetChanged();
 
-		if(!isInEditMode()) {
+		if(firstTime && !isInEditMode()) {
 			recycler.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 			recycler.setPadding(0, recycler.getMeasuredHeight() / 2, 0, 0);
-			recycler.scrollToPosition(0);
+			firstTime = false;
 		}
 	}
 
-
-	public void setItemsStr(ArrayList<String> items){
+	public void setItemsStr(ArrayList<String> items) {
 
 		ArrayList pickerItems = new ArrayList();
 		int id = 0;
@@ -434,66 +452,6 @@ public class PickerView extends RelativeLayout {
 		}
 	}
 
-
-
-
-	private class Flip3dAnimation extends Animation {
-		private final float mFromDegrees;
-		private final float mToDegrees;
-		private final float mCenterX;
-		private final float mCenterY;
-		private Camera mCamera;
-
-		public Flip3dAnimation(View view) {
-			mFromDegrees = 0;
-			mToDegrees = 720;
-			mCenterX = view.getWidth() / 2.0f;
-			mCenterY = view.getHeight() / 2.0f;
-		}
-
-		@Override
-		public void initialize(int width, int height, int parentWidth,
-							   int parentHeight) {
-			super.initialize(width, height, parentWidth, parentHeight);
-			mCamera = new Camera();
-		}
-
-		public void applyPropertiesInRotation()
-		{
-			this.setDuration(2000);
-			this.setFillAfter(true);
-			this.setInterpolator(new AccelerateInterpolator());
-		}
-
-		@Override
-		protected void applyTransformation(float interpolatedTime, Transformation t) {
-			final float fromDegrees = mFromDegrees;
-			float degrees = fromDegrees
-					+ ((mToDegrees - fromDegrees) * interpolatedTime);
-
-			final float centerX = mCenterX;
-			final float centerY = mCenterY;
-			final Camera camera = mCamera;
-
-			final Matrix matrix = t.getMatrix();
-
-			camera.save();
-
-			Log.e("Degree",""+degrees) ;
-			Log.e("centerX",""+centerX) ;
-			Log.e("centerY",""+centerY) ;
-
-			camera.rotateX(degrees);
-
-			camera.getMatrix(matrix);
-			camera.restore();
-
-			matrix.preTranslate(-centerX, -centerY);
-			matrix.postTranslate(centerX, centerY);
-
-		}
-
-	}
 
 	public interface OnItemPickedListener {
 		void onItemPicked(PickerItem item, int index);

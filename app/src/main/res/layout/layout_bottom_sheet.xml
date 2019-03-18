@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:padding="15dp"
+            android:padding="16dp"
             android:tint="@color/Green"
             android:src="@drawable/ic_check"
              />
@@ -51,10 +51,31 @@
         android:layout_height="1dp"
         android:background="@color/DimGray"/>
 
-    <hivatec.ir.hivatectools.views.LoopView
-        android:id="@+id/data_picker"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp" />
+        android:layout_height="240dp"
+        android:orientation="horizontal"
+        >
+
+        <hivatec.ir.hivatectools.views.LoopView
+            android:id="@+id/data_picker"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <hivatec.ir.hivatectools.views.LoopView
+            android:id="@+id/data_picker2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            />
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

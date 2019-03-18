@@ -62,15 +62,18 @@ public class DataPickerActivity extends AppCompatActivity {
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.layout_bottom_sheet, null);
         LoopView loopView = sheetView.findViewById(R.id.data_picker);
+        LoopView loopView2 = sheetView.findViewById(R.id.data_picker2);
         ImageView acceptBtn = sheetView.findViewById(R.id.accept_btn);
         ImageView cancelBtn=sheetView.findViewById(R.id.cancel_btn);
         loopView.setItems(items);
-        loopView.setItemsVisibleCount(6);
+        loopView2.setItems(items);
+        loopView.setItemsVisibleCount(4);
         loopView.setTextSizeNotCenter(14);
         loopView.setTextSizeCenter(20);
+        loopView.setNotLoop();
 
         loopView.setInitPosition(lastIndexSelected);
-        loopView.setDividerColor(getResources().getColor(R.color.White));
+        loopView.setDividerColor(getResources().getColor(R.color.Gray));
 
         mBottomSheetDialog.setContentView(sheetView);
         BottomSheetBehavior mBehavior = BottomSheetBehavior.from((View) sheetView.getParent());
