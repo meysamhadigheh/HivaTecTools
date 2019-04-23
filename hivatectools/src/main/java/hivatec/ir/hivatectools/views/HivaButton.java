@@ -691,6 +691,13 @@ public class HivaButton extends RelativeLayout {
 	}
 
 
+	public AppCompatTextView getTextView(){
+		return textView;
+	}
+	
+	public AppCompatImageView getImageView(){
+	 	return imageView;
+	}
 
 
 	/////////////////
