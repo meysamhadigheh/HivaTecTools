@@ -610,11 +610,14 @@ public class HivaButton extends RelativeLayout {
 
 	public void setIcon(Bitmap icon){
 
+		this.setIcon(0);
 		this.iconBitmap = icon;
 		this.setIconImage();
 	}
 
 	public void setIcon(Bitmap icon, boolean state){
+
+		this.setIcon(0, state);
 
 		if(state) {
 			this.iconBitmap = icon;
