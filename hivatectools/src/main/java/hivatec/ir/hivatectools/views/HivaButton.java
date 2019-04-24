@@ -3,6 +3,7 @@ package hivatec.ir.hivatectools.views;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -72,6 +73,7 @@ public class HivaButton extends RelativeLayout {
 	//on state
 	String title = "دکمه";
 	int icon = 0;
+	Bitmap iconBitmap = null;
 	int textColor = Color.WHITE;
 	int backgroundColor = getContext().getResources().getColor(R.color.colorPrimary);
 	int backgroundDrawable = 0;
@@ -86,6 +88,7 @@ public class HivaButton extends RelativeLayout {
 	//off state
 	String titleOff = "دکمه";
 	int iconOff = 0;
+	Bitmap iconBitmapOff = null;
 	int textColorOff = Color.WHITE;
 	int backgroundColorOff = getContext().getResources().getColor(R.color.colorPrimary);
 	int backgroundDrawableOff = 0;
@@ -588,18 +591,38 @@ public class HivaButton extends RelativeLayout {
 	}
 
 	public void setIcon(int icon){
-		this.imageView.setImageResource(icon);
+
+		this.icon = icon;
+		setIconImage();
+
 	}
 
 	public void setIcon(int icon, boolean state){
 
 		if(state) {
 			this.icon = icon;
-			this.imageView.setImageResource(icon);
 		}else{
 			this.iconOff = icon;
-			this.imageView.setImageResource(icon);
 		}
+
+		setIconImage();
+	}
+
+	public void setIcon(Bitmap icon){
+
+		this.iconBitmap = icon;
+		this.setIconImage();
+	}
+
+	public void setIcon(Bitmap icon, boolean state){
+
+		if(state) {
+			this.iconBitmap = icon;
+		}else{
+			this.iconBitmapOff = icon;
+		}
+
+		setIconImage();
 	}
 
 	public void setIconTint(int color){
@@ -706,6 +729,24 @@ public class HivaButton extends RelativeLayout {
 	/////////////////
 	/// private functions
 	/////////////////
+
+	private void setIconImage() {
+
+		if(icon > 0){
+			if(isOn) {
+				this.imageView.setImageResource(icon);
+			}else{
+				this.imageView.setImageResource(icon);
+			}
+		}else if(iconBitmap != null){
+			if(isOn) {
+				imageView.setImageBitmap(iconBitmap);
+			}else{
+				imageView.setImageBitmap(iconBitmapOff);
+			}
+		}
+
+	}
 
 	private void setIconColor() {
 
