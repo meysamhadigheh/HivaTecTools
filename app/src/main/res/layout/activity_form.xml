@@ -15,52 +15,44 @@
         >
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:orientation="horizontal"
+        <hivatec.ir.hivatectools.views.HivaShapeView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundColor="@color/Red"
             android:layout_centerInParent="true"
+
+            app:rounded="true"
+            app:rippleColor="#D3FFFFFF"
+
+            app:backgroundSecondColor="@color/Yellow"
+            app:gradientAgnle="90"
+
+            app:strokeColor="@color/BlueViolet"
+            app:strokeWidth="2dp"
+            app:strokeDashGap="10"
+
+
             >
 
 
-            <hivatec.ir.hivatectools.views.PickerView
-                android:id="@+id/picker"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_centerInParent="true"
-                app:textSize="16sp"
-                app:position="left"
-                app:itemPadding="0dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="سلام علیکم"
+
+                android:layout_margin="20dp"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <hivatec.ir.hivatectools.views.PickerView
-                android:id="@+id/picker2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_centerInParent="true"
-                app:textSize="16sp"
-                app:itemPadding="0dp"
+                android:text="aaaaaaaa"
 
+                android:layout_margin="20dp"
                 />
-
-
-            <hivatec.ir.hivatectools.views.PickerView
-                android:id="@+id/picker3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_centerInParent="true"
-                app:textSize="16sp"
-                app:position="right"
-                app:itemPadding="0dp"
-
-                />
-        </LinearLayout>
-
-
+        </hivatec.ir.hivatectools.views.HivaShapeView>
 
     </RelativeLayout>
 

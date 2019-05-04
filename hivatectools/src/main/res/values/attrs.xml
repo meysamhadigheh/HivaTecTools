@@ -16,6 +16,8 @@
     <attr name="hideAnimation" format="reference"></attr>
     <attr name="showAnimation" format="reference"></attr>
 
+
+
     <declare-styleable name="ActionBarView" >
 
         <attr name="backgroundColor"></attr>
@@ -148,6 +150,31 @@
         <attr name="strokePressedColorOff" format="color"></attr>
         <attr name="strokeDashGapOff" format="integer"></attr>
 
+
+    </declare-styleable>
+
+
+    <declare-styleable name="HivaShapeView">
+
+        <attr name="radius"></attr>
+        <attr name="rounded"></attr>
+
+        <attr name="backgroundColor"></attr>
+        <attr name="backgroundDrawable"></attr>
+        <attr name="rippleColor"></attr>
+
+        <attr name="backgroundSecondColor" ></attr>
+        <attr name="gradientAgnle" ></attr>
+
+        <attr name="strokeWidth" ></attr>
+        <attr name="strokeDashGap"></attr>
+        <attr name="strokeColor"></attr>
+        <attr name="strokePressedColor" ></attr>
+
+        <attr name="topLeftCorner"></attr>
+        <attr name="bottomLeftCorner"></attr>
+        <attr name="topRightCorner"></attr>
+        <attr name="bottomRightCorner"></attr>
 
     </declare-styleable>
 

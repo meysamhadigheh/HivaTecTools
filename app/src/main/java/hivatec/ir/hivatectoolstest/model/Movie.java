@@ -36,7 +36,9 @@ public class Movie implements ItemBinder {
     }
 
 
-
+//    @BindView(R2.id.movie_name) TextView nameTxt;
+//    @BindView(R2.id.movie_stars) TextView starsTxt;
+//    @BindView(R2.id.movie_image) TextView imageImg;
 
     @Override
     public int getResourceId() {
@@ -46,10 +48,14 @@ public class Movie implements ItemBinder {
     @Override
     public void bindToHolder(ItemHolder binder, Object listener) {
 
-        binder.<TextView>find(R.id.movie_name).setText(name);
-        binder.<TextView>find(R.id.movie_stars).setText(stars);
+        //binder.<TextView>find(R.id.movie_name).setText(name);
+        //binder.<TextView>find(R.id.movie_stars).setText(stars);
 
-        Glide.with(binder.context).load(imgUrl).into(binder.<ImageView>find(R.id.movie_image));
+        //Glide.with(binder.context).load(imgUrl).into(binder.<ImageView>find(R.id.movie_image));
+
+        //nameTxt.setText(name);
+
+        //ButterKnife.bind(binder, binder.itemView);
 
     }
 }

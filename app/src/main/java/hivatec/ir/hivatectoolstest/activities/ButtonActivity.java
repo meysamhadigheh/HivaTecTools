@@ -1,11 +1,17 @@
 package hivatec.ir.hivatectoolstest.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.util.ArrayList;
 
@@ -22,6 +28,7 @@ public class ButtonActivity extends ParentActivity {
 
     @Override
     protected void setContentViewActivity() {
+
         setContentView(R.layout.activity_button);
     }
 
@@ -67,6 +74,21 @@ public class ButtonActivity extends ParentActivity {
         }
 
         recycler.setAdapter(new HivaRecyclerAdapter(buttons));
+
+
+        Glide.with(context)
+                .asBitmap()
+                .load("http://www.otooapp.com/image/200x200/k7k2VjjR.png")
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+
+                        button.setIcon(0);
+                        button.setIcon(resource);
+                    }
+                });
+
+
     }
 
     @Override
