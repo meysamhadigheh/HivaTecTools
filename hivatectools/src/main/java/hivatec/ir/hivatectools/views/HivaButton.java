@@ -185,7 +185,7 @@ public class HivaButton extends RelativeLayout {
 			rippleColorOff = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColor_Off, textColorOff), (int) Math.round(255 * 0.3));
 			backgroundSecondColorOff = a.getColor(R.styleable.HivaButton_backgroundSecondColorOff, backgroundSecondColorOff);
 			gradientAngleOff = a.getInt(R.styleable.HivaButton_gradientAgnleOff, gradientAngle);
-			iconTintOff = a.getColor(R.styleable.HivaButton_iconTintOff, textColorOff);
+			iconTintOff = a.getColor(R.styleable.HivaButton_iconTintOff, iconTint);
 			strokeColorOff = a.getColor(R.styleable.HivaButton_strokeColorOff, strokeColor);
 			strokePressedColorOff = a.getColor(R.styleable.HivaButton_strokePressedColorOff, strokeColorOff);
 			strokeDashGapOff = a.getInt(R.styleable.HivaButton_strokeDashGapOff, strokeDashGap);
@@ -805,6 +805,7 @@ public class HivaButton extends RelativeLayout {
 	private void setForegroundColor(){
 
 		setTextViewColor();
+		setIconImage();
 		setIconColor();
 		setProgressColor();
 	}

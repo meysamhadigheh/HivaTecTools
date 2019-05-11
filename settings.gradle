@@ -1,1 +1,1 @@
-include ':app', ':hivatectools'
+include ':app', ':hivatectools', ':prettyslider'
