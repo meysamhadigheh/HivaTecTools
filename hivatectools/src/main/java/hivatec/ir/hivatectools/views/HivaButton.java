@@ -739,7 +739,7 @@ public class HivaButton extends RelativeLayout {
 			if(isOn) {
 				this.imageView.setImageResource(icon);
 			}else{
-				this.imageView.setImageResource(icon);
+				this.imageView.setImageResource(iconOff);
 			}
 		}else if(iconBitmap != null){
 			if(isOn) {
