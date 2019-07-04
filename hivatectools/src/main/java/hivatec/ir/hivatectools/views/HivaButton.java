@@ -79,6 +79,7 @@ public class HivaButton extends RelativeLayout {
 	int backgroundDrawable = 0;
 	int backgroundSecondColor = 0;
 	int gradientAngle = 0;
+	int originalRippleColor = Color.TRANSPARENT;
 	int rippleColor = Color.parseColor("#44ffffff");
 	int iconTint = 0;
 	int strokeColor = 0;
@@ -148,7 +149,8 @@ public class HivaButton extends RelativeLayout {
 
 			backgroundColor = a.getColor(R.styleable.HivaButton_backgroundColor, backgroundColor);
 			backgroundDrawable = a.getResourceId(R.styleable.HivaButton_backgroundDrawable, backgroundDrawable);
-			rippleColor = ColorUtils.setAlphaComponent(a.getColor(R.styleable.HivaButton_rippleColor, textColor), (int) Math.round(255 * 0.3));
+			originalRippleColor = a.getColor(R.styleable.HivaButton_rippleColor, textColor);
+			rippleColor = ColorUtils.setAlphaComponent(originalRippleColor, (int) Math.round(255 * 0.3));
 
 			backgroundSecondColor = a.getColor(R.styleable.HivaButton_backgroundSecondColor, backgroundSecondColor);
 			gradientAngle = a.getInt(R.styleable.HivaButton_gradientAgnle, 90);
@@ -467,7 +469,9 @@ public class HivaButton extends RelativeLayout {
 			builder.cornerRadii(topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner);
 		}
 
-		builder.ripple().rippleColor(rippleColor);
+		if(originalRippleColor != Color.TRANSPARENT) {
+			builder.ripple().rippleColor(rippleColor);
+		}
 
 		if(backgroundColor == Color.TRANSPARENT) {
 			builder.solidColorPressedWhenRippleUnsupported(rippleColor);
