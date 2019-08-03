@@ -77,7 +77,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		addLayoutManagerListener();
 
 
-		recyclerView.setPadding(this.getPaddingLeft(),this.getPaddingTop(),this.getPaddingRight(),this.getBottom());
+		recyclerView.setPadding(this.getPaddingLeft(),this.getPaddingTop(),this.getPaddingRight(),this.getPaddingBottom());
 		this.setPadding(0,0,0,0);
 	}
 
