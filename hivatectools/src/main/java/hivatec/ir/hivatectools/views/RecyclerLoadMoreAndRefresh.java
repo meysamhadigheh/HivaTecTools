@@ -140,7 +140,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		adapter.removeItem(getLoadingItem());
 		adapter.removeItem(getEmptyItem(""));
 
-		this.page++;
 
 		if(page == 0){
 
@@ -149,9 +148,14 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 				canLoadMore = false;
 				this.page = 0;
 			}else {
+				this.page++;
+
 				adapter.setItems(items);
 			}
 		}else{
+
+			this.page++;
+
 			adapter.addItems(items);
 
 			if(items.size() < minPageSize){
