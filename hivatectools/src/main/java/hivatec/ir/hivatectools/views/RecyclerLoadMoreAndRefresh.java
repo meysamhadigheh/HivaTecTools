@@ -138,6 +138,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		refreshLayout.setRefreshing(false);
 
 		adapter.removeItem(getLoadingItem());
+		adapter.removeItem(getEmptyItem(""));
 
 		this.page++;
 		if(items.size() < minPageSize){
