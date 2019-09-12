@@ -30,6 +30,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	HivaRecyclerAdapter adapter;
 	ItemBinder loadingItem;
 	ErrorItemBinder errorItem;
+	ItemBinder emptyItem;
 
 	Delegate delegate;
 	int minPageSize = 5;
@@ -139,7 +140,13 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		adapter.removeItem(getLoadingItem());
 
 		if(page == 0){
-			adapter.setItems(items);
+
+			if(items.size() == 0){
+				adapter.addItem(getEmptyItem("محتوایی یافت نشد"));
+				canLoadMore = false;
+			}else {
+				adapter.setItems(items);
+			}
 		}else{
 			adapter.addItems(items);
 		}
@@ -199,6 +206,19 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 		return errorItem;
 	}
 
+	public ItemBinder getEmptyItem(String error){
+
+		if(emptyItem == null){
+			emptyItem = new ErrorItem();
+			((ErrorItem) emptyItem).pagerHelper = this;
+
+			((ErrorItem) emptyItem).setErrorMessage(error);
+			((ErrorItem) emptyItem).setCanRefresh(false);
+		}
+
+		return emptyItem;
+	}
+
 
 	public SwipeRefreshLayout getRefreshLayout() {
 		return refreshLayout;
@@ -232,6 +252,9 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 	}
 	public void setErrorItem(ErrorItemBinder errorItem) {
 		this.errorItem = errorItem;
+	}
+	public void setEmptyItem(ItemBinder emptyItem) {
+		this.emptyItem = emptyItem;
 	}
 
 	public Delegate getDelegate() {
