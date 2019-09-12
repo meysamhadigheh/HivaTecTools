@@ -139,11 +139,19 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 
 		adapter.removeItem(getLoadingItem());
 
+		this.page++;
+		if(items.size() < minPageSize){
+			canLoadMore = false;
+		}else{
+			adapter.addItem(getLoadingItem());
+		}
+
 		if(page == 0){
 
 			if(items.size() == 0){
 				adapter.addItem(getEmptyItem("محتوایی یافت نشد"));
 				canLoadMore = false;
+				page = 0;
 			}else {
 				adapter.setItems(items);
 			}
@@ -151,13 +159,6 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 			adapter.addItems(items);
 		}
 
-		if(items.size() < minPageSize){
-			canLoadMore = false;
-		}else{
-			adapter.addItem(getLoadingItem());
-		}
-
-		this.page++;
 		adapter.notifyDataSetChanged();
 
 		isLoading = false;

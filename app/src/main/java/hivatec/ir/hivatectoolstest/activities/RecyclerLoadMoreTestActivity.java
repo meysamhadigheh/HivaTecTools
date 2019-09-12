@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -35,6 +36,7 @@ import hivatec.ir.hivatectools.helper.GlideHelper;
 import hivatec.ir.hivatectools.helper.SharedPreference;
 import hivatec.ir.hivatectools.views.RecyclerLoadMoreAndRefresh;
 import hivatec.ir.hivatectoolstest.R;
+import hivatec.ir.hivatectoolstest.model.EmptyItem;
 import hivatec.ir.hivatectoolstest.model.HeaderItem;
 import hivatec.ir.hivatectoolstest.model.ItemLoading;
 import hivatec.ir.hivatectoolstest.model.Movie;
@@ -88,32 +90,7 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 
 		recycler = findViewById(R.id.recycler);
 
-
-		GridLayoutManager manager = new GridLayoutManager(context, 2);
-		manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-			@Override
-			public int getSpanSize(int position) {
-
-				if(position == recycler.getLoadingItemPosition()) {
-					return 2;
-				}
-
-				if(position == recycler.getErrorItemPosition()) {
-					return 2;
-				}
-
-				if(recycler.getAdapter().getItems().get(position).getClass() == HeaderItem.class){
-					return 2;
-				}
-
-				if(recycler.getAdapter().getItems().get(position).getClass() == RecycelerItem.class){
-					return 2;
-				}
-
-				return 1;
-			}
-		});
-		recycler.setLayoutManager(manager);
+		recycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 	}
 
 	@Override
@@ -127,6 +104,7 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 		//recycler.getRefreshLayout().setEnabled(false);
 		recycler.setDelegate(this);
 		recycler.setLoadingItem(new ItemLoading());
+		recycler.setEmptyItem(new EmptyItem());
 	}
 
 	@Override
@@ -148,18 +126,18 @@ public class RecyclerLoadMoreTestActivity extends ParentActivity implements Recy
 							ArrayList movies = new ArrayList<>();
 
 
-							movies.add(new HeaderItem());
-							movies.add(new RecycelerItem());
-
-							for (int i = 0; i < 10; i++) {
-
-								if (Math.random() < 0.4) {
-									movies.add(new Movie("Titanic", "Jack, Rose ...", titanic));
-								} else {
-									movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...", lord));
-								}
-
-							}
+//							movies.add(new HeaderItem());
+//							movies.add(new RecycelerItem());
+//
+//							for (int i = 0; i < 10; i++) {
+//
+//								if (Math.random() < 0.4) {
+//									movies.add(new Movie("Titanic", "Jack, Rose ...", titanic));
+//								} else {
+//									movies.add(new Movie("Lord Of The Rings", "Gandalf, Frodo, Bilbo ...", lord));
+//								}
+//
+//							}
 
 
 							recycler.doneLoading(movies, page);
