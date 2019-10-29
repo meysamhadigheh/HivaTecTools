@@ -52,7 +52,7 @@ public class HivaButton extends RelativeLayout {
 	int textSize = ViewUIHelper.spToPx(15, getContext());
 	int textLines = 2;
 	String typeface = "";
-	private CircularProgressDrawable circularDrawable;
+	private Drawable circularDrawable;
 	int radius = ViewUIHelper.dpToPx(5);
 	boolean rounded = false;
 	int widthPadding = ViewUIHelper.dpToPx(0);
@@ -85,6 +85,7 @@ public class HivaButton extends RelativeLayout {
 	int strokeColor = 0;
 	int strokeDashGap = 0;
 	int strokePressedColor = 0;
+	int loadingTint = 0;
 
 	//off state
 	String titleOff = "دکمه";
@@ -139,6 +140,7 @@ public class HivaButton extends RelativeLayout {
 			widthPadding = a.getDimensionPixelSize(R.styleable.HivaButton_widthPadding, widthPadding);
 			heightPadding = a.getDimensionPixelSize(R.styleable.HivaButton_heightPadding, heightPadding);
 			typeface = a.getString(R.styleable.HivaButton_typeface);
+			loadingTint = a.getColor(R.styleable.HivaButton_loadingTint, textColor);
 
 			isToggle = a.getBoolean(R.styleable.HivaButton_isToggle, isToggle);
 			isOn = a.getBoolean(R.styleable.HivaButton_isOn, isOn);
@@ -275,9 +277,9 @@ public class HivaButton extends RelativeLayout {
 		indicatorView = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleSmall);
 		circularDrawable = new CircularProgressDrawable(getContext());
 
-		circularDrawable.setStrokeCap(Paint.Cap.ROUND);
+		((CircularProgressDrawable) circularDrawable).setStrokeCap(Paint.Cap.ROUND);
 		circularDrawable.setColorFilter(new
-				PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_ATOP));
+				PorterDuffColorFilter(loadingTint, PorterDuff.Mode.SRC_ATOP));
 
 		indicatorView.setAlpha(0.9f);
 
@@ -288,7 +290,7 @@ public class HivaButton extends RelativeLayout {
 				ViewUIHelper.dpToPx(25) ,
 				ViewUIHelper.dpToPx(25) );
 
-		circularDrawable.setStrokeWidth(ViewUIHelper.dpToPx(4));
+		((CircularProgressDrawable) circularDrawable).setStrokeWidth(ViewUIHelper.dpToPx(4));
 
 
 		indicatorViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -729,6 +731,15 @@ public class HivaButton extends RelativeLayout {
 	 	return imageView;
 	}
 
+	public void setLoadingDrawable(Drawable loading){
+		this.circularDrawable = loading;
+		this.circularDrawable.setColorFilter(new
+				PorterDuffColorFilter(loadingTint, PorterDuff.Mode.SRC_ATOP));
+	}
+
+	public Drawable getLoadingDrawable(){
+		return this.circularDrawable;
+	}
 
 	/////////////////
 
