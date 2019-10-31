@@ -145,17 +145,17 @@ public class LoopView extends View {
 
     private void initPaints() {
 
-        Typeface mainFontTf = Typeface.createFromAsset(context.getAssets(), "IRANSansMobile.ttf");
+        //Typeface mainFontTf = Typeface.createFromAsset(context.getAssets(), "IRANSansMobile.ttf");
         this.paintOuterText = new Paint();
         this.paintOuterText.setColor(this.outerTextColor);
         this.paintOuterText.setAntiAlias(true);
-        this.paintOuterText.setTypeface(mainFontTf);
+        //this.paintOuterText.setTypeface(mainFontTf);
         this.paintOuterText.setTextSize((float)this.textSizeNotCenter);
         this.paintCenterText = new Paint();
         this.paintCenterText.setColor(this.centerTextColor);
         this.paintCenterText.setAntiAlias(true);
         this.paintCenterText.setTextScaleX(this.scaleX);
-        this.paintCenterText.setTypeface(mainFontTf);
+        //this.paintCenterText.setTypeface(mainFontTf);
         this.paintCenterText.setTextSize((float)this.textSizeCenter);
         this.paintIndicator = new Paint();
         this.paintIndicator.setColor(this.dividerColor);
