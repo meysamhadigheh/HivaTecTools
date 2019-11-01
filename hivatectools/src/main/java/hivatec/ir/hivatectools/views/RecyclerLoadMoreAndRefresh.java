@@ -89,7 +89,7 @@ public class RecyclerLoadMoreAndRefresh extends RelativeLayout {
 			public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 				super.onScrollStateChanged(recyclerView, newState);
 
-				if(canLoadMore && !isLoading && layoutManager.findLastVisibleItemPosition() == adapter.getItems().size() - 1){
+				if(canLoadMore && !isLoading && layoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItems().size() - 1){
 
 					startLoading();
 				}
