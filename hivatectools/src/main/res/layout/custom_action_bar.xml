@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/theToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/actionBarExtended"
@@ -33,8 +33,8 @@
 
             </hivatec.ir.hivatectools.activityHelpers.ToolBarContentView>
 
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 </RelativeLayout>

@@ -1,13 +1,8 @@
 package hivatec.ir.hivatectools.activityHelpers;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
-import com.google.gson.internal.$Gson$Types;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import hivatec.ir.hivatectools.helper.SharedPreference;
 

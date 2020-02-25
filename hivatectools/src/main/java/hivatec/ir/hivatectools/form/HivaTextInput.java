@@ -2,13 +2,12 @@ package hivatec.ir.hivatectools.form;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
 /**
  * Created by ashkan on 8/6/18.
  */
 
-public class HivaTextInput extends android.support.v7.widget.AppCompatEditText implements FormInput<String> {
+public class HivaTextInput extends androidx.appcompat.widget.AppCompatEditText implements FormInput<String> {
 
 
 	public HivaTextInput(Context context) {

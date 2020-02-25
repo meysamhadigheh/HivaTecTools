@@ -1,7 +1,6 @@
 package hivatec.ir.hivatectools.views;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -10,24 +9,21 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v4.widget.CircularProgressDrawable;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.core.graphics.ColorUtils;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Space;
-import android.widget.TextView;
 
 import hivatec.ir.hivatectools.R;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;

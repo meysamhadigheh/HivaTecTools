@@ -2,8 +2,8 @@
 <resources>
 
     <attr name="textSize" format="dimension" />
-    <attr name="typeface" format="string" ></attr>
-    <attr name="textColor" format="color"></attr>
+    <attr name="typeface" format="string" />
+    <attr name="textColor" format="color" />
     <attr name="iconSize" format="dimension"></attr>
     <attr name="lineWidth" format="dimension"></attr>
     <attr name="iconOn" format="reference"></attr>
@@ -27,10 +27,10 @@
 
     <declare-styleable name="HivaRadioView">
 
-        <attr name="iconOn"></attr>
-        <attr name="iconOff"></attr>
+        <attr name="iconOn" />
+        <attr name="iconOff" />
         <attr name="iconSize"/>
-        <attr name="tint"></attr>
+        <attr name="tint" />
 
         <attr name="typeface" ></attr>
         <attr name="textColor"></attr>
@@ -67,6 +67,7 @@
 
     <declare-styleable name="PickerView">
 
+
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
         <attr name="typeface" ></attr>
@@ -82,7 +83,7 @@
 
     <declare-styleable name="HivaButton">
 
-        <attr name="text"></attr>
+        <attr name="text" format="string" />
         <attr name="textColor"></attr>
         <attr name="textSize"></attr>
         <attr name="textLines" format="integer"></attr>
@@ -121,7 +122,7 @@
 
         <attr name="isToggle" format="boolean"></attr>
         <attr name="isOn" format="boolean"></attr>
-        <attr name="toggleGroup"></attr>
+        <attr name="toggleGroup" format="string" />
         <attr name="toggleGroupCanBeEmpty" format="boolean"></attr>
 
         <attr name="typeface" ></attr>
@@ -144,7 +145,7 @@
         <attr name="backgroundSecondColorOff" format="color"></attr>
         <attr name="gradientAgnleOff" format="integer"></attr>
         <attr name="rippleColor_Off" format="color"></attr>
-        <attr name="iconTintOff" ></attr>
+        <attr name="iconTintOff" format="integer"></attr>
         <attr name="iconOff"></attr>
         <attr name="strokeWidthOff" format="dimension"></attr>
         <attr name="strokeColorOff" format="color"></attr>

@@ -36,10 +36,10 @@
             android:name=".activities.RadioActivity"
             android:label="@string/title_activity_radio"
             android:theme="@style/HivaAppTheme.NoActionBar" />
-        <activity
+       <!-- <activity
             android:name=".activities.ViewBinderActivity"
             android:label="@string/title_activity_view_binder"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" />-->
         <activity android:name=".activities.DataPickerActivity" />
         <activity android:name=".activities.LoadingActivity" />
         <activity android:name=".activities.FormActivity" />
@@ -50,7 +50,7 @@
         <activity
             android:name=".activities.TestNewButton"
             android:label="@string/title_activity_test_new_button"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -2,16 +2,11 @@ package hivatec.ir.hivatectoolstest.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
-import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
-import hivatec.ir.hivatectools.activityHelpers.LiveViewModel;
 import hivatec.ir.hivatectools.views.HivaButton;
 import hivatec.ir.hivatectoolstest.R;
-import hivatec.ir.hivatectoolstest.model.Movie;
-import hivatec.ir.hivatectoolstest.model.User;
 
 public class MainActivity extends AppCompatActivity {
 

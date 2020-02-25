@@ -2,12 +2,11 @@ package hivatec.ir.hivatectools.form;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutCompat;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.github.florent37.viewtooltip.ViewTooltip;

@@ -1,12 +1,9 @@
 package hivatec.ir.hivatectools.helper;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
-import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
+
+import androidx.core.app.ActivityCompat;
 
 import java.util.UUID;
 

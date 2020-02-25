@@ -1,26 +1,11 @@
 package hivatec.ir.hivatectools.activityHelpers;
 
-import android.app.Activity;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.internal.$Gson$Types;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
-import hivatec.ir.hivatectools.R;
-import hivatec.ir.hivatectools.activityHelpers.ActionBarView;
-import hivatec.ir.hivatectools.helper.FontsOverride;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /*
 

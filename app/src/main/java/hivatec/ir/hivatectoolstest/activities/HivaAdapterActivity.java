@@ -1,22 +1,18 @@
 package hivatec.ir.hivatectoolstest.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 
 import hivatec.ir.hivatectools.adapters.HivaRecyclerAdapter;
 import hivatec.ir.hivatectools.adapters.ItemDecoration;
-import hivatec.ir.hivatectools.adapters.ItemHolder;
-import hivatec.ir.hivatectools.adapters.ItemHolderIterator;
 import hivatec.ir.hivatectoolstest.R;
 import hivatec.ir.hivatectoolstest.model.HeaderItem;
 import hivatec.ir.hivatectoolstest.model.Movie;
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HivaAdapterActivity extends AppCompatActivity {
 

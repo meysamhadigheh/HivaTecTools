@@ -5,8 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v4.widget.CircularProgressDrawable;
+import androidx.core.graphics.ColorUtils;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 

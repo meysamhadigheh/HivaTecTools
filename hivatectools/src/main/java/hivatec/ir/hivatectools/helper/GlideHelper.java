@@ -4,24 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.transition.Transition;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 
-import java.io.File;
 import java.io.FileOutputStream;
-import java.net.URI;
-
-import hivatec.ir.hivatectools.RetrofitHelper.JsonMap;
-import hivatec.ir.hivatectools.RetrofitHelper.RetroCallBack;
-import hivatec.ir.hivatectools.RetrofitHelper.Webservice;
-import retrofit2.Call;
-import retrofit2.Response;
 
 /**
  * Created by ashkan on 8/9/18.

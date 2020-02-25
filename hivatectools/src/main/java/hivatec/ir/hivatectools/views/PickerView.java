@@ -4,24 +4,20 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.provider.CalendarContract;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import hivatec.ir.hivatectools.R;
@@ -30,16 +26,6 @@ import hivatec.ir.hivatectools.adapters.ItemBinder;
 import hivatec.ir.hivatectools.adapters.ItemHolder;
 import hivatec.ir.hivatectools.adapters.OnItemClickListener;
 import hivatec.ir.hivatectools.helper.ViewUIHelper;
-
-import android.graphics.Camera;
-import android.graphics.Matrix;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-
-import org.w3c.dom.Text;
 
 public class PickerView extends RelativeLayout {
 
